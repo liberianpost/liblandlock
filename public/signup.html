@@ -1,414 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - Secure Portal</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: #f5f7fa;
-            color: #333;
-            line-height: 1.6;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 500px;
-            margin: 0 auto;
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        .auth-form h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #2c3e50;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #2c3e50;
-        }
-        
-        input[type="text"],
-        input[type="password"] {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
-            transition: border-color 0.3s;
-        }
-        
-        input[type="text"]:focus,
-        input[type="password"]:focus {
-            border-color: #4a6491;
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(74, 100, 145, 0.2);
-        }
-        
-        button {
-            background: #4a6491;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 600;
-            transition: background 0.3s;
-            width: 100%;
-        }
-        
-        button:hover {
-            background: #3a547e;
-        }
-        
-        button:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-        }
-        
-        .hidden {
-            display: none;
-        }
-        
-        .employee-details {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 4px;
-            margin-bottom: 20px;
-            border-left: 4px solid #4a6491;
-        }
-        
-        .employee-image {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-top: 10px;
-            border: 3px solid #4a6491;
-        }
-        
-        .error {
-            color: #e74c3c;
-            background: #fde8e8;
-            padding: 10px;
-            border-radius: 4px;
-            margin-top: 10px;
-            border-left: 4px solid #e74c3c;
-        }
-        
-        .success {
-            color: #27ae60;
-            background: #e7f4e4;
-            padding: 10px;
-            border-radius: 4px;
-            margin-top: 10px;
-            border-left: 4px solid #27ae60;
-        }
-        
-        p {
-            text-align: center;
-            margin-top: 20px;
-        }
-        
-        a {
-            color: #4a6491;
-            text-decoration: none;
-        }
-        
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up - Secure Portal</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+    /* Existing CSS */
+    * { box-sizing: border-box; margin:0; padding:0; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background-color: #f5f7fa; color:#333; line-height:1.6; padding:20px; }
+    .container { max-width:500px; margin:0 auto; background:white; padding:30px; border-radius:10px; box-shadow:0 4px 6px rgba(0,0,0,0.1); }
+    .auth-form h1 { text-align:center; margin-bottom:30px; color:#2c3e50; }
+    .form-group { margin-bottom:20px; }
+    label { display:block; margin-bottom:8px; font-weight:600; color:#2c3e50; }
+    input[type="text"], input[type="password"] { width:100%; padding:12px 15px; border:1px solid #ddd; border-radius:4px; font-size:16px; transition:border-color 0.3s; }
+    input[type="text"]:focus, input[type="password"]:focus { border-color:#4a6491; outline:none; box-shadow:0 0 0 2px rgba(74,100,145,0.2); }
+    button { background:#4a6491; color:white; border:none; padding:12px 20px; border-radius:4px; cursor:pointer; font-size:16px; font-weight:600; transition: background 0.3s; width:100%; }
+    button:hover { background:#3a547e; }
+    button:disabled { background:#ccc; cursor:not-allowed; }
+    .hidden { display:none; }
+    .employee-details { background:#f8f9fa; padding:15px; border-radius:4px; margin-bottom:20px; border-left:4px solid #4a6491; }
+    .employee-image { width:100px; height:100px; border-radius:50%; object-fit:cover; margin-top:10px; border:3px solid #4a6491; }
+    .error { color:#e74c3c; background:#fde8e8; padding:10px; border-radius:4px; margin-top:10px; border-left:4px solid #e74c3c; }
+    .success { color:#27ae60; background:#e7f4e4; padding:10px; border-radius:4px; margin-top:10px; border-left:4px solid #27ae60; }
+    p { text-align:center; margin-top:20px; }
+    a { color:#4a6491; text-decoration:none; }
+    a:hover { text-decoration:underline; }
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="auth-form">
-            <h1>Sign Up</h1>
-            <form id="signupForm">
+<div class="container">
+    <div class="auth-form">
+        <h1>Sign Up</h1>
+        <form id="signupForm">
+            <div class="form-group">
+                <label for="dssn">DSSN:</label>
+                <input type="text" id="dssn" required placeholder="Enter your DSSN">
+                <button type="button" id="checkDssn">Verify DSSN</button>
+            </div>
+            <div id="employeeInfo" class="hidden">
+                <div class="employee-details">
+                    <h3>Employee Information</h3>
+                    <p><strong>Name:</strong> <span id="employeeName"></span></p>
+                    <img id="employeeImage" src="" alt="Employee Photo" class="employee-image">
+                </div>
+            </div>
+            <div id="passwordSection" class="hidden">
                 <div class="form-group">
-                    <label for="dssn">DSSN:</label>
-                    <input type="text" id="dssn" required placeholder="Enter your DSSN">
-                    <button type="button" id="checkDssn">Verify DSSN</button>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" required placeholder="Create a password">
                 </div>
-                <div id="employeeInfo" class="hidden">
-                    <div class="employee-details">
-                        <h3>Employee Information</h3>
-                        <p><strong>Name:</strong> <span id="employeeName"></span></p>
-                        <img id="employeeImage" src="" alt="Employee Photo" class="employee-image">
-                    </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password:</label>
+                    <input type="password" id="confirmPassword" required placeholder="Confirm your password">
                 </div>
-                <div id="passwordSection" class="hidden">
-                    <div class="form-group">
-                        <label for="password">Password:</label>
-                        <input type="password" id="password" required placeholder="Create a password">
-                    </div>
-                    <div class="form-group">
-                        <label for="confirmPassword">Confirm Password:</label>
-                        <input type="password" id="confirmPassword" required placeholder="Confirm your password">
-                    </div>
-                    <button type="submit">Create Account</button>
-                </div>
-            </form>
-            <p>Already have an account? <a href="login.html">Login here</a></p>
-            <p id="errorMsg" class="error hidden"></p>
-            <p id="successMsg" class="success hidden"></p>
-        </div>
+                <button type="submit">Create Account</button>
+            </div>
+        </form>
+        <p>Already have an account? <a href="login.html">Login here</a></p>
+        <p id="errorMsg" class="error hidden"></p>
+        <p id="successMsg" class="success hidden"></p>
     </div>
+</div>
 
-    <script>
-        // CORS Proxy function to handle cross-origin requests
-        async function makeCorsRequest(url, options) {
-            const corsProxies = [
-                // Try direct request first
-                async () => {
-                    try {
-                        const response = await fetch(url, {
-                            ...options,
-                            mode: 'cors',
-                            credentials: 'omit'
-                        });
-                        if (response.ok) return response;
-                        throw new Error('Direct request failed');
-                    } catch (error) {
-                        throw error;
-                    }
-                },
-                
-                // Try with CORS proxy
-                async () => {
-                    try {
-                        const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(url)}`;
-                        const response = await fetch(proxyUrl, {
-                            method: options.method,
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-Requested-With': 'XMLHttpRequest'
-                            },
-                            body: options.body
-                        });
-                        if (response.ok) return response;
-                        throw new Error('Proxy request failed');
-                    } catch (error) {
-                        throw error;
-                    }
-                },
-                
-                // Alternative proxy
-                async () => {
-                    try {
-                        const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
-                        const response = await fetch(proxyUrl, options);
-                        if (response.ok) return response;
-                        throw new Error('Alternative proxy failed');
-                    } catch (error) {
-                        throw error;
-                    }
-                }
-            ];
-            
-            let lastError;
-            
-            for (const proxy of corsProxies) {
-                try {
-                    const response = await proxy();
-                    return response;
-                } catch (error) {
-                    lastError = error;
-                    console.log('Proxy attempt failed, trying next...');
-                    // Wait a bit before trying next proxy
-                    await new Promise(resolve => setTimeout(resolve, 100));
-                }
-            }
-            
-            throw lastError || new Error('All CORS proxy attempts failed');
+<script>
+function showError(msg) {
+    const e = document.getElementById('errorMsg');
+    const s = document.getElementById('successMsg');
+    e.textContent = msg;
+    e.classList.remove('hidden');
+    s.classList.add('hidden');
+}
+
+function showSuccess(msg) {
+    const e = document.getElementById('errorMsg');
+    const s = document.getElementById('successMsg');
+    s.textContent = msg;
+    s.classList.remove('hidden');
+    e.classList.add('hidden');
+}
+
+function hideMessages() {
+    document.getElementById('errorMsg').classList.add('hidden');
+    document.getElementById('successMsg').classList.add('hidden');
+}
+
+async function verifyDSSN(dssn) {
+    const url = 'https://libpayapp.liberianpost.com:8081/llverify-dssn';
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        credentials: 'include',
+        body: JSON.stringify({ dssn })
+    });
+    return response.json();
+}
+
+async function registerUser(dssn, password) {
+    const url = 'https://libpayapp.liberianpost.com:8081/llregister';
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        credentials: 'include',
+        body: JSON.stringify({ dssn, password })
+    });
+    return response.json();
+}
+
+document.getElementById('checkDssn').addEventListener('click', async () => {
+    const dssn = document.getElementById('dssn').value.trim();
+    if (!dssn) return showError('Please enter a DSSN');
+    hideMessages();
+
+    const btn = document.getElementById('checkDssn');
+    btn.textContent = 'Verifying...'; btn.disabled = true;
+
+    try {
+        const data = await verifyDSSN(dssn);
+        if (data.success) {
+            showSuccess('DSSN verified. Please create your password.');
+            document.getElementById('employeeName').textContent = `${data.data.first_name} ${data.data.last_name}`;
+            if (data.data.image_url) document.getElementById('employeeImage').src = data.data.image_url;
+            document.getElementById('employeeInfo').classList.remove('hidden');
+            document.getElementById('passwordSection').classList.remove('hidden');
+        } else {
+            showError(data.message);
+            document.getElementById('employeeInfo').classList.add('hidden');
+            document.getElementById('passwordSection').classList.add('hidden');
         }
+    } catch (err) {
+        console.error('DSSN verification error:', err);
+        showError('Network or server error. Please try again.');
+    } finally {
+        btn.textContent = 'Verify DSSN';
+        btn.disabled = false;
+    }
+});
 
-        // Utility functions for UI
-        function showError(message) {
-            const errorMsg = document.getElementById('errorMsg');
-            const successMsg = document.getElementById('successMsg');
-            errorMsg.textContent = message;
-            errorMsg.classList.remove('hidden');
-            successMsg.classList.add('hidden');
+document.getElementById('signupForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const dssn = document.getElementById('dssn').value.trim();
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    const btn = document.querySelector('button[type="submit"]');
+
+    if (password !== confirmPassword) return showError('Passwords do not match');
+    if (password.length < 6) return showError('Password must be at least 6 characters');
+
+    hideMessages();
+    btn.textContent = 'Creating Account...'; btn.disabled = true;
+
+    try {
+        const data = await registerUser(dssn, password);
+        if (data.success) {
+            showSuccess('Account created successfully! Redirecting to login...');
+            setTimeout(()=>{ window.location.href='login.html'; }, 2000);
+        } else {
+            showError(data.message);
         }
+    } catch(err) {
+        console.error('Registration error:', err);
+        showError('Network or server error. Please try again.');
+    } finally {
+        btn.textContent = 'Create Account'; btn.disabled = false;
+    }
+});
 
-        function showSuccess(message) {
-            const errorMsg = document.getElementById('errorMsg');
-            const successMsg = document.getElementById('successMsg');
-            successMsg.textContent = message;
-            successMsg.classList.remove('hidden');
-            errorMsg.classList.add('hidden');
-        }
-
-        function hideMessages() {
-            document.getElementById('errorMsg').classList.add('hidden');
-            document.getElementById('successMsg').classList.add('hidden');
-        }
-
-        document.getElementById('checkDssn').addEventListener('click', async () => {
-            const dssn = document.getElementById('dssn').value.trim();
-            const passwordSection = document.getElementById('passwordSection');
-            const employeeInfo = document.getElementById('employeeInfo');
-            const checkBtn = document.getElementById('checkDssn');
-            
-            if (!dssn) {
-                showError('Please enter a DSSN');
-                return;
-            }
-            
-            // Show loading state
-            checkBtn.textContent = 'Verifying...';
-            checkBtn.disabled = true;
-            hideMessages();
-            
-            try {
-                const response = await makeCorsRequest('https://libpayapp.liberianpost.com:8081/llverify-dssn', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ dssn })
-                });
-                
-                const data = await response.json();
-                
-                if (data.success) {
-                    showSuccess('DSSN verified. Please create your password.');
-                    
-                    // Show employee information
-                    document.getElementById('employeeName').textContent = 
-                        `${data.data.first_name} ${data.data.last_name}`;
-                    
-                    if (data.data.image_url) {
-                        document.getElementById('employeeImage').src = data.data.image_url;
-                    }
-                    
-                    employeeInfo.classList.remove('hidden');
-                    passwordSection.classList.remove('hidden');
-                } else {
-                    showError(data.message);
-                    employeeInfo.classList.add('hidden');
-                    passwordSection.classList.add('hidden');
-                }
-            } catch (error) {
-                console.error('DSSN verification error:', error);
-                showError('Network error. Please try again.');
-                
-                // Fallback for development/demo
-                if (dssn.length >= 6) {
-                    showSuccess('DSSN verified (demo mode). Please create your password.');
-                    document.getElementById('employeeName').textContent = 'Demo User';
-                    employeeInfo.classList.remove('hidden');
-                    passwordSection.classList.remove('hidden');
-                }
-            } finally {
-                // Reset button state
-                checkBtn.textContent = 'Verify DSSN';
-                checkBtn.disabled = false;
-            }
-        });
-        
-        document.getElementById('signupForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const dssn = document.getElementById('dssn').value.trim();
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            const submitBtn = document.querySelector('button[type="submit"]');
-            
-            if (password !== confirmPassword) {
-                showError('Passwords do not match');
-                return;
-            }
-            
-            if (password.length < 6) {
-                showError('Password should be at least 6 characters');
-                return;
-            }
-            
-            // Show loading state
-            submitBtn.textContent = 'Creating Account...';
-            submitBtn.disabled = true;
-            hideMessages();
-            
-            try {
-                const response = await makeCorsRequest('https://libpayapp.liberianpost.com:8081/llregister', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ dssn, password })
-                });
-                
-                const data = await response.json();
-                
-                if (data.success) {
-                    showSuccess('Account created successfully! Redirecting to login...');
-                    
-                    // Redirect to login after a short delay
-                    setTimeout(() => {
-                        window.location.href = 'login.html';
-                    }, 2000);
-                } else {
-                    showError(data.message);
-                }
-            } catch (error) {
-                console.error('Registration error:', error);
-                showError('Network error. Please try again.');
-                
-                // Fallback for development/demo
-                showSuccess('Account created successfully! (demo mode) Redirecting...');
-                setTimeout(() => {
-                    window.location.href = 'login.html';
-                }, 2000);
-            } finally {
-                // Reset button state
-                submitBtn.textContent = 'Create Account';
-                submitBtn.disabled = false;
-            }
-        });
-
-        // Enter key support for DSSN field
-        document.getElementById('dssn').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                document.getElementById('checkDssn').click();
-            }
-        });
-
-        // Enter key support for password fields
-        document.getElementById('password').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                document.querySelector('button[type="submit"]').click();
-            }
-        });
-
-        document.getElementById('confirmPassword').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                document.querySelector('button[type="submit"]').click();
-            }
-        });
-    </script>
-</body>
-</html>
+// Enter key support
+['dssn','password','confirmPassword'].forEach(id=>{
+    document.getElementById
