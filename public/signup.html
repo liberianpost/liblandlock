@@ -62,7 +62,7 @@
             successMsg.textContent = '';
             
             try {
-                const response = await fetch('https://libpay.liberianpost.com/llverify-dssn', {
+                const response = await fetch('https://libpayapp.liberianpost.com:8081/llverify-dssn', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -128,7 +128,7 @@
             errorMsg.textContent = '';
             
             try {
-                const response = await fetch('https://libpay.liberianpost.com/llregister', {
+                const response = await fetch('https://libpayapp.liberianpost.com:8081/llregister', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
