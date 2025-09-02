@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Secure Portal</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 </head>
 <body>
     <div class="container">
@@ -29,46 +27,53 @@
     </div>
 
     <script>
-         // Firebase configuration - Replace with your config
-        const firebaseConfig = {
-            apiKey: "AIzaSyCAXigi0D23EjboMxulyXNb0ii-tpw0Fk0",
-            authDomain: "liblandlock.firebaseapp.com",
-            projectId: "liblandlock",
-            storageBucket: "liblandlock.firebasestorage.app",
-            messagingSenderId: "1019606713296",
-            appId: "1:1019606713296:web:4990faf32bcaf0a21dafd5"
-        };
-
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        
         // Login functionality
-        document.getElementById('loginForm').addEventListener('submit', (e) => {
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             
             const dssn = document.getElementById('dssn').value;
             const password = document.getElementById('password').value;
             const errorMsg = document.getElementById('errorMsg');
+            const submitBtn = document.querySelector('button[type="submit"]');
             
-            // For Firebase Auth, we use email format but display as DSSN
-            const email = `${dssn}@yourdomain.com`;
+            // Show loading state
+            submitBtn.textContent = 'Logging in...';
+            submitBtn.disabled = true;
+            errorMsg.textContent = '';
             
-            firebase.auth().signInWithEmailAndPassword(email, password)
-                .then((userCredential) => {
-                    // Signed in successfully
-                    window.location.href = 'dashboard.html'; // Redirect to dashboard
-                })
-                .catch((error) => {
-                    errorMsg.textContent = error.message;
+            try {
+                const response = await fetch('https://libpay.liberianpost.com/lllogin', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ dssn, password })
                 });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Store user data in localStorage or sessionStorage
+                    localStorage.setItem('user', JSON.stringify(data.data));
+                    window.location.href = 'dashboard.html';
+                } else {
+                    errorMsg.textContent = data.message;
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                errorMsg.textContent = 'Network error. Please try again.';
+            } finally {
+                // Reset button state
+                submitBtn.textContent = 'Login';
+                submitBtn.disabled = false;
+            }
         });
         
         // Check if user is already logged in
-        firebase.auth().onAuthStateChanged((user) => {
-            if (user) {
-                window.location.href = 'dashboard.html';
-            }
-        });
+        const user = localStorage.getItem('user');
+        if (user) {
+            window.location.href = 'dashboard.html';
+        }
     </script>
 </body>
 </html>
