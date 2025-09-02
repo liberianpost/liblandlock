@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Secure Portal</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="auth-form">
+            <h1>Sign Up</h1>
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="dssn">DSSN:</label>
+                    <input type="text" id="dssn" required placeholder="Enter your DSSN">
+                    <button type="button" id="checkDssn">Verify DSSN</button>
+                </div>
+                <div id="passwordSection" class="hidden">
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" required placeholder="Create a password">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password:</label>
+                        <input type="password" id="confirmPassword" required placeholder="Confirm your password">
+                    </div>
+                    <button type="submit">Create Account</button>
+                </div>
+            </form>
+            <p>Already have an account? <a href="login.html">Login here</a></p>
+            <p id="errorMsg" class="error"></p>
+            <p id="successMsg" class="success"></p>
+        </div>
+    </div>
+
+    <script>
+        // Firebase configuration - Replace with your config
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        
+        // This would typically be a server-side function
+        // For demo purposes, we'll simulate with a hardcoded list
+        const validDssnList = ['123456789', '987654321', '456123789'];
+        
+        document.getElementById('checkDssn').addEventListener('click', () => {
+            const dssn = document.getElementById('dssn').value;
+            const errorMsg = document.getElementById('errorMsg');
+            const successMsg = document.getElementById('successMsg');
+            const passwordSection = document.getElementById('passwordSection');
+            
+            if (!dssn) {
+                errorMsg.textContent = 'Please enter a DSSN';
+                return;
+            }
+            
+            // In a real implementation, you would check against a database
+            if (validDssnList.includes(dssn)) {
+                errorMsg.textContent = '';
+                successMsg.textContent = 'DSSN verified. Please create your password.';
+                passwordSection.classList.remove('hidden');
+            } else {
+                errorMsg.textContent = 'DSSN not found in our system.';
+                successMsg.textContent = '';
+                passwordSection.classList.add('hidden');
+            }
+        });
+        
+        document.getElementById('signupForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const dssn = document.getElementById('dssn').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const errorMsg = document.getElementById('errorMsg');
+            const successMsg = document.getElementById('successMsg');
+            
+            if (password !== confirmPassword) {
+                errorMsg.textContent = 'Passwords do not match';
+                return;
+            }
+            
+            if (password.length < 6) {
+                errorMsg.textContent = 'Password should be at least 6 characters';
+                return;
+            }
+            
+            // For Firebase Auth, we use email format but display as DSSN
+            const email = `${dssn}@yourdomain.com`;
+            
+            firebase.auth().createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // Signed up successfully
+                    successMsg.textContent = 'Account created successfully!';
+                    errorMsg.textContent = '';
+                    
+                    // Redirect to login after a short delay
+                    setTimeout(() => {
+                        window.location.href = 'login.html';
+                    }, 2000);
+                })
+                .catch((error) => {
+                    errorMsg.textContent = error.message;
+                    successMsg.textContent = '';
+                });
+        });
+    </script>
+</body>
+</html>
