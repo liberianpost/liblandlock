@@ -89,7 +89,11 @@ async function verifyDSSN(dssn) {
     const url = 'https://libpayapp.liberianpost.com:8081/llverify-dssn';
     const response = await fetch(url, {
         method: 'POST',
-        headers: {'Content-Type':'application/json'},
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        mode: 'cors',
         credentials: 'include',
         body: JSON.stringify({ dssn })
     });
@@ -100,7 +104,11 @@ async function registerUser(dssn, password) {
     const url = 'https://libpayapp.liberianpost.com:8081/llregister';
     const response = await fetch(url, {
         method: 'POST',
-        headers: {'Content-Type':'application/json'},
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        mode: 'cors',
         credentials: 'include',
         body: JSON.stringify({ dssn, password })
     });
@@ -168,4 +176,17 @@ document.getElementById('signupForm').addEventListener('submit', async (e) => {
 
 // Enter key support
 ['dssn','password','confirmPassword'].forEach(id=>{
-    document.getElementById
+    document.getElementById(id).addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            if (id === 'dssn') {
+                document.getElementById('checkDssn').click();
+            } else {
+                document.getElementById('signupForm').dispatchEvent(new Event('submit'));
+            }
+        }
+    });
+});
+</script>
+</body>
+</html>
