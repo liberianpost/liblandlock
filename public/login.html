@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Secure Portal</title>
     <style>
-        /* Re-using the same styles for consistency. In a real app, this would be in a shared styles.css file */
         * { box-sizing: border-box; margin:0; padding:0; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #f5f7fa; color:#333; line-height:1.6; padding:20px; }
         .container { max-width:500px; margin:0 auto; background:white; padding:30px; border-radius:10px; box-shadow:0 4px 6px rgba(0,0,0,0.1); }
@@ -44,6 +43,9 @@
     </div>
 
     <script>
+        // API Base URL - Updated to use NGINX proxy
+        const API_BASE_URL = 'https://api.liblandlock.com';
+
         document.getElementById('loginForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             
@@ -59,20 +61,18 @@
             errorMsg.style.display = 'none';
             
             try {
-                const response = await fetch('https://libpayapp.liberianpost.com:8081/lllogin', {
+                const response = await fetch(`${API_BASE_URL}/lllogin`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    mode: 'cors', // Already correct
-                    credentials: 'include', // Already correct
                     body: JSON.stringify({ dssn, password })
                 });
                 
                 const data = await response.json();
                 
                 if (data.success) {
-                    // Store user data in localStorage or sessionStorage
+                    // Store user data in localStorage
                     localStorage.setItem('user', JSON.stringify(data.data));
                     window.location.href = 'dashboard.html';
                 } else {
