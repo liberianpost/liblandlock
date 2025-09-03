@@ -4,7 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Secure Portal</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Re-using the same styles for consistency. In a real app, this would be in a shared styles.css file */
+        * { box-sizing: border-box; margin:0; padding:0; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f5f7fa; color:#333; line-height:1.6; padding:20px; }
+        .container { max-width:500px; margin:0 auto; background:white; padding:30px; border-radius:10px; box-shadow:0 4px 6px rgba(0,0,0,0.1); }
+        .auth-form h1 { text-align:center; margin-bottom:30px; color:#2c3e50; }
+        .form-group { margin-bottom:20px; }
+        label { display:block; margin-bottom:8px; font-weight:600; color:#2c3e50; }
+        input[type="text"], input[type="password"] { width:100%; padding:12px; border:1px solid #ddd; border-radius:4px; font-size:16px; transition:border-color 0.3s; }
+        input[type="text"]:focus, input[type="password"]:focus { border-color:#4a6491; outline:none; box-shadow:0 0 0 2px rgba(74,100,145,0.2); }
+        button { background:#4a6491; color:white; border:none; padding:12px 20px; border-radius:4px; cursor:pointer; font-size:16px; font-weight:600; transition: background 0.3s; width:100%; }
+        button:hover { background:#3a547e; }
+        button:disabled { background:#ccc; cursor:not-allowed; }
+        .error { display: none; color:#e74c3c; background:#fde8e8; padding:10px; border-radius:4px; margin-top:10px; border-left:4px solid #e74c3c; }
+        p { text-align:center; margin-top:20px; }
+        a { color:#4a6491; text-decoration:none; }
+        a:hover { text-decoration:underline; }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -27,7 +44,6 @@
     </div>
 
     <script>
-        // Login functionality
         document.getElementById('loginForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             
@@ -40,6 +56,7 @@
             submitBtn.textContent = 'Logging in...';
             submitBtn.disabled = true;
             errorMsg.textContent = '';
+            errorMsg.style.display = 'none';
             
             try {
                 const response = await fetch('https://libpayapp.liberianpost.com:8081/lllogin', {
@@ -47,6 +64,8 @@
                     headers: {
                         'Content-Type': 'application/json'
                     },
+                    mode: 'cors', // Already correct
+                    credentials: 'include', // Already correct
                     body: JSON.stringify({ dssn, password })
                 });
                 
@@ -58,10 +77,12 @@
                     window.location.href = 'dashboard.html';
                 } else {
                     errorMsg.textContent = data.message;
+                    errorMsg.style.display = 'block';
                 }
             } catch (error) {
                 console.error('Login error:', error);
                 errorMsg.textContent = 'Network error. Please try again.';
+                errorMsg.style.display = 'block';
             } finally {
                 // Reset button state
                 submitBtn.textContent = 'Login';
@@ -69,9 +90,8 @@
             }
         });
         
-        // Check if user is already logged in
-        const user = localStorage.getItem('user');
-        if (user) {
+        // Optional: Check if user is already logged in
+        if (localStorage.getItem('user')) {
             window.location.href = 'dashboard.html';
         }
     </script>
