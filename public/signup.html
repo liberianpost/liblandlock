@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sign Up - Secure Portal</title>
 <style>
-    /* Existing CSS */
     * { box-sizing: border-box; margin:0; padding:0; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
     body { background-color: #f5f7fa; color:#333; line-height:1.6; padding:20px; }
     .container { max-width:500px; margin:0 auto; background:white; padding:30px; border-radius:10px; box-shadow:0 4px 6px rgba(0,0,0,0.1); }
@@ -63,6 +62,9 @@
 </div>
 
 <script>
+// API Base URL - Updated to use NGINX proxy
+const API_BASE_URL = 'https://api.liblandlock.com';
+
 function showError(msg) {
     const e = document.getElementById('errorMsg');
     const s = document.getElementById('successMsg');
@@ -85,7 +87,7 @@ function hideMessages() {
 }
 
 async function verifyDSSN(dssn) {
-    const url = 'https://libpayapp.liberianpost.com:8081/llverify-dssn';
+    const url = `${API_BASE_URL}/llverify-dssn`;
     try {
         const response = await fetch(url, {
             method: 'POST',
@@ -93,12 +95,9 @@ async function verifyDSSN(dssn) {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
-            mode: 'cors',
-            credentials: 'include',
             body: JSON.stringify({ dssn })
         });
         
-        // It's better to get the error message from the JSON body
         if (!response.ok) {
             const errorData = await response.json();
             throw new Error(errorData.message || `Server error: ${response.status}`);
@@ -107,13 +106,12 @@ async function verifyDSSN(dssn) {
         return await response.json();
     } catch (error) {
         console.error('Fetch error:', error);
-        // Use the error message from the catch block, which could be a network error or the one we threw
         throw new Error(error.message || 'Network error. Please try again.');
     }
 }
 
 async function registerUser(dssn, password) {
-    const url = 'https://libpayapp.liberianpost.com:8081/llregister';
+    const url = `${API_BASE_URL}/llregister`;
     try {
         const response = await fetch(url, {
             method: 'POST',
@@ -121,8 +119,6 @@ async function registerUser(dssn, password) {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
-            mode: 'cors',
-            credentials: 'include',
             body: JSON.stringify({ dssn, password })
         });
         
@@ -158,8 +154,6 @@ document.getElementById('checkDssn').addEventListener('click', async () => {
             document.getElementById('employeeInfo').classList.remove('hidden');
             document.getElementById('passwordSection').classList.remove('hidden');
         } else {
-            // This else block might not be reached if the server returns non-2xx status,
-            // as the error will be caught in the catch block. But it's good to keep.
             showError(data.message);
             document.getElementById('employeeInfo').classList.add('hidden');
             document.getElementById('passwordSection').classList.add('hidden');
@@ -205,7 +199,6 @@ document.getElementById('signupForm').addEventListener('submit', async (e) => {
         btn.disabled = false;
     }
 });
-
 </script>
 </body>
 </html>
