@@ -110,6 +110,7 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.18);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
         }
         
         .user-card:hover {
@@ -233,6 +234,7 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.18);
             transition: transform 0.3s ease;
+            cursor: pointer;
         }
         
         .feature-card:hover {
@@ -255,6 +257,166 @@
             font-size: 0.9rem;
         }
         
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+            margin: 40px auto;
+            padding: 0;
+            width: 90%;
+            max-width: 900px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+            animation: modalFadeIn 0.3s;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .modal-header {
+            padding: 20px 30px;
+            background: rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .modal-header h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .close-modal {
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close-modal:hover {
+            color: #fdbb2d;
+        }
+        
+        .modal-tabs {
+            display: flex;
+            background: rgba(0, 0, 0, 0.15);
+            padding: 0 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .modal-tab {
+            padding: 15px 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .modal-tab.active {
+            border-bottom: 3px solid #fdbb2d;
+            color: #fdbb2d;
+        }
+        
+        .modal-tab:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .modal-body {
+            padding: 30px;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.2);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #fdbb2d;
+            box-shadow: 0 0 0 2px rgba(253, 187, 45, 0.3);
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .btn-cancel {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        
+        .btn-cancel:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn-submit {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+        }
+        
+        .btn-submit:hover {
+            background: linear-gradient(135deg, #27ae60, #219653);
+        }
+        
         @media (max-width: 768px) {
             .header {
                 flex-direction: column;
@@ -273,6 +435,20 @@
             
             .user-card {
                 width: 100%;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 20px auto;
+            }
+            
+            .modal-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .modal-tab {
+                padding: 10px 15px;
+                font-size: 0.9rem;
             }
         }
         
@@ -394,6 +570,14 @@
                 <p>Search through land records and ownership information</p>
             </div>
             
+            <div class="feature-card" id="landRegistrationCard">
+                <div class="feature-icon">
+                    <i class="fas fa-landmark"></i>
+                </div>
+                <h3>Land Registration</h3>
+                <p>Register new land parcels, owners, and survey information</p>
+            </div>
+            
             <div class="feature-card">
                 <div class="feature-icon">
                     <i class="fas fa-shield-alt"></i>
@@ -413,6 +597,181 @@
             <button id="logoutBtn" class="btn btn-logout">
                 <i class="fas fa-sign-out-alt"></i> Logout
             </button>
+        </div>
+    </div>
+    
+    <!-- Land Registration Modal -->
+    <div id="landRegistrationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Land Registration System</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            
+            <div class="modal-tabs">
+                <div class="modal-tab active" data-tab="land-parcel">Land Parcel</div>
+                <div class="modal-tab" data-tab="land-owner">Land Owner</div>
+                <div class="modal-tab" data-tab="land-ownership">Land Ownership</div>
+                <div class="modal-tab" data-tab="surveyor">Surveyor</div>
+            </div>
+            
+            <div class="modal-body">
+                <!-- Land Parcel Form -->
+                <div id="land-parcel" class="tab-content active">
+                    <form id="landParcelForm">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="parcel-id">Parcel ID</label>
+                                <input type="text" id="parcel-id" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="county">County</label>
+                                <select id="county" required>
+                                    <option value="">Select County</option>
+                                    <option value="montserrado">Montserrado</option>
+                                    <option value="nimba">Nimba</option>
+                                    <option value="bong">Bong</option>
+                                    <option value="lofa">Lofa</option>
+                                    <option value="grand-bassa">Grand Bassa</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="postal-code">Postal Code</label>
+                                <input type="text" id="postal-code" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="latitude">Latitude</label>
+                                <input type="text" id="latitude" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="longitude">Longitude</label>
+                                <input type="text" id="longitude" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="date-surveyed">Date Surveyed</label>
+                                <input type="date" id="date-surveyed" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="surveyor-dssn">Surveyor DSSN</label>
+                                <input type="text" id="surveyor-dssn" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-cancel">Cancel</button>
+                            <button type="submit" class="btn btn-submit">Save Parcel</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Land Owner Form -->
+                <div id="land-owner" class="tab-content">
+                    <form id="landOwnerForm">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="owner-dssn">DSSN</label>
+                                <input type="text" id="owner-dssn" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="first-name">First Name</label>
+                                <input type="text" id="first-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="last-name">Last Name</label>
+                                <input type="text" id="last-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="dob">Date of Birth</label>
+                                <input type="date" id="dob" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Address</label>
+                                <textarea id="address" rows="3" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="image-url">Image URL</label>
+                                <input type="url" id="image-url">
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-cancel">Cancel</button>
+                            <button type="submit" class="btn btn-submit">Save Owner</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Land Ownership Form -->
+                <div id="land-ownership" class="tab-content">
+                    <form id="landOwnershipForm">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="ownership-parcel-id">Parcel ID</label>
+                                <input type="text" id="ownership-parcel-id" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="owner-dssn-id">Owner DSSN</label>
+                                <input type="text" id="owner-dssn-id" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-cancel">Cancel</button>
+                            <button type="submit" class="btn btn-submit">Register Ownership</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Surveyor Form -->
+                <div id="surveyor" class="tab-content">
+                    <form id="surveyorForm">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="surveyor-dssn-id">DSSN</label>
+                                <input type="text" id="surveyor-dssn-id" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="license-id">License ID</label>
+                                <input type="text" id="license-id" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="surveyor-first-name">First Name</label>
+                                <input type="text" id="surveyor-first-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="surveyor-last-name">Last Name</label>
+                                <input type="text" id="surveyor-last-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="surveyor-dob">Date of Birth</label>
+                                <input type="date" id="surveyor-dob" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="place-of-birth">Place of Birth</label>
+                                <input type="text" id="place-of-birth" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="surveyor-phone">Phone Number</label>
+                                <input type="tel" id="surveyor-phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="surveyor-image-url">Image URL</label>
+                                <input type="url" id="surveyor-image-url">
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-cancel">Cancel</button>
+                            <button type="submit" class="btn btn-submit">Save Surveyor</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
     
@@ -445,6 +804,9 @@
                 // Redirect to login if no user data found
                 window.location.href = 'login.html';
             }
+            
+            // Initialize modal functionality
+            initModal();
         });
         
         // Logout functionality
@@ -452,6 +814,70 @@
             localStorage.removeItem('user');
             window.location.href = 'login.html';
         });
+        
+        // Modal functionality
+        function initModal() {
+            const modal = document.getElementById('landRegistrationModal');
+            const landRegistrationCard = document.getElementById('landRegistrationCard');
+            const closeModal = document.querySelector('.close-modal');
+            const tabs = document.querySelectorAll('.modal-tab');
+            const cancelButtons = document.querySelectorAll('.btn-cancel');
+            const forms = document.querySelectorAll('form');
+            
+            // Open modal when Land Registration card is clicked
+            landRegistrationCard.addEventListener('click', function() {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            });
+            
+            // Close modal when X is clicked
+            closeModal.addEventListener('click', function() {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Close modal when cancel buttons are clicked
+            cancelButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                });
+            });
+            
+            // Close modal when clicking outside the modal content
+            window.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Tab switching functionality
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Remove active class from all tabs and contents
+                    tabs.forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.tab-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked tab and corresponding content
+                    this.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // Form submission handling (prevent default for demo)
+            forms.forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Form submitted successfully! (This is a demo)');
+                    // In a real application, you would handle form submission to a server here
+                });
+            });
+        }
     </script>
 </body>
 </html>
