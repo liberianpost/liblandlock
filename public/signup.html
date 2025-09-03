@@ -98,21 +98,26 @@ async function verifyDSSN(dssn) {
             body: JSON.stringify({ dssn })
         });
         
-        // First check if response is OK
-        if (!response.ok) {
-            // Try to parse error response as JSON, but fallback to text if it fails
-            try {
-                const errorData = await response.json();
-                throw new Error(errorData.message || `Server error: ${response.status}`);
-            } catch (e) {
-                // If JSON parsing fails, get the response as text
-                const errorText = await response.text();
-                throw new Error(errorText || `Server error: ${response.status}`);
+        // Get the response text first to handle both JSON and non-JSON responses
+        const responseText = await response.text();
+        
+        // Try to parse as JSON
+        try {
+            const data = JSON.parse(responseText);
+            
+            if (!response.ok) {
+                throw new Error(data.message || `Server error: ${response.status}`);
+            }
+            
+            return data;
+        } catch (jsonError) {
+            // If parsing as JSON fails, handle as text response
+            if (!response.ok) {
+                throw new Error(responseText || `Server error: ${response.status}`);
+            } else {
+                throw new Error('Invalid response format from server');
             }
         }
-        
-        // Parse successful response as JSON
-        return await response.json();
     } catch (error) {
         console.error('Fetch error:', error);
         throw new Error(error.message || 'Network error. Please try again.');
@@ -131,17 +136,26 @@ async function registerUser(dssn, password) {
             body: JSON.stringify({ dssn, password })
         });
         
-        if (!response.ok) {
-            try {
-                const errorData = await response.json();
-                throw new Error(errorData.message || `Server error: ${response.status}`);
-            } catch (e) {
-                const errorText = await response.text();
-                throw new Error(errorText || `Server error: ${response.status}`);
+        // Get the response text first to handle both JSON and non-JSON responses
+        const responseText = await response.text();
+        
+        // Try to parse as JSON
+        try {
+            const data = JSON.parse(responseText);
+            
+            if (!response.ok) {
+                throw new Error(data.message || `Server error: ${response.status}`);
+            }
+            
+            return data;
+        } catch (jsonError) {
+            // If parsing as JSON fails, handle as text response
+            if (!response.ok) {
+                throw new Error(responseText || `Server error: ${response.status}`);
+            } else {
+                throw new Error('Invalid response format from server');
             }
         }
-        
-        return await response.json();
     } catch (error) {
         console.error('Fetch error:', error);
         throw new Error(error.message || 'Network error. Please try again.');
