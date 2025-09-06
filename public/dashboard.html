@@ -2042,64 +2042,76 @@
             }
         }
         
-            // Submit Land Parcel Form
-    async function submitLandParcelForm() {
-        const formData = {
-            County: document.getElementById('county').value,
-            Postal_Code: document.getElementById('postal-code').value,
-            Boundary: document.getElementById('polygon').value,
-            Date_Surveyed: document.getElementById('date-surveyed').value,
-            Surveyor_DSSN: document.getElementById('surveyor-dssn').value
-        };
-        
-        // Validate required fields
-        if (!formData.County || !formData.Boundary || !formData.Surveyor_DSSN) {
-            showStatus('landParcelStatus', 'Please fill in all required fields', 'error');
-            return;
-        }
-        
-        // Validate Boundary format (basic WKT validation)
-        if (!isValidWKT(formData.Boundary)) {
-            showStatus('landParcelStatus', 'Invalid polygon format. Please use valid WKT format (e.g., POLYGON((x y, x y, x y, x y)))', 'error');
-            return;
-        }
-        
-        setLoadingState('landParcel', true);
-        
-        try {
-            const response = await fetch('/api/land-parcel', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
-            });
+        // Submit Land Parcel Form
+        async function submitLandParcelForm() {
+            const formData = {
+                County: document.getElementById('county').value,
+                Postal_Code: document.getElementById('postal-code').value,
+                Boundary: document.getElementById('polygon').value,
+                Date_Surveyed: document.getElementById('date-surveyed').value,
+                Surveyor_DSSN: document.getElementById('surveyor-dssn').value
+            };
             
-            const result = await response.json();
-            
-            if (result.success) {
-                showStatus('landParcelStatus', `Land parcel created successfully! Parcel ID: ${result.parcelId}`, 'success');
-                currentParcelId = result.parcelId;
-                
-                // Clear form
-                document.getElementById('landParcelForm').reset();
-            } else {
-                showStatus('landParcelStatus', `Error: ${result.message}`, 'error');
+            // Validate required fields
+            if (!formData.County || !formData.Boundary || !formData.Surveyor_DSSN) {
+                showStatus('landParcelStatus', 'Please fill in all required fields', 'error');
+                return;
             }
-        } catch (error) {
-            console.error('Error submitting land parcel:', error);
-            showStatus('landParcelStatus', 'Network error. Please try again.', 'error');
-        } finally {
-            setLoadingState('landParcel', false);
+            
+            // Validate Boundary format (basic WKT validation)
+            try {
+                if (!isValidWKT(formData.Boundary)) {
+                    showStatus('landParcelStatus', 'Invalid polygon format. Please use valid WKT format (e.g., POLYGON((x y, x y, x y, x y)))', 'error');
+                    return;
+                }
+            } catch (error) {
+                console.error('WKT validation error:', error);
+                showStatus('landParcelStatus', 'Invalid polygon format. Please check the coordinates.', 'error');
+                return;
+            }
+            
+            setLoadingState('landParcel', true);
+            
+            try {
+                const response = await fetch('/api/land-parcel', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showStatus('landParcelStatus', `Land parcel created successfully! Parcel ID: ${result.parcelId}`, 'success');
+                    currentParcelId = result.parcelId;
+                    
+                    // Clear form
+                    document.getElementById('landParcelForm').reset();
+                } else {
+                    showStatus('landParcelStatus', `Error: ${result.message}`, 'error');
+                }
+            } catch (error) {
+                console.error('Error submitting land parcel:', error);
+                showStatus('landParcelStatus', 'Network error. Please try again.', 'error');
+            } finally {
+                setLoadingState('landParcel', false);
+            }
         }
-    }
-    
-    // Helper function to validate WKT format
-    function isValidWKT(wkt) {
-        // Basic validation - check if it starts with POLYGON and contains coordinates
-        const polygonRegex = /^POLYGON\s*\(\s*\(\s*([-+]?\d*\.?\d+\s+[-+]?\d*\.?\d+\s*,?\s*)+\)\s*\)$/i;
-        return polygonRegex.test(wkt.trim());
-    }
+        
+        // Helper function to validate WKT format (simpler version)
+        function isValidWKT(wkt) {
+            if (!wkt || typeof wkt !== 'string') return false;
+            
+            const trimmedWkt = wkt.trim();
+            
+            // Basic validation - check if it contains coordinates and parentheses
+            const hasCoordinates = /[-+]?\d*\.?\d+\s+[-+]?\d*\.?\d+/.test(trimmedWkt);
+            const hasParentheses = /\(.*\)/.test(trimmedWkt);
+            
+            return hasCoordinates && hasParentheses;
+        }
         
         // Submit Land Owner Form
         async function submitLandOwnerForm() {
