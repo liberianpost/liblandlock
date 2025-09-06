@@ -2212,7 +2212,7 @@
                     ownershipContainer.removeChild(ownershipContainer.lastChild);
                 }
             } catch (error) {
-                console.error('Error submitting land ownership:',极 error);
+                console.error('Error submitting land ownership:', error);
                 showStatus('landOwnershipStatus', 'Network error. Please try again.', 'error');
             } finally {
                 setLoadingState('landOwnership', false);
