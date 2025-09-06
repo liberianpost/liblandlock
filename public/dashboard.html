@@ -2072,7 +2072,7 @@
                 const result = await response.json();
                 
                 if (result.success) {
-                    showStatus('land极ParcelStatus', `Land parcel created successfully! Parcel ID: ${result.parcelId}`, 'success');
+                    showStatus('landParcelStatus', `Land parcel created successfully! Parcel ID: ${result.parcelId}`, 'success');
                     currentParcelId = result.parcelId;
                     
                     // Clear form
