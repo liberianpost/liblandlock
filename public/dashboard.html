@@ -1410,7 +1410,7 @@
                 { code: "40317", area: "BIAFRA - BUCHANAN - DISTRICT 3" },
                 { code: "40318", area: "FANTI TOWN - BUCHANAN - DISTRICT 3" },
                 { code: "40319", area: "DIRT HOLE - BUCHANAN - DISTRICT 3" },
-                { code: "40320", area: "SAYEPUE HILL - BUCHANAN - DISTRICT 极3" },
+                { code: "40320", area: "SAYEPUE HILL - BUCHANAN - DISTRICT 3" },
                 { code: "40321", area: "SUGAR HILL - BUCHANAN - DISTRICT 3" },
                 { code: "40401", area: "GORBLEE - GORBLEE - DISTRICT 4" },
                 { code: "40402", area: "BLEZEE - BLEZEE - DISTRICT 4" },
@@ -1445,7 +1445,7 @@
                 { code: "20205", area: "HARBEL - UNIFICATION - MAMBAH KABA" },
                 { code: "20206", area: "GARZON WEST - FARMINTON - MAMBAH KABA" },
                 { code: "20301", area: "DIVISION 25 - DIVISION 25 - FIRESTONE" },
-                { code: "20302", area: "DIVISION 极29 - CAMP 2 - FIRESTONE" },
+                { code: "20302", area: "DIVISION 29 - CAMP 2 - FIRESTONE" },
                 { code: "20303", area: "DIVISION 36 - CAMp 3 - FIRESTONE" },
                 { code: "20304", area: "DIVISION 14 - CAMP 3 - FIRESTONE" },
                 { code: "20305", area: "DIVISION 38 - OLD CAMP - FIRESTONE" },
@@ -1467,7 +1467,7 @@
                 { code: "20412", area: "GBOYORMU - KAKATA - KAKATA" },
                 { code: "20413", area: "JOHN HILL - KAKATA - KAKATA" },
                 { code: "20414", area: "MORRIS FARM - KAKATA - KAKATA极" },
-                { code: "20501", area: "GALILA - GALIL极A - GIBI" },
+                { code: "20501", area: "GALILA - GALILA - GIBI" },
                 { code: "20502", area: "MASSAQUOI - MASSAQUOI - GIBI" },
                 { code: "20503", area极: "KPENEWEIN - KPENEWEIN - GIBI" },
                 { code: "20504", area: "FAHNJACK - FAHNJACK - GIBI" }
@@ -1560,7 +1560,7 @@
                 { code: "50606", area: "TAPPITA - TAPPITA - DOE" },
                 { code: "50607", area: "VAHN - VAHN - DOE" },
                 { code: "50608", area: "KWIPEA - KWIPEA - DOE" },
-                { code: "50701", area: "KPAYTUO -极 KPAYTUO - WEE-GBEHYI" },
+                { code: "50701", area: "KPAYTUO - KPAYTUO - WEE-GBEHYI" },
                 { code: "50702", area: "LOYEE - LOYEE - WEE-GBEHYI" },
                 { code: "50703", area: "FLEEDIN - FLEEDIN - WEE-GBEHYI" },
                 { code: "50704", area: "GUAWIN - GUAWIN - WEE-GBEHYI" },
@@ -1573,7 +1573,7 @@
                 { code: "50711", area: "TROUPOE - TROUPOE - ZOE-GBAO" },
                 { code: "50712", area: "BUANPLAY - BUANPLAY - ZOE-GBAO" },
                 { code: "50713", area: "BEHYEPEA - BEHYEPEA - ZOE-GBAO" },
-                { code: "50714", area: "ZANTUO - ZANTU极O - ZOE-GBAO" },
+                { code: "50714", area: "ZANTUO - ZANTUO - ZOE-GBAO" },
                 { code: "50715", area: "BAHN - BAHN CITY - ZOE-GBAO" },
                 { code: "50716", area: "BUU-GBOR - BUU-GBOR - ZOE-GBAO" },
                 { code: "50717", area: "GBLAH - GBLAH - ZOE-GBAO" },
@@ -1762,7 +1762,7 @@
                 { code: "73302", area: "KIAWU - KIAWU - TEWOR" },
                 { code: "73303", area: "FAHNBULLEH - FAHNBULLEH - TEWOR" },
                 { code: "73304", area: "PASSAWE - PASSAWE - TEWOR" },
-                { code: "73305", area: "MENDE-MASSA - MENDE-MASSA - T极EWOR" },
+                { code: "73305", area: "MENDE-MASSA - MENDE-MASSA - TEWOR" },
                 { code: "73306", area: "KROMAH - KROMAH - TEWOR" },
                 { code: "73307", area: "BO WATERSIDE - BO WATERSIDE - TEWOR" }
             ]
@@ -1872,7 +1872,7 @@
             const cancelButtons = document.querySelectorAll('.btn-cancel');
             
             // Open modal when Land Registration card is clicked
-            landRegistrationCard.addEventListener极('click', function() {
+            landRegistrationCard.addEventListener('click', function() {
                 modal.style.display = 'block';
                 document.body.style.overflow = 'hidden';
             });
@@ -1915,7 +1915,7 @@
                     
                     // Add active class to clicked tab and corresponding content
                     this.classList.add('active');
-                    document.getElementById(tab极Id).classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
                 });
             });
             
@@ -2364,7 +2364,7 @@
                     fetch('/api/lla', {
                         method: 'POST',
                         headers: {
-                            '极Content-Type': 'application/json'
+                            'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({
                             Image_URL: llaUrl,
