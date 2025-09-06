@@ -316,6 +316,7 @@
             background: rgba(0, 0, 0, 0.15);
             padding: 0 20px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            flex-wrap: wrap;
         }
         
         .modal-tab {
@@ -417,6 +418,65 @@
             background: linear-gradient(135deg, #27ae60, #219653);
         }
         
+        /* New styles for additional sections */
+        .section-divider {
+            margin: 30px 0;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            border-left: 4px solid #fdbb2d;
+        }
+        
+        .section-title {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #fdbb2d;
+        }
+        
+        .add-owner-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+        
+        .add-owner-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .owner-entry {
+            background: rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .remove-owner {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(231, 76, 60, 0.8);
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .remove-owner:hover {
+            background: rgba(192, 57, 43, 0.9);
+        }
+        
         @media (max-width: 768px) {
             .header {
                 flex-direction: column;
@@ -461,6 +521,44 @@
             font-weight: 800;
             pointer-events: none;
             z-index: -1;
+        }
+        
+        /* File upload styling */
+        .file-upload {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        .file-upload-btn {
+            background: rgba(0, 0, 0, 0.2);
+            color: white;
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .file-upload-input {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+        
+        .file-name {
+            margin-top: 5px;
+            font-size: 0.9rem;
+            opacity: 0.8;
         }
     </style>
 </head>
@@ -613,6 +711,7 @@
                 <div class="modal-tab" data-tab="land-owner">Land Owner</div>
                 <div class="modal-tab" data-tab="land-ownership">Land Ownership</div>
                 <div class="modal-tab" data-tab="surveyor">Surveyor</div>
+                <div class="modal-tab" data-tab="additional-docs">Additional Documents</div>
             </div>
             
             <div class="modal-body">
@@ -628,25 +727,33 @@
                                 <label for="county">County</label>
                                 <select id="county" required>
                                     <option value="">Select County</option>
+                                    <option value="bomi">Bomi</option>
+                                    <option value="bong">Bong</option>
+                                    <option value="gbarpolu">Gbarpolu</option>
+                                    <option value="grand-bassa">Grand Bassa</option>
+                                    <option value="grand-cape-mount">Grand Cape Mount</option>
+                                    <option value="grand-gedeh">Grand Gedeh</option>
+                                    <option value="grand-kru">Grand Kru</option>
+                                    <option value="lofa">Lofa</option>
+                                    <option value="margibi">Margibi</option>
+                                    <option value="maryland">Maryland</option>
                                     <option value="montserrado">Montserrado</option>
                                     <option value="nimba">Nimba</option>
-                                    <option value="bong">Bong</option>
-                                    <option value="lofa">Lofa</option>
-                                    <option value="grand-bassa">Grand Bassa</option>
-                                    <option value="other">Other</option>
+                                    <option value="rivercess">Rivercess</option>
+                                    <option value="river-gee">River Gee</option>
+                                    <option value="sinoe">Sinoe</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="postal-code">Postal Code</label>
-                                <input type="text" id="postal-code" required>
+                                <select id="postal-code" required>
+                                    <option value="">Select Postal Code</option>
+                                    <!-- Will be populated by JavaScript -->
+                                </select>
                             </div>
                             <div class="form-group">
-                                <label for="latitude">Latitude</label>
-                                <input type="text" id="latitude" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="longitude">Longitude</label>
-                                <input type="text" id="longitude" required>
+                                <label for="polygon">Boundary Polygon</label>
+                                <textarea id="polygon" rows="3" placeholder="POLYGON((-10.617312 6.450804,-10.615312 6.450804,-10.615312 6.448804,-10.617312 6.448804,-10.617312 6.450804))" required></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="date-surveyed">Date Surveyed</label>
@@ -694,8 +801,15 @@
                                 <input type="tel" id="phone" required>
                             </div>
                             <div class="form-group">
-                                <label for="image-url">Image URL</label>
-                                <input type="url" id="image-url">
+                                <label for="owner-image">Owner Image</label>
+                                <div class="file-upload">
+                                    <div class="file-upload-btn">
+                                        <span>Choose File</span>
+                                        <i class="fas fa-upload"></i>
+                                        <input type="file" id="owner-image" class="file-upload-input" accept="image/*">
+                                    </div>
+                                    <div class="file-name" id="owner-image-name">No file chosen</div>
+                                </div>
                             </div>
                         </div>
                         
@@ -709,16 +823,24 @@
                 <!-- Land Ownership Form -->
                 <div id="land-ownership" class="tab-content">
                     <form id="landOwnershipForm">
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label for="ownership-parcel-id">Parcel ID</label>
-                                <input type="text" id="ownership-parcel-id" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="owner-dssn-id">Owner DSSN</label>
-                                <input type="text" id="owner-dssn-id" required>
+                        <div id="ownership-entries">
+                            <div class="owner-entry">
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label for="ownership-parcel-id">Parcel ID</label>
+                                        <input type="text" id="ownership-parcel-id" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="owner-dssn-id">Owner DSSN</label>
+                                        <input type="text" id="owner-dssn-id" required>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        
+                        <button type="button" class="add-owner-btn" id="add-owner">
+                            <i class="fas fa-plus"></i> Add Another Owner
+                        </button>
                         
                         <div class="form-actions">
                             <button type="button" class="btn btn-cancel">Cancel</button>
@@ -760,14 +882,98 @@
                                 <input type="tel" id="surveyor-phone" required>
                             </div>
                             <div class="form-group">
-                                <label for="surveyor-image-url">Image URL</label>
-                                <input type="url" id="surveyor-image-url">
+                                <label for="surveyor-dssn">Surveyor DSSN</label>
+                                <input type="text" id="surveyor-dssn" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="surveyor-image">Surveyor Image</label>
+                                <div class="file-upload">
+                                    <div class="file-upload-btn">
+                                        <span>Choose File</span>
+                                        <i class="fas fa-upload"></i>
+                                        <input type="file" id="surveyor-image" class="file-upload-input" accept="image/*">
+                                    </div>
+                                    <div class="file-name" id="surveyor-image-name">No file chosen</div>
+                                </div>
                             </div>
                         </div>
                         
                         <div class="form-actions">
                             <button type="button" class="btn btn-cancel">Cancel</button>
                             <button type="submit" class="btn btn-submit">Save Surveyor</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Additional Documents Form -->
+                <div id="additional-docs" class="tab-content">
+                    <form id="additionalDocsForm">
+                        <div class="section-divider">
+                            <h3 class="section-title">Probate Court</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="probate-court-documents">Probate Court Documents</label>
+                                    <div class="file-upload">
+                                        <div class="file-upload-btn">
+                                            <span>Choose File</span>
+                                            <i class="fas fa-upload"></i>
+                                            <input type="file" id="probate-court-documents" class="file-upload-input" accept="image/*">
+                                        </div>
+                                        <div class="file-name" id="probate-court-documents-name">No file chosen</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="probate-owner-dssn">Owner DSSN</label>
+                                    <input type="text" id="probate-owner-dssn" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="section-divider">
+                            <h3 class="section-title">Liberia Land Authority (LLA)</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="lla-deed">Land DEED</label>
+                                    <div class="file-upload">
+                                        <div class="file-upload-btn">
+                                            <span>Choose File</span>
+                                            <i class="fas fa-upload"></i>
+                                            <input type="file" id="lla-deed" class="file-upload-input" accept="image/*">
+                                        </div>
+                                        <div class="file-name" id="lla-deed-name">No file chosen</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lla-owner-dssn">Owner DSSN</label>
+                                    <input type="text" id="lla-owner-dssn" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="section-divider">
+                            <h3 class="section-title">Liberia Revenue Authority (LRA)</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="lra-tax-documents">Tax Documents</label>
+                                    <div class="file-upload">
+                                        <div class="file-upload-btn">
+                                            <span>Choose File</span>
+                                            <i class="fas fa-upload"></i>
+                                            <input type="file" id="lra-tax-documents" class="file-upload-input" accept="image/*">
+                                        </div>
+                                        <div class="file-name" id="lra-tax-documents-name">No file chosen</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lra-owner-dssn">Owner DSSN</label>
+                                    <input type="text" id="lra-owner-dssn" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-cancel">Cancel</button>
+                            <button type="submit" class="btn btn-submit">Save Documents</button>
                         </div>
                     </form>
                 </div>
@@ -778,6 +984,61 @@
     <div class="watermark">LLS</div>
 
     <script>
+        // County and postal code data
+        const counties = [
+            "Bomi", "Bong", "Gbarpolu", "Grand Bassa", "Grand Cape Mount", 
+            "Grand Gedeh", "Grand Kru", "Lofa", "Margibi", "Maryland", 
+            "Montserrado", "Nimba", "Rivercess", "River Gee", "Sinoe"
+        ];
+
+        const postalCodes = {
+            "Montserrado": [
+                { code: "10101", area: "BENTOL - BENSONVILLE - DISTRICT 1" },
+                { code: "10102", area: "CAREYSBURG - CAREYSBURG - DISTRICT 1" },
+                // ... (all the postal codes you provided)
+            ],
+            "Bong": [
+                { code: "30101", area: "DOE - DOE - KOKOYAH" },
+                { code: "30102", area: "NANGBO - NANGBO - KOKOYAH" },
+                // ... (all the postal codes you provided)
+            ],
+            "Grand Bassa": [
+                { code: "40101", area: "LLOYDSVILLE - KPORKON - DISTRICT 1" },
+                { code: "40102", area: "KPALAWRU - KPORKON - DISTRICT 1" },
+                // ... (all the postal codes you provided)
+            ],
+            "Margibi": [
+                { code: "20101", area: "R2 COMMUNITY - DUAZON - MAMBAH KABA" },
+                { code: "20102", area: "ROCK INTERNATIONAL - DUAZON - MAMBAH KABA" },
+                // ... (all the postal codes you provided)
+            ],
+            "Nimba": [
+                { code: "50101", area: "NENGBE - NENGBE - GARR-BAIN" },
+                { code: "50102", area: "GBUYEE - GBUYEE - GARR-BAIN" },
+                // ... (all the postal codes you provided)
+            ],
+            "Lofa": [
+                { code: "60101", area: "NDAMA - NDAMA - FOYA" },
+                { code: "60102", area: "KONKPAMA - KONKPAMA - FOYA" },
+                // ... (all the postal codes you provided)
+            ],
+            "Bomi": [
+                { code: "71101", area: "BESAO - BESAO - SENJEH" },
+                { code: "71102", area: "GAYAH HILL - GAYAH HILL - SENJEH" },
+                // ... (all the postal codes you provided)
+            ],
+            "Gbarpolu": [
+                { code: "72101", area: "BOMBOMAH - BOMBOMAH - BOPOLU" },
+                { code: "72102", area: "LOWER BONDI MANDINGO - LOWER BONDI MANDINGO - BOPOLU" },
+                // ... (all the postal codes you provided)
+            ],
+            "Grand Cape Mount": [
+                { code: "73101", area: "JENNEMANA - JANNEMANA - GOLA KONNEH" },
+                { code: "73102", area: "GONDOR - GONDOR - GOLA KONNEH" },
+                // ... (all the postal codes you provided)
+            ]
+        };
+
         // Get user data from localStorage
         document.addEventListener('DOMContentLoaded', function() {
             const userData = JSON.parse(localStorage.getItem('user'));
@@ -807,7 +1068,58 @@
             
             // Initialize modal functionality
             initModal();
+            
+            // Populate county dropdown
+            const countySelect = document.getElementById('county');
+            counties.forEach(county => {
+                const option = document.createElement('option');
+                option.value = county.toLowerCase().replace(/\s+/g, '-');
+                option.textContent = county;
+                countySelect.appendChild(option);
+            });
+            
+            // Add event listener for county change to update postal codes
+            countySelect.addEventListener('change', function() {
+                updatePostalCodes(this.value);
+            });
+            
+            // Initialize file upload functionality
+            initFileUploads();
         });
+        
+        // Update postal codes based on selected county
+        function updatePostalCodes(countyValue) {
+            const countyName = countyValue.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+            const postalCodeSelect = document.getElementById('postal-code');
+            
+            // Clear existing options
+            postalCodeSelect.innerHTML = '<option value="">Select Postal Code</option>';
+            
+            // Add new options based on selected county
+            if (postalCodes[countyName]) {
+                postalCodes[countyName].forEach(item => {
+                    const option = document.createElement('option');
+                    option.value = item.code;
+                    option.textContent = `${item.code} - ${item.area}`;
+                    postalCodeSelect.appendChild(option);
+                });
+            }
+        }
+        
+        // Initialize file upload functionality
+        function initFileUploads() {
+            const fileInputs = document.querySelectorAll('.file-upload-input');
+            
+            fileInputs.forEach(input => {
+                input.addEventListener('change', function() {
+                    const fileName = this.files[0] ? this.files[0].name : 'No file chosen';
+                    const fileNameElement = document.getElementById(`${this.id}-name`);
+                    if (fileNameElement) {
+                        fileNameElement.textContent = fileName;
+                    }
+                });
+            });
+        }
         
         // Logout functionality
         document.getElementById('logoutBtn').addEventListener('click', function() {
@@ -875,6 +1187,34 @@
                     e.preventDefault();
                     alert('Form submitted successfully! (This is a demo)');
                     // In a real application, you would handle form submission to a server here
+                });
+            });
+            
+            // Add owner functionality
+            document.getElementById('add-owner').addEventListener('click', function() {
+                const ownershipEntries = document.getElementById('ownership-entries');
+                const newEntry = document.createElement('div');
+                newEntry.className = 'owner-entry';
+                newEntry.innerHTML = `
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="ownership-parcel-id-${ownershipEntries.children.length + 1}">Parcel ID</label>
+                            <input type="text" id="ownership-parcel-id-${ownershipEntries.children.length + 1}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="owner-dssn-id-${ownershipEntries.children.length + 1}">Owner DSSN</label>
+                            <input type="text" id="owner-dssn-id-${ownershipEntries.children.length + 1}" required>
+                        </div>
+                    </div>
+                    <div class="remove-owner">&times;</div>
+                `;
+                ownershipEntries.appendChild(newEntry);
+                
+                // Add event listener to remove button
+                newEntry.querySelector('.remove-owner').addEventListener('click', function() {
+                    if (ownershipEntries.children.length > 1) {
+                        ownershipEntries.removeChild(newEntry);
+                    }
                 });
             });
         }
