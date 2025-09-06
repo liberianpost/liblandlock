@@ -632,6 +632,18 @@
             margin-bottom: 8px;
             line-height: 1.4;
         }
+        
+        .image-url-container {
+            margin-top: 10px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .image-url-container input {
+            background: rgba(0, 0, 0, 0.3);
+        }
     </style>
 </head>
 <body>
@@ -843,7 +855,7 @@
                         <div class="form-actions">
                             <button type="button" class="btn btn-cancel">Cancel</button>
                             <button type="submit" class="btn btn-submit">
-                                <span id="landParcelSubmitText">Save Parcel</span>
+                                <span id="landParcelSubmitText">Send to Database</span>
                                 <span id="landParcelSpinner" class="spinner" style="display: none;"></span>
                             </button>
                         </div>
@@ -858,7 +870,7 @@
                             <li>Upload the owner's image first by clicking "Choose File"</li>
                             <li>Wait for the image to upload and get a URL</li>
                             <li>Fill out the remaining fields</li>
-                            <li>Click "Save Owner" to send to database</li>
+                            <li>Click "Send to Database" to save the owner information</li>
                         </ol>
                     </div>
                     
@@ -903,6 +915,13 @@
                                     <div class="file-name" id="owner-image-name">No file chosen</div>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label for="owner-image-url">Image URL *</label>
+                                <div class="image-url-container">
+                                    <input type="text" id="owner-image-url" placeholder="https://storage.googleapis.com/liblandlock/" required>
+                                    <small>Enter the full image URL from Google Cloud Storage</small>
+                                </div>
+                            </div>
                         </div>
                         
                         <div id="landOwnerStatus"></div>
@@ -910,7 +929,7 @@
                         <div class="form-actions">
                             <button type="button" class="btn btn-cancel">Cancel</button>
                             <button type="submit" class="btn btn-submit">
-                                <span id="landOwnerSubmitText">Save Owner</span>
+                                <span id="landOwnerSubmitText">Send to Database</span>
                                 <span id="landOwnerSpinner" class="spinner" style="display: none;"></span>
                             </button>
                         </div>
@@ -949,7 +968,7 @@
                         <div class="form-actions">
                             <button type="button" class="btn btn-cancel">Cancel</button>
                             <button type="submit" class="btn btn-submit">
-                                <span id="landOwnershipSubmitText">Register Ownership</span>
+                                <span id="landOwnershipSubmitText">Send to Database</span>
                                 <span id="landOwnershipSpinner" class="spinner" style="display: none;"></span>
                             </button>
                         </div>
@@ -964,7 +983,7 @@
                             <li>Upload the surveyor's image first by clicking "Choose File"</li>
                             <li>Wait for the image to upload and get a URL</li>
                             <li>Fill out the remaining fields</li>
-                            <li>Click "Save Surveyor" to send to database</li>
+                            <li>Click "Send to Database" to save the surveyor information</li>
                         </ol>
                     </div>
                     
@@ -991,8 +1010,8 @@
                                 <input type="date" id="surveyor-dob" required>
                             </div>
                             <div class="form-group">
-                                <label for="place-of-birth">Place of Birth *</label>
-                                <input type="text" id="place-of-birth" required>
+                                <label for="surveyor-place-of-birth">Place of Birth *</label>
+                                <input type="text" id="surveyor-place-of-birth" required>
                             </div>
                             <div class="form-group">
                                 <label for="surveyor-address">Address</label>
@@ -1013,6 +1032,13 @@
                                     <div class="file-name" id="surveyor-image-name">No file chosen</div>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label for="surveyor-image-url">Image URL *</label>
+                                <div class="image-url-container">
+                                    <input type="text" id="surveyor-image-url" placeholder="https://storage.googleapis.com/liblandlock/" required>
+                                    <small>Enter the full image URL from Google Cloud Storage</small>
+                                </div>
+                            </div>
                         </div>
                         
                         <div id="surveyorStatus"></div>
@@ -1020,7 +1046,7 @@
                         <div class="form-actions">
                             <button type="button" class="btn btn-cancel">Cancel</button>
                             <button type="submit" class="btn btn-submit">
-                                <span id="surveyorSubmitText">Save Surveyor</span>
+                                <span id="surveyorSubmitText">Send to Database</span>
                                 <span id="surveyorSpinner" class="spinner" style="display: none;"></span>
                             </button>
                         </div>
@@ -1035,7 +1061,7 @@
                             <li>For each document type, first upload the file</li>
                             <li>Wait for the file to upload and get a URL</li>
                             <li>Enter the owner's DSSN</li>
-                            <li>Click "Save Documents" to send all to database</li>
+                            <li>Click "Send to Database" to save all documents</li>
                         </ol>
                     </div>
                     
@@ -1052,6 +1078,13 @@
                                             <input type="file" id="probate-court-documents" class="file-upload-input" accept="image/*" required>
                                         </div>
                                         <div class="file-name" id="probate-court-documents-name">No file chosen</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="probate-document-url">Document URL *</label>
+                                    <div class="image-url-container">
+                                        <input type="text" id="probate-document-url" placeholder="https://storage.googleapis.com/liblandlock/" required>
+                                        <small>Enter the full document URL from Google Cloud Storage</small>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -1076,6 +1109,13 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label for="lla-document-url">Document URL *</label>
+                                    <div class="image-url-container">
+                                        <input type="text" id="lla-document-url" placeholder="https://storage.googleapis.com/liblandlock/" required>
+                                        <small>Enter the full document URL from Google Cloud Storage</small>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label for="lla-owner-dssn">Owner DSSN *</label>
                                     <input type="text" id="lla-owner-dssn" required>
                                 </div>
@@ -1097,6 +1137,13 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label for="lra-document-url">Document URL *</label>
+                                    <div class="image-url-container">
+                                        <input type="text" id="lra-document-url" placeholder="https://storage.googleapis.com/liblandlock/" required>
+                                        <small>Enter the full document URL from Google Cloud Storage</small>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label for="lra-owner-dssn">Owner DSSN *</label>
                                     <input type="text" id="lra-owner-dssn" required>
                                 </div>
@@ -1108,7 +1155,7 @@
                         <div class="form-actions">
                             <button type="button" class="btn btn-cancel">Cancel</button>
                             <button type="submit" class="btn btn-submit">
-                                <span id="additionalDocsSubmitText">Save Documents</span>
+                                <span id="additionalDocsSubmitText">Send to Database</span>
                                 <span id="additionalDocsSpinner" class="spinner" style="display: none;"></span>
                             </button>
                         </div>
@@ -1171,7 +1218,7 @@
                 { code: "10704", area: "MAMBA POINT - CENTRAL MONROVIA - DISTRICT 7" },
                 { code: "10705", area: "U. N. DRIVE - CENTRAL MONROVIA - DISTRICT 7" },
                 { code: "10706", area: "RANDALL/NEWPORT/LYNCH STREET - CENTRAL MONROVIA - DISTRICT 7" },
-                { code: "10707", area: "CAREY/GURLEY/MECHLIN STREET - CENTRAL MONROVIA - DISTRICT 7" },
+                { code: "10707", area: "CAREY/GURLEY/MECHLIN STREET - CENTral MONROVIA - DISTRICT 7" },
                 { code: "10708", area: "BROAD/ASHMUN STREET - CENTRAL MONROVIA - DISTRICT 7" },
                 { code: "10709", area: "BENSON/WARREN/PERRY/CLAY/JOHNSON STREET - CENTRAL MONROVIA - DISTRICT 7" },
                 { code: "10801", area: "CROWN HILL - MONROVIA - DISTRICT 8" },
@@ -1195,7 +1242,7 @@
                 { code: "11002", area: "CATHOLIC HOSPITAL - OLD ROAD - DISTRICT 10" },
                 { code: "11003", area: "DIVINE & TOGBA CAMP - OLD ROAD - DISTRICT 10" },
                 { code: "11004", area: "NIPPAY TOWN - OLD ROAD - DISTRICT 10" },
-                { code: "11005", area: "SMYTHE ROAD - OLD ROAD - DISTRICT 10" },
+                { code: "11005", area: "SMYTHE ROAD - OOLD ROAD - DISTRICT 10" },
                 { code: "11006", area: "CHUGBOR - OLD ROAD - DISTRICT 10" },
                 { code: "11007", area: "GAYE TOWN COMMUNITY - OLD ROAD - DISTRICT 10" },
                 { code: "11008", area: "TARR TOWN - OLD ROAD - DISTRICT 10" },
@@ -1273,7 +1320,6 @@
                 { code: "11712", area: "BREWERVILLE - BREWERVILLE - DISTRICT 17" },
                 { code: "11713", area: "ROYESVILLE - ROYESVILLE TOWNSHIP - DISTRICT 17" },
                 { code: "11714", area: "ACROSS THE CREEK - ROYESVILLE TOWNSHIP - DISTRICT 17" }
-                // ... (all the postal codes you provided)
             ],
             "Bong": [
                 { code: "30101", area: "DOE - DOE - KOKOYAH" },
@@ -1332,7 +1378,6 @@
                 { code: "30702", area: "TOTOTA - TOTOTA - SALALA" },
                 { code: "30703", area: "POPOTA - POPOTA - FUAMAH" },
                 { code: "30704", area: "DOBLI ISLAND - DOBLI ISLAND - FUAMAH" }
-                // ... (all the postal codes you provided)
             ],
             "Grand Bassa": [
                 { code: "40101", area: "LLOYDSVILLE - KPORKON - DISTRICT 1" },
@@ -1365,30 +1410,29 @@
                 { code: "40317", area: "BIAFRA - BUCHANAN - DISTRICT 3" },
                 { code: "40318", area: "FANTI TOWN - BUCHANAN - DISTRICT 3" },
                 { code: "40319", area: "DIRT HOLE - BUCHANAN - DISTRICT 3" },
-                { code: "40320", area: "SAYEPUE HILL - BUCHANAN - DISTRICT 3" },
+                { code: "40320", area: "SAYEPUE HILL - BUCHANAN - DISTRICT 极3" },
                 { code: "40321", area: "SUGAR HILL - BUCHANAN - DISTRICT 3" },
                 { code: "40401", area: "GORBLEE - GORBLEE - DISTRICT 4" },
                 { code: "40402", area: "BLEZEE - BLEZEE - DISTRICT 4" },
                 { code: "40403", area: "DEEGBAH - BLEEZEE - DISTRICT 4" },
                 { code: "40404", area: "ZONDO MISSION - ZONDO MISSION - DISTRICT 4" },
                 { code: "40405", area: "NYUEIN_WEIN - NYUEIN_WEIN - DISTRICT 4" },
-                { code: "40501", area: "WHROGBA - WHROGBA - DISTRICT 5" },
-                { code: "40502", area: "DOEGBAHN_GLAYDOR - DOEGBAHN_GLAYDOR - DISTRICT 5" },
+                { code: "40501", area: "WHROGBA - WHROGBA - DISTRICT 极5" },
+                { code: "极502", area: "DOEGBAHN_GLAYDOR - DOEGBAHN_GLAYDOR - DISTRICT 5" },
                 { code: "40503", area: "KPOEWEIN - KPOEWEIN - DISTRICT 5" },
                 { code: "40504", area: "PALM BAY - PALM BAY - DISTRICT 5" }
-                // ... (all the postal codes you provided)
             ],
             "Margibi": [
                 { code: "20101", area: "R2 COMMUNITY - DUAZON - MAMBAH KABA" },
                 { code: "20102", area: "ROCK INTERNATIONAL - DUAZON - MAMBAH KABA" },
                 { code: "20103", area: "DUAZON - DUAZON - MAMBAH KABA" },
                 { code: "20104", area: "EBK BARRACKS - SCHIEFFLIN - MAMBAH KABA" },
-                { code: "20105", area: "BOYS TOWN - SCHIEFFLIN - MAMBAH KABA" },
+                {极 code: "20105", area: "BOYS TOWN - SCHIEFFLIN - MAMBAH KABA" },
                 { code: "20106", area: "SCHIEFFLIN - SCHIEFFLIN - MAMBAH KABA" },
                 { code: "20107", area: "ELLEN ESTATE - SCHIEFFLIN - MAMBAH KABA" },
                 { code: "20108", area: "MARSHALL - MARSHALL - MAMBAH KABA" },
                 { code: "20109", area: "FARMINGTON - FARMINGTON - MAMBAH KABA" },
-                { code: "20110", area: "KARFEAH - KARFEAH - MAMBAH KABA" },
+                { code: "20110", area: "KARFEAH - KARFEAH - MAMBAH极 KABA" },
                 { code: "20111", area: "LOONGAYE - LOONGAYE - MAMBAH KABA" },
                 { code: "20112", area: "ZOEDUEHN - ZOEDUEHN - MAMBAH KABA" },
                 { code: "20113", area: "GARNOE - GARNOE - MAMBAH KABA" },
@@ -1401,7 +1445,7 @@
                 { code: "20205", area: "HARBEL - UNIFICATION - MAMBAH KABA" },
                 { code: "20206", area: "GARZON WEST - FARMINTON - MAMBAH KABA" },
                 { code: "20301", area: "DIVISION 25 - DIVISION 25 - FIRESTONE" },
-                { code: "20302", area: "DIVISION 29 - CAMP 2 - FIRESTONE" },
+                { code: "20302", area: "DIVISION 极29 - CAMP 2 - FIRESTONE" },
                 { code: "20303", area: "DIVISION 36 - CAMp 3 - FIRESTONE" },
                 { code: "20304", area: "DIVISION 14 - CAMP 3 - FIRESTONE" },
                 { code: "20305", area: "DIVISION 38 - OLD CAMP - FIRESTONE" },
@@ -1409,8 +1453,8 @@
                 { code: "20307", area: "DIVISION 24 - CAMP - FIRESTONE" },
                 { code: "20308", area: "DIVISION 27 - FIRESTONE - FIRESTONE" },
                 { code: "20309", area: "DU SIDE VILLAGE - DU SIDE - FIRESTONE" },
-                { code: "20401", area: "DENNISVILLE COMMUNITY - KAKATA - KAKATA" },
-                { code: "20402", area: "MENDE TOWN - KAKATA - KAKATA" },
+                { code: "20401", area: "DENNIS极VILLE COMMUNITY - KAKATA - KAKATA" },
+                { code: "20402", area: "MENDE TOWN - KAKATA -极 KAKATA" },
                 { code: "20403", area: "KRTTI - KAKATA - KAKATA" },
                 { code: "20404", area: "BWI - KAKATA - KAKATA" },
                 { code: "20405", area: "NANCY DOE - KAKATA - KAKATA" },
@@ -1422,12 +1466,11 @@
                 { code: "20411", area: "MULA - KAKATA - KAKATA" },
                 { code: "20412", area: "GBOYORMU - KAKATA - KAKATA" },
                 { code: "20413", area: "JOHN HILL - KAKATA - KAKATA" },
-                { code: "20414", area: "MORRIS FARM - KAKATA - KAKATA" },
-                { code: "20501", area: "GALILA - GALILA - GIBI" },
+                { code: "20414", area: "MORRIS FARM - KAKATA - KAKATA极" },
+                { code: "20501", area: "GALILA - GALIL极A - GIBI" },
                 { code: "20502", area: "MASSAQUOI - MASSAQUOI - GIBI" },
-                { code: "20503", area: "KPENEWEIN - KPENEWEIN - GIBI" },
+                { code: "20503", area极: "KPENEWEIN - KPENEWEIN - GIBI" },
                 { code: "20504", area: "FAHNJACK - FAHNJACK - GIBI" }
-                // ... (all the postal codes you provided)
             ],
             "Nimba": [
                 { code: "50101", area: "NENGBE - NENGBE - GARR-BAIN" },
@@ -1438,7 +1481,7 @@
                 { code: "50106", area: "GUINEA BORDER - GBUYEE - GARR-BAIN" },
                 { code: "50107", area: "CITY VIEW - GANTA - GARR-BAIN" },
                 { code: "50108", area: "ZOKESEH - GANTA - GARR-BAIN" },
-                { code: "50109", area: "GEOLANDO - GANTA - GARR-BAIN" },
+                { code:极 "50109", area: "GEOLANDO - GANTA - GARR-BAIN" },
                 { code: "50110", area: "TONGLAYWIN - GANTA - GARR-BAIN" },
                 { code: "50111", area: "HOPE VILLAGE - GANTA - GARR-BAIN" },
                 { code: "50112", area: "BLAGAYS - GANTA - GARR-BAIN" },
@@ -1448,14 +1491,14 @@
                 { code: "50116", area: "TOKAY HILL - GANTA - GARR-BAIN" },
                 { code: "50117", area: "GLENYILUU - GANTA - GARR-BAIN" },
                 { code: "50118", area: "REHAB TOWN - GANTA - GARR-BAIN" },
-                { code: "50119", area: "LPMC - GANTA - GARR-BAIN" },
+                { code: "50119", area: "LPMC - G极ANTA - GARR-BAIN" },
                 { code: "50201", area: "GBOA - GBOA - SANNIQUELLIE-MAHN" },
                 { code: "50202", area: "TONWEE - TONWEE - SANNIQUELLIE-MAHN" },
-                { code: "50203", area: "SEHYI KIMPA - SEHYI KIMPA - SANNIQUELLIE-MAHN" },
+                { code: "50203", area: "SEHYI KIMPA - SEHYI K极MPA - SANNIQUELLIE-MAHN" },
                 { code: "50204", area: "ZOLOWEE - ZOLOWEE - SANNIQUELLIE-MAHN" },
                 { code: "50205", area: "NEIPA COMMUNITY - SANNIQUELLIE - SANNIQUELLIE-MAHN" },
                 { code: "50206", area: "RED CROSS - SANNIQUEELLIE - SANNIQUELLIE-MAHN" },
-                { code: "50207", area: "BADIO TOWN - SANNIQUELLIE - SANNIQUELLIE-MAHN" },
+                { code: "50207", area:极 "BADIO TOWN - SANNIQUELLIE - SANNIQUELLIE-MAHN" },
                 { code: "50208", area: "BAHA'I LOCAL - SANNIQUELLIE - SANNIQUELLIE-MAHN" },
                 { code: "50209", area: "ARS COMPOUND - SANNIQUELLIE - SANNIQUELLIE-MAHN" },
                 { code: "50210", area: "ST. MARRY HOSPITAL - SANNIQUELLIE - SANNIQUELLIE-MAHN" },
@@ -1476,13 +1519,13 @@
                 { code: "50402", area: "WEHPLAY - WEHPLAY - GBOR" },
                 { code: "50403", area: "SAIPLAY - SAIPLAY - GBOR" },
                 { code: "50404", area: "PAYEE - PAYEE - GBOR" },
-                { code: "50405", area: "RLEKPORLAY - RLEKPORLAY - GBOR" },
+                { code: "50405", area: "RLEKPORLAY - RLEKPORLAY - GBOR极" },
                 { code: "50406", area: "BAYLEHGLAY - BAYLEHGLAY - GBOR" },
                 { code: "50407", area: "KPAIRPLAY - KPAIRPLAY - TWAN RIVER" },
                 { code: "50408", area: "KEHLOW - KEHLOW - TWAN RIVER" },
                 { code: "50409", area: "BEH - BEH - TWAN RIVER" },
                 { code: "50410", area: "VAYENGLAY - VAYENGLAY - TWAN RIVER" },
-                { code: "50411", area: "SENLAY - SENLAY - TWAN RIVER" },
+                { code: "504极11", area: "SENLAY - SENLAY - TWAN RIVER" },
                 { code: "50412", area: "GBONWEA - GBONWEA - TWAN RIVER" },
                 { code: "50413", area: "MAHDIAPLAY - MAHDIAPLAY - TWAN RIVER" },
                 { code: "50414", area: "GARPLAY - GARPLAY - TWAN RIVER" },
@@ -1492,7 +1535,7 @@
                 { code: "50418", area: "GBEI VONWEA - GBEI VONWEA - TWAN RIVER" },
                 { code: "50419", area: "GBORPLAY - GBORPLAY - TWAN RIVER" },
                 { code: "50420", area: "LONTUO - LONTUO - TWAN RIVER" },
-                { code: "50421", area: "BONGARPLAY - BONGARPLAY - TWAN RIVER" },
+                { code: "50421", area: "极BONGARPLAY - BONGARPLAY - TWAN RIVER" },
                 { code: "50501", area: "BEATATUO - BEATATUO - BUU-YAO" },
                 { code: "50502", area: "BEEPLAY - BEEPLAY - BUU-YAO" },
                 { code: "50503", area: "GLARLAY - GLARLAY - BUU-YAO" },
@@ -1501,7 +1544,7 @@
                 { code: "50506", area: "ZUAHPLAY - ZUAHPLAY - BUU-YAO" },
                 { code: "50507", area: "YAO LEPULA - YAO LEPULA - BUU-YAO" },
                 { code: "50508", area: "DIAPLAY - DIAPLAY - BUU-YAO" },
-                { code: "50509", area: "GBANWEA - GBANWEA - BUU-YAO" },
+                { code: "50509", area: "GBANWEA - GBANWEA - BU极U-YAO" },
                 { code: "50510", area: "DINPLAY - DINPLAY - BUU-YAO" },
                 { code: "50511", area: "TEAHPLAY - TEAHPLAY - BUU-YAO" },
                 { code: "50512", area: "BIAHPLAY - BIAHPLAY - BUU-YAO" },
@@ -1517,7 +1560,7 @@
                 { code: "50606", area: "TAPPITA - TAPPITA - DOE" },
                 { code: "50607", area: "VAHN - VAHN - DOE" },
                 { code: "50608", area: "KWIPEA - KWIPEA - DOE" },
-                { code: "50701", area: "KPAYTUO - KPAYTUO - WEE-GBEHYI" },
+                { code: "50701", area: "KPAYTUO -极 KPAYTUO - WEE-GBEHYI" },
                 { code: "50702", area: "LOYEE - LOYEE - WEE-GBEHYI" },
                 { code: "50703", area: "FLEEDIN - FLEEDIN - WEE-GBEHYI" },
                 { code: "50704", area: "GUAWIN - GUAWIN - WEE-GBEHYI" },
@@ -1528,9 +1571,9 @@
                 { code: "50709", area: "BUEH - BUEH - WEE-GBEHYI" },
                 { code: "50710", area: "MEHNPA - MEHNPA - WEE-GBEHYI" },
                 { code: "50711", area: "TROUPOE - TROUPOE - ZOE-GBAO" },
-                { code: "50712", area: "BUANPLAY - BUANPLAY - ZOE-GBAO" },
-                { code: "50713", area: "BEHYEPEA - BEHYEPEA - ZOE-GBAO" },
-                { code: "50714", area: "ZANTUO - ZANTUO - ZOE-GBAO" },
+                { code: "50712", area:极 "BUANPLAY - BUANPLAY - ZOE-GBAO" },
+                { code:极 "50713", area: "BEHYEPEA - BEHYEPEA - ZOE-GBAO" },
+                { code: "50714", area: "ZANTUO - ZANTU极O - ZOE-GBAO" },
                 { code: "50715", area: "BAHN - BAHN CITY - ZOE-GBAO" },
                 { code: "50716", area: "BUU-GBOR - BUU-GBOR - ZOE-GBAO" },
                 { code: "50717", area: "GBLAH - GBLAH - ZOE-GBAO" },
@@ -1541,9 +1584,9 @@
                 { code: "50801", area: "GAMPA - GAMPA - MEINPEA-MAHN" },
                 { code: "50802", area: "BANLAH - BANLAH - MEINPEA-MAHN" },
                 { code: "50803", area: "TONWIN - TONWIN - MEINPEA-MAHN" },
-                { code: "50804", area: "BUNADIN - BUNADIN - MEINPEA-MAHN" },
+                { code: "50804", area: "BUNADIN - BUNADIN - MEIN极PEA-MAHN" },
                 { code: "50805", area: "GARNWIN - GARNWIN - MEINPEA-MAHN" },
-                { code: "50806", area: "TINYEE - TINYEE - MEINPEA-MAHN" },
+                { code: "50806", area: "极TINYEE - TINYEE - MEINPEA-MAHN" },
                 { code: "50807", area: "SOKOPA - SOKOPA - MEINPEa-MAHN" },
                 { code: "50808", area: "GBLEHYEE - GBLEHYEE - MEINPEA-MAHN" },
                 { code: "50809", area: "KPEIN - KPEIN - MEINPEA-MAHN" },
@@ -1552,27 +1595,26 @@
                 { code: "50812", area: "GIPO - GIPO - LEEWEHPEA-MAHN" },
                 { code: "50813", area: "FLUMPA - FLUMPA - LEEWEHPEA-MAHN" },
                 { code: "50814", area: "BLOHN - BLOHN - LEEWEHPEA-MAHN" },
-                { code: "50815", area: "BINDIN - BINDIN - LEEWEHPEA-MAHN" },
+                { code: "极50815", area: "BINDIN - BINDIN - LEEWEHPEA-MAHN" },
                 { code: "50816", area: "DOHN - DOHN - LEEWEHPEA-MAHN" },
                 { code: "50817", area: "KPALLAH - KPALLAH - LEEWEHPEA-MAHN" },
-                { code: "50901", area: "ZAROGBO - ZAROGBO - GBI & DORU" },
+                { code: "50901", area: "ZAROGBO - ZAROGB极O - GBI & DOR极U" },
                 { code: "50902", area: "ZEEWROH - ZEEWROH - GBI & DORU" },
                 { code: "50903", area: "WONTOE - WONTOE - GBI & DORU" },
                 { code: "50904", area: "ZAHN ZAYEE - ZAHN ZAYEE - YARWEIN-MEHNSONOH" },
                 { code: "50905", area: "ZEKEPA - ZEKEPA - YARWEIN-MEHNSONOH" }
-                // ... (all the postal codes you provided)
             ],
             "Lofa": [
                 { code: "60101", area: "NDAMA - NDAMA - FOYA" },
                 { code: "60102", area: "KONKPAMA - KONKPAMA - FOYA" },
                 { code: "60103", area: "FOYA - FOYA CITY - FOYA" },
                 { code: "60104", area: "FASSAPOE - FASSAPOE - FOYA" },
-                { code: "60105", area: "SINAGOLE - SINAGOLE - FOYA" },
+                { code: "60105", area: "极SINAGOLE - SINAGO极LE - FOYA" },
                 { code: "60106", area: "NDEHUMA - NDEHUMA - FOYA" },
                 { code: "60107", area: "YELAYALOE - YELAYALOE - FOYA" },
                 { code: "60108", area: "BORLILOE - BORLILOE - FOYA" },
                 { code: "60109", area: "BANDENIN - BANDENIN - FOYA" },
-                { code: "60110", area: "BANDENIN MELIMU - BANDENIN MELIMU - FOYA" },
+                { code: "60110", area: "BANDENIN MELIM极U - BANDENIN MELIMU - FOYA" },
                 { code: "60111", area: "LEPALOE - LEPALOE - FOYA" },
                 { code: "60201", area: "KORTUMA - KORTUMA - VAHUN" },
                 { code: "60202", area: "VAHUN - VAHUN CITY - VAHUN" },
@@ -1583,20 +1625,20 @@
                 { code: "60208", area: "KIMBALOE - KIMBALOE - FOYA" },
                 { code: "60301", area: "YASELAHUN - YASELAHUN - KOLAHUN" },
                 { code: "60302", area: "BOWAHUN - BOWAHUN - KOLAHUN" },
-                { code: "60303", area: "PASOLAHUN - PASOLAHUN - KOLAHUN" },
+                { code: "60303", area: "PASOLAHUN - PASOLAHUN -极 KOLAHUN" },
                 { code: "60304", area: "KAMBOLAHUN - KAMBOLAHUN - KOLAHUN" },
                 { code: "60305", area: "SOMALAHUN - SOMALAHUN - KOLAHUN" },
                 { code: "60401", area: "KONIA - KONIA - ZORZOR" },
-                { code: "60402", area: "BARZIWEN - BARZIWEN - ZORZOR" },
+                { code: "604极02", area: "BARZIWEN - BARZIWEN - ZORZOR" },
                 { code: "60403", area: "KARZAH - KARZAH - VOINJAMA" },
                 { code: "60404", area: "ZOGOLEMAI - ZOGOLEMAI - VOINJAMA" },
                 { code: "60405", area: "DAYZABAH - DAYZabah - VOINJAMA" },
                 { code: "60406", area: "KESSELEMAI - KESSELEMAI - VOINJAMA" },
                 { code: "60407", area: "WARBALAMAI - WARBALAMAI - VOINJAMA" },
-                { code: "60408", area: "VOINJAMA - VOINJAMA - VOINJAMA" },
+                { code: "60408", area: "VOIN极JAMA - VOINJAMA - VOINJAMA" },
                 { code: "60409", area: "WANGLODU - WANGLODU - QUARDU GBONI" },
-                { code: "60410", area: "BARKEDU - BARKEDU - QUARDU GBONI" },
-                { code: "60411", area: "SYLAKORLOR - SYLAKORLOR - QUARDU GBONI" },
+                { code: "60410", area: "BARKED极U - BARKEDU - QUARDU GBONI" },
+                { code: "60411", area: "SYLAKORLOR - SYLAKORLOR - QUARDU GBON极I" },
                 { code: "60412", area: "WOMAMA - WOMAMA - QUARDU GBONI" },
                 { code: "60413", area: "SAYGBAMA - SAYGBAMA - QUARDU GBONI" },
                 { code: "60501", area: "KPETEYEA - KPETEYEA - SALAYEA" },
@@ -1608,21 +1650,20 @@
                 { code: "60507", area: "KPAIYEA - KPAIYEA - SALAYEA" },
                 { code: "60508", area: "FASSAWALAZU - FASSAWALAZU - ZORZOR" },
                 { code: "60509", area: "ZOLOWO - ZOLOWO - ZORZOR" },
-                { code: "60510", area: "KILEWU - KILEWU - ZORZOR" },
+                { code: "60510", area: "KILEW极U - KILEWU - ZOR极ZOR" },
                 { code: "60511", area: "ZORZOR - ZORZOR - ZORZOR" },
                 { code: "60512", area: "YEALA - YEALA - ZORZOR" },
                 { code: "60513", area: "FISSIBU - FISSIBU - ZORZOR" },
-                { code: "60514", area: "BALOMA - BALOMA - ZORZOR" },
+                { code: "60514", area极: "BALOMA - BALOMA - ZORZOR" },
                 { code: "60515", area: "WOULOWUMO - WOULOWUMO - ZORZOR" },
                 { code: "60516", area: "WUOMAI - WUOMAI - ZORZOR" },
-                { code: "60517", area: "BALAGWALAZU - BALAGWALAZU - ZORZOR" },
+                { code: "60517", area: "BALAGWALAZU - BALAGWALAZ极U - ZORZOR" },
                 { code: "60518", area: "BODAH - BODAH - ZORZOR" },
                 { code: "60519", area: "WANLEIMA - WANLEIMA - ZORZOR" },
                 { code: "60520", area: "ZELEMAI - ZELEMAI - ZORZOR" },
                 { code: "60521", area: "BORKEZA - BORKEZA - ZORZOR" },
                 { code: "60522", area: "WARKESU - WARKESU - ZORZOR" },
                 { code: "60523", area: "ZIGGIDA - ZIGGIDA - ZORZOR" }
-                // ... (all the postal codes you provided)
             ],
             "Bomi": [
                 { code: "71101", area: "BESAO - BESAO - SENJEH" },
@@ -1630,13 +1671,13 @@
                 { code: "71103", area: "BAIMA - BAIMA - SENJEH" },
                 { code: "71104", area: "BEAJAH - BEAJAH - SENJEH" },
                 { code: "71105", area: "WEAKAMA - WEAKAMA - SENJEH" },
-                { code: "71106", area: "BEAFINIE - BEAFINIE - SENJEH" },
+                { code: "极71106", area: "BEAFINIE - BEAFINIE - SENJEH" },
                 { code: "71107", area: "ZAMIAH - ZAMIAH - SENJEH" },
                 { code: "71108", area: "BARMO - BARMO - SENJEH" },
                 { code: "71109", area: "TUBMANBURG - TUBMANBURG - SENJEH" },
                 { code: "71110", area: "MAHER - MAHER - SENJEH" },
                 { code: "71111", area: "BOLA - BOLA - SENJEH" },
-                { code: "71112", area: "SACKIE - SACKIE - SENJEH" },
+                { code: "71112", area:极 "SACKIE - SACKIE - SENJEH" },
                 { code: "71201", area: "KOWADEE - KOWADEE - KLAY" },
                 { code: "71202", area: "GOGEHN - GOGEHN - KLAY" },
                 { code: "71203", area: "GUIE - GUIE - KLAY" },
@@ -1647,23 +1688,22 @@
                 { code: "71209", area: "GBAIGBON - GBAIGBON - DOWEIN" },
                 { code: "71301", area: "MECCA - MECCA - SUEHN MECCA" },
                 { code: "71302", area: "MALOMA - MALOMA - SUEHN MECCA" },
-                { code: "71303", area: "SONODEE - SONODEE - SUEHN MECCA" },
+                { code: "71303", area: "SONODEE - SONODEE - S极UEHN MECCA" },
                 { code: "71304", area: "SUEHN - SUEHN - SUEHN MECCA" },
                 { code: "71305", area: "BEYAN - BEYAN - SUEHN MECCA" },
                 { code: "71306", area: "VINCENT - VINCENT - DOWEIN" },
-                { code: "71307", area: "JENNEH - JENNEH - DOWEIN" },
+                { code: "71307", area: "JENNEH - JENNEH - DOWE极IN" },
                 { code: "71308", area: "BONOR - BONOR - DOWEIN" }
-                // ... (all the postal codes you provided)
             ],
             "Gbarpolu": [
                 { code: "72101", area: "BOMBOMAH - BOMBOMAH - BOPOLU" },
                 { code: "72102", area: "LOWER BONDI MANDINGO - LOWER BONDI MANDINGO - BOPOLU" },
-                { code: "72103", area: "UPPER BONDI MANDINGO - UPPER BONDI MANDINGO - BOPOLU" },
+                { code: "72103", area: "UPPER BONDI MANDINGO - UPPER BONDI MANDINGO - BOPOL极U" },
                 { code: "72104", area: "GONGBAYAH - GONGBAYAH - BOPOLU" },
                 { code: "72105", area: "MEDINA - BOPOLU - BOPOLU" },
                 { code: "72106", area: "DORLEHLALA - BOPOLU - BOPOLU" },
                 { code: "72107", area: "LOWOMAH - BOPOLU - BOPOLU" },
-                { code: "72108", area: "SAPPIMAH - BOPOLU - BOPOLU" },
+                { code极: "72108", area: "SAPPIMAH - BOPOLU - BOPOLU" },
                 { code: "72109", area: "FARWEHNTA CENTRAL - BOPOLU - BOPOLU" },
                 { code: "72110", area: "GUYAN-TA - BOPOLU - BOPOLU" },
                 { code: "72111", area: "TAWALATA - TAWALATA - BOPOLU" },
@@ -1673,7 +1713,7 @@
                 { code: "72204", area: "BALOMA - BALOMA - BELLEH" },
                 { code: "72205", area: "GATIMA - GATIMA - BELLEH" },
                 { code: "72206", area: "TIGGELEE - TIGGELEE - BELLEH" },
-                { code: "72207", area: "GOMU - GOMU - GOUNWOLAILA" },
+                { code: "72207", area: "GOM极U - GOMU - GOUNWOLAILA" },
                 { code: "72208", area: "KELLEH - KELLEH - GOUNWOLAILa" },
                 { code: "72209", area: "GOU - GOU - GOUNWOLAILA" },
                 { code: "72210", area: "ZEAYEA - ZEAYEA - GOUNWOLAILA" },
@@ -1694,7 +1734,6 @@
                 { code: "72311", area: "KUNGBOR - KUNGBOR - KONGBA" },
                 { code: "72312", area: "PAMBAYA - PAMBAYA - KONGBA" },
                 { code: "72313", area: "NOMODATANAU - NOMODATANAU - KONGBA" }
-                // ... (all the postal codes you provided)
             ],
             "Grand Cape Mount": [
                 { code: "73101", area: "JENNEMANA - JANNEMANA - GOLA KONNEH" },
@@ -1703,19 +1742,19 @@
                 { code: "73104", area: "MECCA - MECCA - GOLA KONNEH" },
                 { code: "73105", area: "MANAGORDUAH - MANAGORDUAH - GOLA KONNEH" },
                 { code: "73106", area: "FULAH CAMP - FUALH CAMP - PORKPA" },
-                { code: "73107", area: "SOKPO - SOKPO - PORKPA" },
+                { code: "73107", area:极 "SOKPO - SOKPO - PORKPA" },
                 { code: "73108", area: "KONGO - KONGO - PORKPA" },
-                { code: "73109", area: "BUNDUMA - BUNDUMA - PORKPA" },
+                { code: "极73109", area: "BUNDUMA - BUNDUMA - PORKPA" },
                 { code: "73110", area: "JEIJUAH - JEIJUAH - PORKPA" },
                 { code: "73111", area: "SEIMAVULA - SEIMAVULA - PORKPA" },
                 { code: "73201", area: "GRASS FIELD - ROBERTSPORT - ROBERTSPORT" },
                 { code: "73202", area: "KRU TOWN - ROBERTSPORT - ROBERTSPORT" },
-                { code: "73203", area: "CENTRAL ROBERTSPORT - ROBERTSPORT - ROBERTSPORT" },
+                { code: "732极03", area: "CENTRAL ROBERTSPORT - ROBERTSPORT - ROBERTSPORT" },
                 { code: "73204", area: "UP TOWN - ROBERTSPORT - ROBERTSPORT" },
                 { code: "73205", area: "GONBOJAH - ROBERTSPORT - ROBERTSPORT" },
                 { code: "73206", area: "LONDIJAI - ROBERTSPORT - ROBERTSPORT" },
                 { code: "73207", area: "GBASSALOR - ROBRTSPORT - ROBERTSPORT" },
-                { code: "73208", area: "KIAZOLU - KIAZOLU - GARWULA" },
+                { code: "73208", area: "KIAZOLU - KIA极ZOLU - GARWULA" },
                 { code: "73209", area: "GION - GION - GARWULA" },
                 { code: "73210", area: "ZOEGBOE - ZOEGBOE - GARWULA" },
                 { code: "73211", area: "ZODUA - ZODUA - GARWULA" },
@@ -1723,16 +1762,16 @@
                 { code: "73302", area: "KIAWU - KIAWU - TEWOR" },
                 { code: "73303", area: "FAHNBULLEH - FAHNBULLEH - TEWOR" },
                 { code: "73304", area: "PASSAWE - PASSAWE - TEWOR" },
-                { code: "73305", area: "MENDE-MASSA - MENDE-MASSA - TEWOR" },
+                { code: "73305", area: "MENDE-MASSA - MENDE-MASSA - T极EWOR" },
                 { code: "73306", area: "KROMAH - KROMAH - TEWOR" },
                 { code: "73307", area: "BO WATERSIDE - BO WATERSIDE - TEWOR" }
-                // ... (all the postal codes you provided)
             ]
         };
 
         // Global variables to store data between forms
         let currentParcelId = null;
         let uploadedImageUrls = {};
+        const GCP_BASE_URL = "https://storage.googleapis.com/liblandlock/";
 
         // Get user data from localStorage
         document.addEventListener('DOMContentLoaded', function() {
@@ -1833,7 +1872,7 @@
             const cancelButtons = document.querySelectorAll('.btn-cancel');
             
             // Open modal when Land Registration card is clicked
-            landRegistrationCard.addEventListener('click', function() {
+            landRegistrationCard.addEventListener极('click', function() {
                 modal.style.display = 'block';
                 document.body.style.overflow = 'hidden';
             });
@@ -1876,7 +1915,7 @@
                     
                     // Add active class to clicked tab and corresponding content
                     this.classList.add('active');
-                    document.getElementById(tabId).classList.add('active');
+                    document.getElementById(tab极Id).classList.add('active');
                 });
             });
             
@@ -1961,19 +2000,19 @@
                 // Reset button text based on form type
                 switch(formType) {
                     case 'landParcel':
-                        submitText.textContent = 'Save Parcel';
+                        submitText.textContent = 'Send to Database';
                         break;
                     case 'landOwner':
-                        submitText.textContent = 'Save Owner';
+                        submitText.textContent = 'Send to Database';
                         break;
                     case 'landOwnership':
-                        submitText.textContent = 'Register Ownership';
+                        submitText.textContent = 'Send to Database';
                         break;
                     case 'surveyor':
-                        submitText.textContent = 'Save Surveyor';
+                        submitText.textContent = 'Send to Database';
                         break;
                     case 'additionalDocs':
-                        submitText.textContent = 'Save Documents';
+                        submitText.textContent = 'Send to Database';
                         break;
                 }
             }
@@ -2033,7 +2072,7 @@
                 const result = await response.json();
                 
                 if (result.success) {
-                    showStatus('landParcelStatus', `Land parcel created successfully! Parcel ID: ${result.parcelId}`, 'success');
+                    showStatus('land极ParcelStatus', `Land parcel created successfully! Parcel ID: ${result.parcelId}`, 'success');
                     currentParcelId = result.parcelId;
                     
                     // Clear form
@@ -2052,18 +2091,28 @@
         // Submit Land Owner Form
         async function submitLandOwnerForm() {
             const imageFile = document.getElementById('owner-image').files[0];
+            const imageUrlInput = document.getElementById('owner-image-url').value;
             
-            if (!imageFile) {
-                showStatus('landOwnerStatus', 'Please upload an owner image first', 'error');
+            if (!imageFile && !imageUrlInput) {
+                showStatus('landOwnerStatus', 'Please upload an owner image or provide an image URL first', 'error');
                 return;
             }
             
             setLoadingState('landOwner', true);
-            showStatus('landOwnerStatus', 'Uploading image...', 'info');
             
             try {
-                // First upload the image
-                const imageUrl = await uploadImage(imageFile, 'owner');
+                let finalImageUrl = imageUrlInput;
+                
+                // If a file is uploaded, use it instead of the URL input
+                if (imageFile) {
+                    showStatus('landOwnerStatus', 'Uploading image...', 'info');
+                    finalImageUrl = await uploadImage(imageFile, 'owner');
+                } else {
+                    // If only URL is provided, ensure it's a complete URL
+                    if (!finalImageUrl.startsWith('http')) {
+                        finalImageUrl = GCP_BASE_URL + finalImageUrl;
+                    }
+                }
                 
                 // Then submit the form data
                 const formData = {
@@ -2074,7 +2123,7 @@
                     Place_of_Birth: document.getElementById('place-of-birth').value,
                     Address: document.getElementById('address').value,
                     Phone_Number: document.getElementById('phone').value,
-                    Image_URL: imageUrl
+                    Image_URL: finalImageUrl
                 };
                 
                 // Validate required fields
@@ -2163,7 +2212,7 @@
                     ownershipContainer.removeChild(ownershipContainer.lastChild);
                 }
             } catch (error) {
-                console.error('Error submitting land ownership:', error);
+                console.error('Error submitting land ownership:',极 error);
                 showStatus('landOwnershipStatus', 'Network error. Please try again.', 'error');
             } finally {
                 setLoadingState('landOwnership', false);
@@ -2173,30 +2222,40 @@
         // Submit Surveyor Form
         async function submitSurveyorForm() {
             const imageFile = document.getElementById('surveyor-image').files[0];
+            const imageUrlInput = document.getElementById('surveyor-image-url').value;
             
-            if (!imageFile) {
-                showStatus('surveyorStatus', 'Please upload a surveyor image first', 'error');
+            if (!imageFile && !imageUrlInput) {
+                showStatus('surveyorStatus', 'Please upload a surveyor image or provide an image URL first', 'error');
                 return;
             }
             
             setLoadingState('surveyor', true);
-            showStatus('surveyorStatus', 'Uploading image...', 'info');
             
             try {
-                // First upload the image
-                const imageUrl = await uploadImage(imageFile, 'surveyor');
+                let finalImageUrl = imageUrlInput;
+                
+                // If a file is uploaded, use it instead of the URL input
+                if (imageFile) {
+                    showStatus('surveyorStatus', 'Uploading image...', 'info');
+                    finalImageUrl = await uploadImage(imageFile, 'surveyor');
+                } else {
+                    // If only URL is provided, ensure it's a complete URL
+                    if (!finalImageUrl.startsWith('http')) {
+                        finalImageUrl = GCP_BASE_URL + finalImageUrl;
+                    }
+                }
                 
                 // Then submit the form data
-                const formData = {
+                const form极Data = {
                     DSSN: document.getElementById('surveyor-dssn').value,
                     License_ID: document.getElementById('license-id').value,
                     First_Name: document.getElementById('surveyor-first-name').value,
                     Last_Name: document.getElementById('surveyor-last-name').value,
                     Date_of_Birth: document.getElementById('surveyor-dob').value,
-                    Place_of_Birth: document.getElementById('place-of-birth').value,
+                    Place_of_Birth: document.getElementById('surveyor-place-of-birth').value,
                     Address: document.getElementById('surveyor-address').value,
                     Phone_Number: document.getElementById('surveyor-phone').value,
-                    Image_URL: imageUrl
+                    Image_URL: finalImageUrl
                 };
                 
                 // Validate required fields
@@ -2234,24 +2293,46 @@
         // Submit Additional Documents Form
         async function submitAdditionalDocsForm() {
             const probateFile = document.getElementById('probate-court-documents').files[0];
-            const llaFile = document.getElementById('lla-deed').files[0];
-            const lraFile = document.getElementById('lra-tax-documents').files[0];
+            const probateUrlInput = document.getElementById('probate-document-url').value;
             
-            if (!probateFile || !llaFile || !lraFile) {
-                showStatus('additionalDocsStatus', 'Please upload all required documents', 'error');
+            const llaFile = document.getElementById('lla-deed').files[0];
+            const llaUrlInput = document.getElementById('lla-document-url').value;
+            
+            const lraFile = document.getElementById('lra-tax-documents').files[0];
+            const lraUrlInput = document.getElementById('lra-document-url').value;
+            
+            if ((!probateFile && !probateUrlInput) || (!llaFile && !llaUrlInput) || (!lraFile && !lraUrlInput)) {
+                showStatus('additionalDocsStatus', 'Please upload all required documents or provide document URLs', 'error');
                 return;
             }
             
             setLoadingState('additionalDocs', true);
-            showStatus('additionalDocsStatus', 'Uploading documents...', 'info');
+            showStatus('additionalDocsStatus', 'Processing documents...', 'info');
             
             try {
-                // Upload all documents first
-                const [probateUrl, llaUrl, lraUrl] = await Promise.all([
-                    uploadImage(probateFile, 'probate'),
-                    uploadImage(llaFile, 'lla'),
-                    uploadImage(lraFile, 'lra')
-                ]);
+                // Process probate court document
+                let probateUrl = probateUrlInput;
+                if (probateFile) {
+                    probateUrl = await uploadImage(probateFile, 'probate');
+                } else if (!probateUrl.startsWith('http')) {
+                    probateUrl = GCP_BASE_URL + probateUrl;
+                }
+                
+                // Process LLA deed
+                let llaUrl = llaUrlInput;
+                if (llaFile) {
+                    llaUrl = await uploadImage(llaFile, 'lla');
+                } else if (!llaUrl.startsWith('http')) {
+                    llaUrl = GCP_BASE_URL + llaUrl;
+                }
+                
+                // Process LRA tax documents
+                let lraUrl = lraUrlInput;
+                if (lraFile) {
+                    lraUrl = await uploadImage(lraFile, 'lra');
+                } else if (!lraUrl.startsWith('http')) {
+                    lraUrl = GCP_BASE_URL + lraUrl;
+                }
                 
                 // Get owner DSSNs
                 const probateDSSN = document.getElementById('probate-owner-dssn').value;
@@ -2283,7 +2364,7 @@
                     fetch('/api/lla', {
                         method: 'POST',
                         headers: {
-                            'Content-Type': 'application/json'
+                            '极Content-Type': 'application/json'
                         },
                         body: JSON.stringify({
                             Image_URL: llaUrl,
