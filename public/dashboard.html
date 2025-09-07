@@ -2058,12 +2058,14 @@
                 return;
             }
             
-            // Validate Boundary format (basic WKT validation)
+            // Clean and validate Boundary format
             try {
-                if (!isValidWKT(formData.Boundary)) {
+                const cleanedBoundary = cleanWKT(formData.Boundary);
+                if (!isValidWKT(cleanedBoundary)) {
                     showStatus('landParcelStatus', 'Invalid polygon format. Please use valid WKT format (e.g., POLYGON((x y, x y, x y, x y)))', 'error');
                     return;
                 }
+                formData.Boundary = cleanedBoundary; // Use cleaned version
             } catch (error) {
                 console.error('WKT validation error:', error);
                 showStatus('landParcelStatus', 'Invalid polygon format. Please check the coordinates.', 'error');
@@ -2100,17 +2102,49 @@
             }
         }
         
-        // Helper function to validate WKT format (simpler version)
+        // Helper function to clean WKT format
+        function cleanWKT(wkt) {
+            if (!wkt || typeof wkt !== 'string') return wkt;
+            
+            let cleaned = wkt.trim();
+            
+            // Remove extra whitespace and newlines
+            cleaned = cleaned.replace(/\s+/g, ' ').replace(/\n/g, '');
+            
+            // Ensure proper POLYGON format
+            if (!cleaned.toUpperCase().startsWith('POLYGON')) {
+                cleaned = `POLYGON(${cleaned})`;
+            }
+            
+            // Fix double parentheses issue
+            if (cleaned.includes('((') && cleaned.includes('))')) {
+                // Already has proper POLYGON(()) format
+                return cleaned;
+            } else if (cleaned.includes('POLYGON(') && !cleaned.includes('((')) {
+                // Add inner parentheses
+                cleaned = cleaned.replace('POLYGON(', 'POLYGON((') + ')';
+            }
+            
+            return cleaned;
+        }
+        
+        // Helper function to validate WKT format
         function isValidWKT(wkt) {
             if (!wkt || typeof wkt !== 'string') return false;
             
             const trimmedWkt = wkt.trim();
             
-            // Basic validation - check if it contains coordinates and parentheses
-            const hasCoordinates = /[-+]?\d*\.?\d+\s+[-+]?\d*\.?\d+/.test(trimmedWkt);
-            const hasParentheses = /\(.*\)/.test(trimmedWkt);
+            // Check for POLYGON keyword
+            if (!trimmedWkt.toUpperCase().startsWith('POLYGON')) return false;
             
-            return hasCoordinates && hasParentheses;
+            // Check for proper parentheses structure
+            const openParens = (trimmedWkt.match(/\(/g) || []).length;
+            const closeParens = (trimmedWkt.match(/\)/g) || []).length;
+            if (openParens !== closeParens || openParens < 2) return false;
+            
+            // Check for coordinates
+            const coordinateRegex = /[-+]?\d*\.?\d+\s+[-+]?\d*\.?\d+/;
+            return coordinateRegex.test(trimmedWkt);
         }
         
         // Submit Land Owner Form
