@@ -401,7 +401,7 @@
         }
         
         .btn-cancel {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 极0.1);
             color: white;
         }
         
@@ -414,7 +414,7 @@
             color: white;
         }
         
-        .btn-submit:hover {
+极        .btn-submit:hover {
             background: linear-gradient(135deg, #27ae60, #219653);
         }
         
@@ -446,7 +446,7 @@
             margin-bottom: 15px;
         }
         
-        .add-owner-btn:hover {
+        .add极-owner-btn:hover {
             background: rgba(255, 255, 255, 0.2);
         }
         
@@ -475,6 +475,72 @@
         
         .remove-owner:hover {
             background: rgba(192, 57, 43, 0.9);
+        }
+        
+        /* Database validation styles */
+        .validation-error {
+            color: #ff6b6b;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .input-error {
+            border-color: #ff6b6b !important;
+            box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.3) !important;
+        }
+        
+        .required-field::after {
+            content: " *";
+            color: #ff6b6b;
+        }
+        
+        .data-entry-guide {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .data-entry-guide h4 {
+            margin-bottom: 10px;
+            color: #3498db;
+        }
+        
+        .data-entry-guide ol {
+            padding-left: 20px;
+        }
+        
+        .data-entry-guide li {
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        
+        .dropdown-options {
+            max-height: 200px;
+            overflow-y: auto;
+            background: rgba(0, 0, 0, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            position: absolute;
+            z-index: 1000;
+            width: 100%;
+            display: none;
+        }
+        
+        .dropdown-option {
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .dropdown-option:hover {
+            background: rgba(52, 152, 219, 0.3);
+        }
+        
+        .dropdown-container {
+            position: relative;
         }
         
         @media (max-width: 768px) {
@@ -662,7 +728,7 @@
         </div>
     </div>
     
-    <div class="dashboard-content">
+    <div class极="dashboard-content">
         <div class="welcome-section">
             <h2>Welcome to Your Dashboard</h2>
             <p>You have successfully logged in to the secure portal</p>
@@ -721,7 +787,7 @@
                     </div>
                     <div class="detail-item">
                         <span class="detail-label">Session Active:</span>
-                        <span class="detail-value" style="color: #2ecc71;">Yes</span>
+                        <span class="detail-value" style="极color: #2ecc71;">Yes</span>
                     </div>
                 </div>
             </div>
@@ -775,7 +841,7 @@
             </button>
             <button class="btn btn-primary">
                 <i class="fas fa-question-circle"></i> Help
-            </button>
+           </button>
             <button id="logoutBtn" class="btn btn-logout">
                 <i class="fas fa-sign-out-alt"></i> Logout
             </button>
@@ -799,6 +865,16 @@
             </div>
             
             <div class="modal-body">
+                <!-- Data Entry Guide -->
+                <div class="data-entry-guide">
+                    <h4><i class="fas fa-info-circle"></i> Data Entry Order</h4>
+                    <ol>
+                        <li><strong>Surveyors</strong> and <strong>Land Owners</strong> must be registered first</li>
+                        <li>Then register <strong>Land Parcels</strong> (requires Surveyor DSSN)</li>
+                        <li>Finally establish <strong>Land Ownership</strong> (requires Owner DSSN and Parcel ID)</li>
+                    </ol>
+                </div>
+                
                 <!-- Land Parcel Form -->
                 <div id="land-parcel" class="tab-content active">
                     <div class="instructions">
@@ -809,7 +885,7 @@
                     <form id="landParcelForm">
                         <div class="form-grid">
                             <div class="form-group">
-                                <label for="county">County *</label>
+                                <label for="county" class="required-field">County</label>
                                 <select id="county" required>
                                     <option value="">Select County</option>
                                     <option value="Bomi">Bomi</option>
@@ -828,25 +904,31 @@
                                     <option value="River Gee">River Gee</option>
                                     <option value="Sinoe">Sinoe</option>
                                 </select>
+                                <div class="validation-error" id="county-error">County is required</div>
                             </div>
                             <div class="form-group">
-                                <label for="postal-code">Postal Code *</label>
-                                <select id="postal-code" required>
+                                <label for="postal-code">Postal Code</label>
+                                <select id="postal-code">
                                     <option value="">Select Postal Code</option>
                                     <!-- Will be populated by JavaScript -->
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="polygon">Boundary Polygon *</label>
+                                <label for="polygon" class="required-field">Boundary Polygon</label>
                                 <textarea id="polygon" rows="3" placeholder="POLYGON((-10.617312 6.450804,-10.615312 6.450804,-10.615312 6.448804,-10.617312 6.448804,-10.617312 6.450804))" required></textarea>
+                                <div class="validation-error" id="polygon-error">Valid polygon is required</div>
                             </div>
                             <div class="form-group">
-                                <label for="date-surveyed">Date Surveyed *</label>
-                                <input type="date" id="date-surveyed" required>
+                                <label for="date-surveyed">Date Surveyed</label>
+                                <input type="date" id="date-surveyed">
                             </div>
                             <div class="form-group">
-                                <label for="surveyor-dssn">Surveyor DSSN *</label>
-                                <input type="text" id="surveyor-dssn" required>
+                                <label for="surveyor-dssn" class="required-field">Surveyor DSSN</label>
+                                <div class="dropdown-container">
+                                    <input type="text" id="surveyor-dssn" list="surveyor-dssn-list" required>
+                                    <datalist id="surveyor-dssn-list"></datalist>
+                                    <div class="validation-error" id="surveyor-dssn-error">Valid Surveyor DSSN is required</div>
+                                </div>
                             </div>
                         </div>
                         
@@ -877,48 +959,54 @@
                     <form id="landOwnerForm">
                         <div class="form-grid">
                             <div class="form-group">
-                                <label for="owner-dssn">DSSN *</label>
+                                <label for="owner-dssn" class="required-field">DSSN</label>
                                 <input type="text" id="owner-dssn" required>
+                                <div class="validation-error" id="owner-dssn-error">DSSN is required and must be unique</div>
                             </div>
                             <div class="form-group">
-                                <label for="first-name">First Name *</label>
+                                <label for="first-name" class="required-field">First Name</label>
                                 <input type="text" id="first-name" required>
+                                <div class="validation-error" id="first-name-error">First name is required</div>
                             </div>
                             <div class="form-group">
-                                <label for="last-name">Last Name *</label>
+                                <label for="last-name" class="required-field">Last Name</label>
                                 <input type="text" id="last-name" required>
+                                <div class="validation-error" id="last-name-error">Last name is required</div>
                             </div>
                             <div class="form-group">
-                                <label for="dob">Date of Birth *</label>
+                                <label for="dob" class="required-field">Date of Birth</label>
                                 <input type="date" id="dob" required>
+                                <div class="validation-error" id="dob-error">Date of birth is required</div>
                             </div>
                             <div class="form-group">
                                 <label for="place-of-birth">Place of Birth</label>
                                 <input type="text" id="place-of-birth">
                             </div>
                             <div class="form-group">
-                                <label for="address">Address *</label>
+                                <label for="address" class="required-field">Address</label>
                                 <textarea id="address" rows="3" required></textarea>
+                                <div class="validation-error" id="address-error">Address is required</div>
                             </div>
                             <div class="form-group">
-                                <label for="phone">Phone Number *</label>
+                                <label for="phone" class="required-field">Phone Number</label>
                                 <input type="tel" id="phone" required>
+                                <div class="validation-error" id="phone-error">Phone number is required</div>
                             </div>
                             <div class="form-group">
-                                <label for="owner-image">Owner Image *</label>
+                                <label for="owner-image">Owner Image</label>
                                 <div class="file-upload">
                                     <div class="file-upload-btn">
                                         <span>Choose File</span>
                                         <i class="fas fa-upload"></i>
-                                        <input type="file" id="owner-image" class="file-upload-input" accept="image/*" required>
+                                        <input type="file" id="owner-image" class="file-upload-input" accept="image/*">
                                     </div>
                                     <div class="file-name" id="owner-image-name">No file chosen</div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="owner-image-url">Image URL *</label>
+                                <label for="owner-image-url">Image URL</label>
                                 <div class="image-url-container">
-                                    <input type="text" id="owner-image-url" placeholder="https://storage.googleapis.com/liblandlock/" required>
+                                    <input type="text" id="owner-image-url" placeholder="https://storage.googleapis.com/liblandlock/">
                                     <small>Enter the full image URL from Google Cloud Storage</small>
                                 </div>
                             </div>
@@ -939,7 +1027,7 @@
                 <!-- Land Ownership Form -->
                 <div id="land-ownership" class="tab-content">
                     <div class="instructions">
-                        <h4><i class="fas fa-info-circle"></i> Instructions</h4>
+                        <h4><极i class="fas fa-info-circle"></i> Instructions</h4>
                         <p>Enter the DSSN of each owner associated with a land parcel. You can add multiple owners for the same parcel.</p>
                     </div>
                     
@@ -948,12 +1036,20 @@
                             <div class="owner-entry">
                                 <div class="form-grid">
                                     <div class="form-group">
-                                        <label for="parcel-id">Parcel ID *</label>
-                                        <input type="number" id="parcel-id" required>
+                                        <label for="parcel-id" class="required-field">Parcel ID</label>
+                                        <div class="dropdown-container">
+                                            <input type="number" id="parcel-id" list="parcel-id-list" required>
+                                            <datalist id="parcel-id-list"></datalist>
+                                            <div class="validation-error" id="parcel-id-error">Valid Parcel ID is required</div>
+                                        </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="owner-dssn-id">Owner DSSN *</label>
-                                        <input type="text" id="owner-dssn-id" required>
+                                        <label for="owner-dssn-id" class="required-field">Owner DSSN</label>
+                                        <div class="dropdown-container">
+                                            <input type="text" id="owner-dssn-id" list="owner-dssn-list" required>
+                                            <datalist id="owner-dssn-list"></datalist>
+                                            <div class="validation-error" id="owner-dssn-id-error">Valid Owner DSSN is required</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -990,52 +1086,59 @@
                     <form id="surveyorForm">
                         <div class="form-grid">
                             <div class="form-group">
-                                <label for="surveyor-dssn">DSSN *</label>
+                                <label for="surveyor-dssn" class="required-field">DSSN</label>
                                 <input type="text" id="surveyor-dssn" required>
+                                <div class="validation-error" id="surveyor-dssn-error">DSSN is required and must be unique</div>
                             </div>
                             <div class="form-group">
-                                <label for="license-id">License ID *</label>
+                                <label for="license-id" class="required-field">License ID</label>
                                 <input type="text" id="license-id" required>
+                                <div class="validation-error" id="license-id-error">License ID is required and must be unique</div>
                             </div>
                             <div class="form-group">
-                                <label for="surveyor-first-name">First Name *</label>
+                                <label for="surveyor-first-name" class="required-field">First Name</label>
                                 <input type="text" id="surveyor-first-name" required>
+                                <div class="validation-error" id="surveyor-first-name-error">First name is required</div>
                             </div>
                             <div class="form-group">
-                                <label for="surveyor-last-name">Last Name *</label>
+                                <label for="surveyor-last-name" class="required-field">Last Name</label>
                                 <input type="text" id="surveyor-last-name" required>
+                                <div class="validation-error" id="surveyor-last-name-error">Last name is required</div>
                             </div>
                             <div class="form-group">
-                                <label for="surveyor-dob">Date of Birth *</label>
+                                <label for="surveyor-dob" class="required-field">Date of Birth</label>
                                 <input type="date" id="surveyor-dob" required>
+                                <div class="validation-error" id="surveyor-dob-error">Date of birth is required</div>
                             </div>
                             <div class="form-group">
-                                <label for="surveyor-place-of-birth">Place of Birth *</label>
+                                <label for="surveyor-place-of-birth" class="required-field">Place of Birth</label>
                                 <input type="text" id="surveyor-place-of-birth" required>
+                                <div class="validation-error" id="surveyor-place-of-birth-error">Place of birth is required</div>
                             </div>
                             <div class="form-group">
                                 <label for="surveyor-address">Address</label>
                                 <textarea id="surveyor-address" rows="3"></textarea>
                             </div>
-                            <div class="form-group">
-                                <label for="surveyor-phone">Phone Number *</label>
+                            <极div class="form-group">
+                                <label for="surveyor-phone" class="required-field">Phone Number</label>
                                 <input type="tel" id="surveyor-phone" required>
+                                <div class="validation-error" id="surveyor-phone-error">Phone number is required</div>
                             </div>
                             <div class="form-group">
-                                <label for="surveyor-image">Surveyor Image *</label>
+                                <label for="surveyor-image">Surveyor Image</label>
                                 <div class="file-upload">
-                                    <div class="file-upload-btn">
+                                    <div class="极file-upload-btn">
                                         <span>Choose File</span>
                                         <i class="fas fa-upload"></i>
-                                        <input type="file" id="surveyor-image" class="file-upload-input" accept="image/*" required>
+                                        <input type="file" id="surveyor-image" class="file-upload-input" accept="image/*">
                                     </div>
                                     <div class="file-name" id="surveyor-image-name">No file chosen</div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="surveyor-image-url">Image URL *</label>
+                                <label for="surveyor-image-url">Image URL</label>
                                 <div class="image-url-container">
-                                    <input type="text" id="surveyor-image-url" placeholder="https://storage.googleapis.com/liblandlock/" required>
+                                    <input type="text" id="surveyor-image-url" placeholder="https://storage.googleapis.com/liblandlock/">
                                     <small>Enter the full image URL from Google Cloud Storage</small>
                                 </div>
                             </div>
@@ -1047,7 +1150,7 @@
                             <button type="button" class="btn btn-cancel">Cancel</button>
                             <button type="submit" class="btn btn-submit">
                                 <span id="surveyorSubmitText">Send to Database</span>
-                                <span id="surveyorSpinner" class="spinner" style="display: none;"></span>
+                                <span id="surveyor极Spinner" class="spinner" style="display: none;"></span>
                             </button>
                         </div>
                     </form>
@@ -1070,26 +1173,30 @@
                             <h3 class="section-title">Probate Court</h3>
                             <div class="form-grid">
                                 <div class="form-group">
-                                    <label for="probate-court-documents">Probate Court Documents *</label>
+                                    <label for="probate-court-documents">Probate Court Documents</label>
                                     <div class="file-upload">
                                         <div class="file-upload-btn">
                                             <span>Choose File</span>
                                             <i class="fas fa-upload"></i>
-                                            <input type="file" id="probate-court-documents" class="file-upload-input" accept="image/*" required>
+                                            <input type="file" id="probate-court-documents" class="file-upload-input" accept="image/*">
                                         </div>
                                         <div class="file-name" id="probate-court-documents-name">No file chosen</div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="probate-document-url">Document URL *</label>
+                                    <label for="probate-document-url">Document URL</label>
                                     <div class="image-url-container">
-                                        <input type="text" id="probate-document-url" placeholder="https://storage.googleapis.com/liblandlock/" required>
+                                        <input type="text" id="probate-document-url" placeholder="https://storage.googleapis.com/liblandlock/">
                                         <small>Enter the full document URL from Google Cloud Storage</small>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="probate-owner-dssn">Owner DSSN *</label>
-                                    <input type="text" id="probate-owner-dssn" required>
+                                    <label for="probate-owner-dssn" class="required-field">Owner DSSN</label>
+                                    <div class="dropdown-container">
+                                        <input type="text" id="probate-owner-dssn" list="owner-dssn-list" required>
+                                        <datalist id="owner-dssn-list"></datalist>
+                                        <div class="validation-error" id="probate-owner-dssn-error">Valid Owner DSSN is required</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1098,26 +1205,30 @@
                             <h3 class="section-title">Liberia Land Authority (LLA)</h3>
                             <div class="form-grid">
                                 <div class="form-group">
-                                    <label for="lla-deed">Land DEED *</label>
+                                    <label for="lla-deed">Land DEED</label>
                                     <div class="file-upload">
                                         <div class="file-upload-btn">
                                             <span>Choose File</span>
                                             <i class="fas fa-upload"></i>
-                                            <input type="file" id="lla-deed" class="file-upload-input" accept="image/*" required>
+                                            <input type="file" id="lla-deed" class="file-upload-input" accept="image/*">
                                         </div>
-                                        <div class="file-name" id="lla-deed-name">No file chosen</div>
+                                        <div class="file-name" id="lla-deed-name">极No file chosen</div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="lla-document-url">Document URL *</label>
+                                    <label for="lla-document-url">Document URL</label>
                                     <div class="image-url-container">
-                                        <input type="text" id="lla-document-url" placeholder="https://storage.googleapis.com/liblandlock/" required>
+                                        <input type="text" id="lla-document-url" placeholder="https://storage.googleapis.com/liblandlock/">
                                         <small>Enter the full document URL from Google Cloud Storage</small>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="lla-owner-dssn">Owner DSSN *</label>
-                                    <input type="text" id="lla-owner-dssn" required>
+                                    <label for="lla-owner-dssn" class="required-field">Owner DSSN</label>
+                                    <div class="dropdown-container">
+                                        <input type="text" id="lla-owner-dssn" list="owner-dssn-list" required>
+                                        <datalist id="owner-dssn-list"></datalist>
+                                        <div class="validation-error" id="lla-owner-dssn-error">Valid Owner DSSN is required</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1126,26 +1237,30 @@
                             <h3 class="section-title">Liberia Revenue Authority (LRA)</h3>
                             <div class="form-grid">
                                 <div class="form-group">
-                                    <label for="lra-tax-documents">Tax Documents *</label>
+                                    <label for="lra-tax-documents">Tax Documents</label>
                                     <div class="file-upload">
                                         <div class="file-upload-btn">
                                             <span>Choose File</span>
-                                            <i class="fas fa-upload"></i>
-                                            <input type="file" id="lra-tax-documents" class="file-upload-input" accept="image/*" required>
+                                            <i class="fas fa-upload"></极i>
+                                            <input type="file" id="lra-tax-documents" class="file-upload-input" accept="image/*">
                                         </div>
                                         <div class="file-name" id="lra-tax-documents-name">No file chosen</div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="lra-document-url">Document URL *</label>
+                                    <label for="lra-document-url">Document URL</label>
                                     <div class="image-url-container">
-                                        <input type="text" id="lra-document-url" placeholder="https://storage.googleapis.com/liblandlock/" required>
+                                        <input type="text" id="lra-document-url" placeholder="https://storage.googleapis.com/liblandlock/">
                                         <small>Enter the full document URL from Google Cloud Storage</small>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="lra-owner-dssn">Owner DSSN *</label>
-                                    <input type="text" id="lra-owner-dssn" required>
+                                    <label for="lra-owner-dssn" class="required-field">Owner DSSN</label>
+                                    <div class="dropdown-container">
+                                        <input type="text" id="lra-owner-dssn" list="owner-dssn-list" required>
+                                        <datalist id="owner-dssn-list"></datalist>
+                                        <div class="validation-error" id="lra-owner-dssn-error">Valid Owner DSSN is required</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1218,7 +1333,7 @@
                 { code: "10704", area: "MAMBA POINT - CENTRAL MONROVIA - DISTRICT 7" },
                 { code: "10705", area: "U. N. DRIVE - CENTRAL MONROVIA - DISTRICT 7" },
                 { code: "10706", area: "RANDALL/NEWPORT/LYNCH STREET - CENTRAL MONROVIA - DISTRICT 7" },
-                { code: "10707", area: "CAREY/GURLEY/MECHLIN STREET - CENTral MONROVIA - DISTRICT 7" },
+                { code: "10707", area: "CAREY/GURLEY/MECHLIN STREET - CENTRAL MONROVIA - DISTRICT 7" },
                 { code: "10708", area: "BROAD/ASHMUN STREET - CENTRAL MONROVIA - DISTRICT 7" },
                 { code: "10709", area: "BENSON/WARREN/PERRY/CLAY/JOHNSON STREET - CENTRAL MONROVIA - DISTRICT 7" },
                 { code: "10801", area: "CROWN HILL - MONROVIA - DISTRICT 8" },
@@ -1242,7 +1357,7 @@
                 { code: "11002", area: "CATHOLIC HOSPITAL - OLD ROAD - DISTRICT 10" },
                 { code: "11003", area: "DIVINE & TOGBA CAMP - OLD ROAD - DISTRICT 10" },
                 { code: "11004", area: "NIPPAY TOWN - OLD ROAD - DISTRICT 10" },
-                { code: "11005", area: "SMYTHE ROAD - OOLD ROAD - DISTRICT 10" },
+                { code: "11005", area: "SMYTHE ROAD - OLD ROAD - DISTRICT 10" },
                 { code: "11006", area: "CHUGBOR - OLD ROAD - DISTRICT 10" },
                 { code: "11007", area: "GAYE TOWN COMMUNITY - OLD ROAD - DISTRICT 10" },
                 { code: "11008", area: "TARR TOWN - OLD ROAD - DISTRICT 10" },
@@ -1320,8 +1435,8 @@
                 { code: "11712", area: "BREWERVILLE - BREWERVILLE - DISTRICT 17" },
                 { code: "11713", area: "ROYESVILLE - ROYESVILLE TOWNSHIP - DISTRICT 17" },
                 { code: "11714", area: "ACROSS THE CREEK - ROYESVILLE TOWNSHIP - DISTRICT 17" }
-            ],
-            "Bong": [
+              ],
+              "Bong": [
                 { code: "30101", area: "DOE - DOE - KOKOYAH" },
                 { code: "30102", area: "NANGBO - NANGBO - KOKOYAH" },
                 { code: "30103", area: "TIKPAH - TIKPAH - TUKPAHBLEE" },
@@ -1378,8 +1493,8 @@
                 { code: "30702", area: "TOTOTA - TOTOTA - SALALA" },
                 { code: "30703", area: "POPOTA - POPOTA - FUAMAH" },
                 { code: "30704", area: "DOBLI ISLAND - DOBLI ISLAND - FUAMAH" }
-            ],
-            "Grand Bassa": [
+              ],
+              "Grand Bassa": [
                 { code: "40101", area: "LLOYDSVILLE - KPORKON - DISTRICT 1" },
                 { code: "40102", area: "KPALAWRU - KPORKON - DISTRICT 1" },
                 { code: "40103", area: "ZEON - ZEON - DISTRICT 1" },
@@ -1421,8 +1536,8 @@
                 { code: "40502", area: "DOEGBAHN_GLAYDOR - DOEGBAHN_GLAYDOR - DISTRICT 5" },
                 { code: "40503", area: "KPOEWEIN - KPOEWEIN - DISTRICT 5" },
                 { code: "40504", area: "PALM BAY - PALM BAY - DISTRICT 5" }
-            ],
-            "Margibi": [
+              ],
+              "Margibi": [
                 { code: "20101", area: "R2 COMMUNITY - DUAZON - MAMBAH KABA" },
                 { code: "20102", area: "ROCK INTERNATIONAL - DUAZON - MAMBAH KABA" },
                 { code: "20103", area: "DUAZON - DUAZON - MAMBAH KABA" },
@@ -1432,7 +1547,7 @@
                 { code: "20107", area: "ELLEN ESTATE - SCHIEFFLIN - MAMBAH KABA" },
                 { code: "20108", area: "MARSHALL - MARSHALL - MAMBAH KABA" },
                 { code: "20109", area: "FARMINGTON - FARMINGTON - MAMBAH KABA" },
-                { code: "20110", area: "KARFEAH - KARFEAH - MAMBAH极 KABA" },
+                { code: "20110", area: "KARFEAH - KARFEAH - MAMBAH KABA" },
                 { code: "20111", area: "LOONGAYE - LOONGAYE - MAMBAH KABA" },
                 { code: "20112", area: "ZOEDUEHN - ZOEDUEHN - MAMBAH KABA" },
                 { code: "20113", area: "GARNOE - GARNOE - MAMBAH KABA" },
@@ -1453,8 +1568,8 @@
                 { code: "20307", area: "DIVISION 24 - CAMP - FIRESTONE" },
                 { code: "20308", area: "DIVISION 27 - FIRESTONE - FIRESTONE" },
                 { code: "20309", area: "DU SIDE VILLAGE - DU SIDE - FIRESTONE" },
-                { code: "20401", area: "DENNIS极VILLE COMMUNITY - KAKATA - KAKATA" },
-                { code: "20402", area: "MENDE TOWN - KAKATA -极 KAKATA" },
+                { code: "20401", area: "DENNISVILLE COMMUNITY - KAKATA - KAKATA" },
+                { code: "20402", area: "MENDE TOWN - KAKATA - KAKATA" },
                 { code: "20403", area: "KRTTI - KAKATA - KAKATA" },
                 { code: "20404", area: "BWI - KAKATA - KAKATA" },
                 { code: "20405", area: "NANCY DOE - KAKATA - KAKATA" },
@@ -1466,13 +1581,13 @@
                 { code: "20411", area: "MULA - KAKATA - KAKATA" },
                 { code: "20412", area: "GBOYORMU - KAKATA - KAKATA" },
                 { code: "20413", area: "JOHN HILL - KAKATA - KAKATA" },
-                { code: "20414", area: "MORRIS FARM - KAKATA - KAKATA极" },
+                { code: "20414", area: "MORRIS FARM - KAKATA - KAKATA" },
                 { code: "20501", area: "GALILA - GALILA - GIBI" },
                 { code: "20502", area: "MASSAQUOI - MASSAQUOI - GIBI" },
-                { code: "20503", area极: "KPENEWEIN - KPENEWEIN - GIBI" },
+                { code: "20503", area: "KPENEWEIN - KPENEWEIN - GIBI" },
                 { code: "20504", area: "FAHNJACK - FAHNJACK - GIBI" }
-            ],
-            "Nimba": [
+              ],
+              "Nimba": [
                 { code: "50101", area: "NENGBE - NENGBE - GARR-BAIN" },
                 { code: "50102", area: "GBUYEE - GBUYEE - GARR-BAIN" },
                 { code: "50103", area: "TONGLAYWIN - TONGLAYWIN - GARR-BAIN" },
@@ -1491,7 +1606,7 @@
                 { code: "50116", area: "TOKAY HILL - GANTA - GARR-BAIN" },
                 { code: "50117", area: "GLENYILUU - GANTA - GARR-BAIN" },
                 { code: "50118", area: "REHAB TOWN - GANTA - GARR-BAIN" },
-                { code: "50119", area: "LPMC - G极ANTA - GARR-BAIN" },
+                { code: "50119", area: "LPMC - GANTA - GARR-BAIN" },
                 { code: "50201", area: "GBOA - GBOA - SANNIQUELLIE-MAHN" },
                 { code: "50202", area: "TONWEE - TONWEE - SANNIQUELLIE-MAHN" },
                 { code: "50203", area: "SEHYI KIMPA - SEHYI KIMPA - SANNIQUELLIE-MAHN" },
@@ -1535,7 +1650,7 @@
                 { code: "50418", area: "GBEI VONWEA - GBEI VONWEA - TWAN RIVER" },
                 { code: "50419", area: "GBORPLAY - GBORPLAY - TWAN RIVER" },
                 { code: "50420", area: "LONTUO - LONTUO - TWAN RIVER" },
-                { code: "50421", area: "极BONGARPLAY - BONGARPLAY - TWAN RIVER" },
+                { code: "50421", area: "BONGARPLAY - BONGARPLAY - TWAN RIVER" },
                 { code: "50501", area: "BEATATUO - BEATATUO - BUU-YAO" },
                 { code: "50502", area: "BEEPLAY - BEEPLAY - BUU-YAO" },
                 { code: "50503", area: "GLARLAY - GLARLAY - BUU-YAO" },
@@ -1544,7 +1659,7 @@
                 { code: "50506", area: "ZUAHPLAY - ZUAHPLAY - BUU-YAO" },
                 { code: "50507", area: "YAO LEPULA - YAO LEPULA - BUU-YAO" },
                 { code: "50508", area: "DIAPLAY - DIAPLAY - BUU-YAO" },
-                { code: "50509", area: "GBANWEA - GBANWEA - BU极U-YAO" },
+                { code: "50509", area: "GBANWEA - GBANWEA - BUU-YAO" },
                 { code: "50510", area: "DINPLAY - DINPLAY - BUU-YAO" },
                 { code: "50511", area: "TEAHPLAY - TEAHPLAY - BUU-YAO" },
                 { code: "50512", area: "BIAHPLAY - BIAHPLAY - BUU-YAO" },
@@ -1584,9 +1699,9 @@
                 { code: "50801", area: "GAMPA - GAMPA - MEINPEA-MAHN" },
                 { code: "50802", area: "BANLAH - BANLAH - MEINPEA-MAHN" },
                 { code: "50803", area: "TONWIN - TONWIN - MEINPEA-MAHN" },
-                { code: "50804", area: "BUNADIN - BUNADIN - MEIN极PEA-MAHN" },
+                { code: "50804", area: "BUNADIN - BUNADIN - MEINPEA-MAHN" },
                 { code: "50805", area: "GARNWIN - GARNWIN - MEINPEA-MAHN" },
-                { code: "50806", area: "极TINYEE - TINYEE - MEINPEA-MAHN" },
+                { code: "50806", area: "TINYEE - TINYEE - MEINPEA-MAHN" },
                 { code: "50807", area: "SOKOPA - SOKOPA - MEINPEa-MAHN" },
                 { code: "50808", area: "GBLEHYEE - GBLEHYEE - MEINPEA-MAHN" },
                 { code: "50809", area: "KPEIN - KPEIN - MEINPEA-MAHN" },
@@ -1598,13 +1713,13 @@
                 { code: "50815", area: "BINDIN - BINDIN - LEEWEHPEA-MAHN" },
                 { code: "50816", area: "DOHN - DOHN - LEEWEHPEA-MAHN" },
                 { code: "50817", area: "KPALLAH - KPALLAH - LEEWEHPEA-MAHN" },
-                { code: "50901", area: "ZAROGBO - ZAROGB极O - GBI & DOR极U" },
+                { code: "50901", area: "ZAROGBO - ZAROGBO - GBI & DORU" },
                 { code: "50902", area: "ZEEWROH - ZEEWROH - GBI & DORU" },
                 { code: "50903", area: "WONTOE - WONTOE - GBI & DORU" },
                 { code: "50904", area: "ZAHN ZAYEE - ZAHN ZAYEE - YARWEIN-MEHNSONOH" },
                 { code: "50905", area: "ZEKEPA - ZEKEPA - YARWEIN-MEHNSONOH" }
-            ],
-            "Lofa": [
+              ],
+              "Lofa": [
                 { code: "60101", area: "NDAMA - NDAMA - FOYA" },
                 { code: "60102", area: "KONKPAMA - KONKPAMA - FOYA" },
                 { code: "60103", area: "FOYA - FOYA CITY - FOYA" },
@@ -1625,7 +1740,7 @@
                 { code: "60208", area: "KIMBALOE - KIMBALOE - FOYA" },
                 { code: "60301", area: "YASELAHUN - YASELAHUN - KOLAHUN" },
                 { code: "60302", area: "BOWAHUN - BOWAHUN - KOLAHUN" },
-                { code: "60303", area: "PASOLAHUN - PASOLAHUN -极 KOLAHUN" },
+                { code: "60303", area: "PASOLAHUN - PASOLAHUN - KOLAHUN" },
                 { code: "60304", area: "KAMBOLAHUN - KAMBOLAHUN - KOLAHUN" },
                 { code: "60305", area: "SOMALAHUN - SOMALAHUN - KOLAHUN" },
                 { code: "60401", area: "KONIA - KONIA - ZORZOR" },
@@ -1635,10 +1750,10 @@
                 { code: "60405", area: "DAYZABAH - DAYZabah - VOINJAMA" },
                 { code: "60406", area: "KESSELEMAI - KESSELEMAI - VOINJAMA" },
                 { code: "60407", area: "WARBALAMAI - WARBALAMAI - VOINJAMA" },
-                { code: "60408", area: "VOIN极JAMA - VOINJAMA - VOINJAMA" },
+                { code: "60408", area: "VOINJAMA - VOINJAMA - VOINJAMA" },
                 { code: "60409", area: "WANGLODU - WANGLODU - QUARDU GBONI" },
-                { code: "60410", area: "BARKED极U - BARKEDU - QUARDU GBONI" },
-                { code: "60411", area: "SYLAKORLOR - SYLAKORLOR - QUARDU GBON极I" },
+                { code: "60410", area: "BARKEDU - BARKEDU - QUARDU GBONI" },
+                { code: "60411", area: "SYLAKORLOR - SYLAKORLOR - QUARDU GBONI" },
                 { code: "60412", area: "WOMAMA - WOMAMA - QUARDU GBONI" },
                 { code: "60413", area: "SAYGBAMA - SAYGBAMA - QUARDU GBONI" },
                 { code: "60501", area: "KPETEYEA - KPETEYEA - SALAYEA" },
@@ -1654,18 +1769,18 @@
                 { code: "60511", area: "ZORZOR - ZORZOR - ZORZOR" },
                 { code: "60512", area: "YEALA - YEALA - ZORZOR" },
                 { code: "60513", area: "FISSIBU - FISSIBU - ZORZOR" },
-                { code: "60514", area极: "BALOMA - BALOMA - ZORZOR" },
+                { code: "60514", area: "BALOMA - BALOMA - ZORZOR" },
                 { code: "60515", area: "WOULOWUMO - WOULOWUMO - ZORZOR" },
                 { code: "60516", area: "WUOMAI - WUOMAI - ZORZOR" },
-                { code: "60517", area: "BALAGWALAZU - BALAGWALAZ极U - ZORZOR" },
+                { code: "60517", area: "BALAGWALAZU - BALAGWALAZU - ZORZOR" },
                 { code: "60518", area: "BODAH - BODAH - ZORZOR" },
                 { code: "60519", area: "WANLEIMA - WANLEIMA - ZORZOR" },
                 { code: "60520", area: "ZELEMAI - ZELEMAI - ZORZOR" },
                 { code: "60521", area: "BORKEZA - BORKEZA - ZORZOR" },
                 { code: "60522", area: "WARKESU - WARKESU - ZORZOR" },
                 { code: "60523", area: "ZIGGIDA - ZIGGIDA - ZORZOR" }
-            ],
-            "Bomi": [
+              ],
+              "Bomi": [
                 { code: "71101", area: "BESAO - BESAO - SENJEH" },
                 { code: "71102", area: "GAYAH HILL - GAYAH HILL - SENJEH" },
                 { code: "71103", area: "BAIMA - BAIMA - SENJEH" },
@@ -1688,17 +1803,17 @@
                 { code: "71209", area: "GBAIGBON - GBAIGBON - DOWEIN" },
                 { code: "71301", area: "MECCA - MECCA - SUEHN MECCA" },
                 { code: "71302", area: "MALOMA - MALOMA - SUEHN MECCA" },
-                { code: "71303", area: "SONODEE - SONODEE - S极UEHN MECCA" },
+                { code: "71303", area: "SONODEE - SONODEE - SUEHN MECCA" },
                 { code: "71304", area: "SUEHN - SUEHN - SUEHN MECCA" },
                 { code: "71305", area: "BEYAN - BEYAN - SUEHN MECCA" },
                 { code: "71306", area: "VINCENT - VINCENT - DOWEIN" },
-                { code: "71307", area: "JENNEH - JENNEH - DOWE极IN" },
+                { code: "71307", area: "JENNEH - JENNEH - DOWEIN" },
                 { code: "71308", area: "BONOR - BONOR - DOWEIN" }
-            ],
-            "Gbarpolu": [
+              ],
+              "Gbarpolu": [
                 { code: "72101", area: "BOMBOMAH - BOMBOMAH - BOPOLU" },
                 { code: "72102", area: "LOWER BONDI MANDINGO - LOWER BONDI MANDINGO - BOPOLU" },
-                { code: "72103", area: "UPPER BONDI MANDINGO - UPPER BONDI MANDINGO - BOPOL极U" },
+                { code: "72103", area: "UPPER BONDI MANDINGO - UPPER BONDI MANDINGO - BOPOLU" },
                 { code: "72104", area: "GONGBAYAH - GONGBAYAH - BOPOLU" },
                 { code: "72105", area: "MEDINA - BOPOLU - BOPOLU" },
                 { code: "72106", area: "DORLEHLALA - BOPOLU - BOPOLU" },
@@ -1713,7 +1828,7 @@
                 { code: "72204", area: "BALOMA - BALOMA - BELLEH" },
                 { code: "72205", area: "GATIMA - GATIMA - BELLEH" },
                 { code: "72206", area: "TIGGELEE - TIGGELEE - BELLEH" },
-                { code: "72207", area: "GOM极U - GOMU - GOUNWOLAILA" },
+                { code: "72207", area: "GOMU - GOMU - GOUNWOLAILA" },
                 { code: "72208", area: "KELLEH - KELLEH - GOUNWOLAILa" },
                 { code: "72209", area: "GOU - GOU - GOUNWOLAILA" },
                 { code: "72210", area: "ZEAYEA - ZEAYEA - GOUNWOLAILA" },
@@ -1734,8 +1849,8 @@
                 { code: "72311", area: "KUNGBOR - KUNGBOR - KONGBA" },
                 { code: "72312", area: "PAMBAYA - PAMBAYA - KONGBA" },
                 { code: "72313", area: "NOMODATANAU - NOMODATANAU - KONGBA" }
-            ],
-            "Grand Cape Mount": [
+              ],
+              "Grand Cape Mount": [
                 { code: "73101", area: "JENNEMANA - JANNEMANA - GOLA KONNEH" },
                 { code: "73102", area: "GONDOR - GONDOR - GOLA KONNEH" },
                 { code: "73103", area: "TAHN - TAHN - GOLA KONNEH" },
@@ -1754,7 +1869,7 @@
                 { code: "73205", area: "GONBOJAH - ROBERTSPORT - ROBERTSPORT" },
                 { code: "73206", area: "LONDIJAI - ROBERTSPORT - ROBERTSPORT" },
                 { code: "73207", area: "GBASSALOR - ROBRTSPORT - ROBERTSPORT" },
-                { code: "73208", area: "KIAZOLU - KIA极ZOLU - GARWULA" },
+                { code: "73208", area: "KIAZOLU - KIAZOLU - GARWULA" },
                 { code: "73209", area: "GION - GION - GARWULA" },
                 { code: "73210", area: "ZOEGBOE - ZOEGBOE - GARWULA" },
                 { code: "73211", area: "ZODUA - ZODUA - GARWULA" },
@@ -1765,13 +1880,18 @@
                 { code: "73305", area: "MENDE-MASSA - MENDE-MASSA - TEWOR" },
                 { code: "73306", area: "KROMAH - KROMAH - TEWOR" },
                 { code: "73307", area: "BO WATERSIDE - BO WATERSIDE - TEWOR" }
-            ]
-        };
+              ]
+            };
 
         // Global variables to store data between forms
         let currentParcelId = null;
         let uploadedImageUrls = {};
         const GCP_BASE_URL = "https://storage.googleapis.com/liblandlock/";
+        
+        // Store existing data to prevent duplicates
+        let existingSurveyors = [];
+        let existingLandOwners = [];
+        let existingParcels = [];
 
         // Get user data from localStorage
         document.addEventListener('DOMContentLoaded', function() {
@@ -1822,7 +1942,50 @@
             
             // Initialize form submissions
             initFormSubmissions();
+            
+            // Load existing data for validation
+            loadExistingData();
         });
+        
+        // Load existing data to prevent duplicates
+        async function loadExistingData() {
+            try {
+                // Load existing surveyors
+                const surveyorsResponse = await fetch('/api/surveyors');
+                if (surveyorsResponse.ok) {
+                    existingSurveyors = await surveyorsResponse.json();
+                    populateDatalist('surveyor-dssn-list', existingSurveyors.map(s => s.DSSN));
+                }
+                
+                // Load existing land owners
+                const ownersResponse = await fetch('/api/land-owners');
+                if (ownersResponse.ok) {
+                    existingLandOwners = await ownersResponse.json();
+                    populateDatalist('owner-dssn-list', existingLandOwners.map(o => o.DSSN));
+                }
+                
+                // Load existing parcels
+                const parcelsResponse = await fetch('/api/land-parcels');
+                if (parcelsResponse.ok) {
+                    existingParcels = await parcelsResponse.json();
+                    populateDatalist('parcel-id-list', existingParcels.map(p => p.Parcel_ID));
+                }
+            } catch (error) {
+                console.error('Error loading existing data:', error);
+            }
+        }
+        
+        // Populate datalist with options
+        function populateDatalist(listId, values) {
+            const datalist = document.getElementById(listId);
+            datalist.innerHTML = '';
+            
+            values.forEach(value => {
+                const option = document.createElement('option');
+                option.value = value;
+                datalist.appendChild(option);
+            });
+        }
         
         // Update postal codes based on selected county
         function updatePostalCodes(countyName) {
@@ -1898,7 +2061,7 @@
                 if (event.target === modal) {
                     modal.style.display = 'none';
                     document.body.style.overflow = 'auto';
-                    resetAllForms();
+                    reset极AllForms();
                 }
             });
             
@@ -1927,8 +2090,12 @@
                 newEntry.innerHTML = `
                     <div class="form-grid">
                         <div class="form-group">
-                            <label for="owner-dssn-id-${ownershipEntries.children.length + 1}">Owner DSSN</label>
-                            <input type="text" id="owner-dssn-id-${ownershipEntries.children.length + 1}" required>
+                            <label for="owner-dssn-id-${ownershipEntries.children.length + 1}" class="required-field">Owner DSSN</label>
+                            <div class="dropdown-container">
+                                <input type="text" id="owner-dssn-id-${ownershipEntries.children.length + 1}" list="owner-dssn-list" required>
+                                <datalist id="owner-dssn-list"></datalist>
+                                <div class="validation-error" id="owner-dssn-id-${ownershipEntries.children.length + 1}-error">Valid Owner DSSN is required</div>
+                            </div>
                         </div>
                     </div>
                     <div class="remove-owner">&times;</div>
@@ -1975,6 +2142,239 @@
                 e.preventDefault();
                 await submitAdditionalDocsForm();
             });
+            
+            // Add validation to required fields
+            addValidationToForms();
+        }
+        
+        // Add validation to all form fields
+        function addValidationToForms() {
+            // Add input validation for required fields
+            const requiredInputs = document.querySelectorAll('input[required], select[required], textarea[required]');
+            
+            requiredInputs.forEach(input => {
+                // Validate on blur
+                input.addEventListener('blur', function() {
+                    validateField(this);
+                });
+                
+                // Remove error state on input
+                input.addEventListener('input', function() {
+                    if (this.value.trim() !== '') {
+                        this.classList.remove('input-error');
+                        const errorElement = document.getElementById(`${this.id}-error`);
+                        if (errorElement) {
+                            errorElement.style.display = 'none';
+                        }
+                    }
+                });
+            });
+            
+            // Special validation for unique fields
+            document.getElementById('owner-dssn').addEventListener('blur', function() {
+                validateUniqueField(this, existingLandOwners.map(o => o.DSSN), 'DSSN already exists');
+            });
+            
+            document.getElementById('surveyor-dssn').addEventListener('blur', function() {
+                validateUniqueField(this, existingSurveyors.map(s => s.DSSN), 'DSSN already exists');
+            });
+            
+            document.getElementById('license-id').addEventListener('blur', function() {
+                validateUniqueField(this, existingSurveyors.map(s => s.License_ID), 'License ID already exists');
+            });
+            
+            // Special validation for polygon field
+            document.getElementById('polygon').addEventListener('blur', function() {
+                validatePolygonField(this);
+            });
+        }
+        
+        // Validate a single field
+        function validateField(field) {
+            const errorElement = document.getElementById(`${field.id}-error`);
+            
+            if (!field.value.trim()) {
+                field.classList.add('input-error');
+                if (errorElement) {
+                    errorElement.style.display = 'block';
+                }
+                return false;
+            } else {
+                field.classList.remove('input-error');
+                if (errorElement) {
+                    errorElement.style.display = 'none';
+                }
+                return true;
+            }
+        }
+        
+        // Validate unique field
+        function validateUniqueField(field, existingValues, errorMessage) {
+            const errorElement = document.getElementById(`${field.id}-error`);
+            
+            if (!field.value.trim()) {
+                field.classList.add('input-error');
+                if (errorElement) {
+                    errorElement.textContent = 'This field is required';
+                    errorElement.style.display = 'block';
+                }
+                return false;
+            } else if (existingValues.includes(field.value.trim())) {
+                field.classList.add('input-error');
+                if (errorElement) {
+                    errorElement.textContent = errorMessage;
+                    errorElement.style.display = 'block';
+                }
+                return false;
+            } else {
+                field.classList.remove('input-error');
+                if (errorElement) {
+                    errorElement.style.display = 'none';
+                }
+                return true;
+            }
+        }
+        
+        // Validate polygon field
+        function validatePolygonField(field) {
+            const errorElement = document.getElementById(`${field.id}-error`);
+            
+            if (!field.value.trim()) {
+                field.classList.add('input-error');
+                if (errorElement) {
+                    errorElement.textContent = 'Polygon is required';
+                    errorElement.style.display = 'block';
+                }
+                return false;
+            }
+            
+            try {
+                const cleanedBoundary = cleanWKT(field.value);
+                if (!isValidWKT(cleanedBoundary)) {
+                    field.classList.add('input-error');
+                    if (errorElement) {
+                        errorElement.textContent = 'Invalid polygon format. Please use valid WKT format (e.g., POLYGON((x y, ...)))';
+                        errorElement.style.display = 'block';
+                    }
+                    return false;
+                }
+                
+                field.classList.remove('input-error');
+                if (errorElement) {
+                    errorElement.style.display = 'none';
+                }
+                return true;
+            } catch (error) {
+                field.classList.add('input-error');
+                if (errorElement) {
+                    errorElement.textContent = 'Invalid polygon format. Please check the coordinates.';
+                    errorElement.style.display = 'block';
+                }
+                return false;
+            }
+        }
+        
+        // Validate entire form
+        function validateForm(formId) {
+            const form = document.getElementById(formId);
+            const requiredInputs = form.querySelectorAll('input[required], select[required], textarea[required]');
+            let isValid = true;
+            
+            requiredInputs.forEach(input => {
+                if (!validateField(input)) {
+                    isValid = false;
+                }
+            });
+            
+            // Additional validation for specific forms
+            if (formId === 'landParcelForm') {
+                if (!validatePolygonField(document.getElementById('polygon'))) {
+                    isValid = false;
+                }
+                
+                // Validate surveyor exists
+                const surveyorDSSN = document.getElementById('surveyor-dssn').value;
+                if (surveyorDSSN && !existingSurveyors.map(s => s.DSSN).includes(surveyorDSSN)) {
+                    document.getElementById('surveyor-dssn').classList.add('input-error');
+                    document.getElementById('surveyor-dssn-error').textContent = 'Surveyor DSSN does not exist. Please register the surveyor first.';
+                    document.getElementById('surveyor-dssn-error').style.display = 'block';
+                    isValid = false;
+                }
+            }
+            
+            if (formId === 'landOwnerForm') {
+                const ownerDSSN = document.getElementById('owner-dssn').value;
+                if (ownerDSSN && existingLandOwners.map(o => o.DSSN).includes(ownerDSSN)) {
+                    document.getElementById('owner-dssn').classList.add('input-error');
+                    document.getElementById('owner-dssn-error').textContent = 'DSSN already exists';
+                    document.getElementById('owner-dssn-error').style.display = 'block';
+                    isValid = false;
+                }
+            }
+            
+            if (formId === 'surveyorForm') {
+                const surveyorDSSN = document.getElementById('surveyor-dssn').value;
+                if (surveyorDSSN && existingSurveyors.map(s => s.DSSN).includes(surveyorDSSN)) {
+                    document.getElementById('surveyor-dssn').classList.add('input-error');
+                    document.getElementById('surveyor-dssn-error').textContent = 'DSSN already exists';
+                    document.getElementById('surveyor-dssn-error').style.display = 'block';
+                    isValid = false;
+                }
+                
+                const licenseId = document.getElementById('license-id').value;
+                if (licenseId && existingSurveyors.map(s => s.License_ID).includes(licenseId)) {
+                    document.getElementById('license-id').classList.add('input-error');
+                    document.getElementById('license-id-error').textContent = 'License ID already exists';
+                    document.getElementById('license-id-error').style.display = 'block';
+                    isValid = false;
+                }
+            }
+            
+            if (formId === 'landOwnershipForm') {
+                const parcelId = document.getElementById('parcel-id').value;
+                if (parcelId && !existingParcels.map(p => p.Parcel_ID).includes(parseInt(parcelId))) {
+                    document.getElementById('parcel-id').classList.add('input-error');
+                    document.getElementById('parcel-id-error').textContent = 'Parcel ID does not exist. Please register the land parcel first.';
+                    document.getElementById('parcel-id-error').style.display = 'block';
+                    isValid = false;
+                }
+                
+                const ownerDSSNs = document.querySelectorAll('#ownership-entries input[type="text"]');
+                ownerDSSNs.forEach(input => {
+                    const ownerDSSN = input.value;
+                    if (ownerDSSN && !existingLandOwners.map(o => o.DSSN).includes(ownerDSSN)) {
+                        input.classList.add('input-error');
+                        const errorElement = document.getElementById(`${input.id}-error`);
+                        if (errorElement) {
+                            errorElement.textContent = 'Owner DSSN does not exist. Please register the land owner first.';
+                            errorElement.style.display = 'block';
+                        }
+                        isValid = false;
+                    }
+                });
+            }
+            
+            if (formId === 'additionalDocsForm') {
+                const ownerDSSNs = [
+                    document.getElementById('probate-owner-dssn'),
+                    document.getElementById('lla-owner-dssn'),
+                    document.getElementById('lra-owner-dssn')
+                ];
+                
+                ownerDSSNs.forEach(input => {
+                    if (input.value && !existingLandOwners.map(o => o.DSSN).includes(input.value)) {
+                        input.classList.add('input-error');
+                        const errorElement = document.getElementById(`${input.id}-error`);
+                        if (errorElement) {
+                            errorElement.textContent = 'Owner DSSN does not exist. Please register the land owner first.';
+                            errorElement.style.display = 'block';
+                        }
+                        isValid = false;
+                    }
+                });
+            }
+            
+            return isValid;
         }
         
         // Show status message
@@ -2044,6 +2444,12 @@
         
         // Submit Land Parcel Form
         async function submitLandParcelForm() {
+            // Validate form first
+            if (!validateForm('landParcelForm')) {
+                showStatus('landParcelStatus', 'Please fix the errors in the form before submitting', 'error');
+                return;
+            }
+            
             const formData = {
                 County: document.getElementById('county').value,
                 Postal_Code: document.getElementById('postal-code').value,
@@ -2052,20 +2458,14 @@
                 Surveyor_DSSN: document.getElementById('surveyor-dssn').value
             };
             
-            if (!formData.County || !formData.Boundary || !formData.Surveyor_DSSN) {
-                showStatus('landParcelStatus', 'Please fill in all required fields', 'error');
-                return;
-            }
-        
+            // Clean and validate polygon
             try {
-                const cleanedBoundary = cleanWKT(formData.Boundary);
-                if (!isValidWKT(cleanedBoundary)) {
+                formData.Boundary = cleanWKT(formData.Boundary);
+                if (!isValidWKT(formData.Boundary)) {
                     showStatus('landParcelStatus', 'Invalid polygon format. Please use valid WKT format (e.g., POLYGON((x y, ...)))', 'error');
                     return;
                 }
-                formData.Boundary = cleanedBoundary;
             } catch (error) {
-                console.error('WKT validation error:', error);
                 showStatus('landParcelStatus', 'Invalid polygon format. Please check the coordinates.', 'error');
                 return;
             }
@@ -2084,6 +2484,11 @@
                 if (result.success) {
                     showStatus('landParcelStatus', `Land parcel created successfully! Parcel ID: ${result.parcelId}`, 'success');
                     currentParcelId = result.parcelId;
+                    
+                    // Add to existing parcels
+                    existingParcels.push({ Parcel_ID: result.parcelId });
+                    populateDatalist('parcel-id-list', existingParcels.map(p => p.Parcel_ID));
+                    
                     document.getElementById('landParcelForm').reset();
                 } else {
                     showStatus('landParcelStatus', `Error: ${result.message}`, 'error');
@@ -2131,11 +2536,18 @@
         
         // Submit Land Owner Form
         async function submitLandOwnerForm() {
+            // Validate form first
+            if (!validateForm('landOwnerForm')) {
+                showStatus('landOwnerStatus', 'Please fix the errors in the form before submitting', 'error');
+                return;
+            }
+            
             const imageFile = document.getElementById('owner-image').files[0];
             const imageUrlInput = document.getElementById('owner-image-url').value;
             
+            // Check if at least one image source is provided
             if (!imageFile && !imageUrlInput) {
-                showStatus('landOwnerStatus', 'Please upload an owner image or provide an image URL first', 'error');
+                showStatus('landOwnerStatus', 'Please upload an owner image or provide an image URL', 'error');
                 return;
             }
             
@@ -2150,7 +2562,7 @@
                     finalImageUrl = await uploadImage(imageFile, 'owner');
                 } else {
                     // If only URL is provided, ensure it's a complete URL
-                    if (!finalImageUrl.startsWith('http')) {
+                    if (finalImageUrl && !finalImageUrl.startsWith('http')) {
                         finalImageUrl = GCP_BASE_URL + finalImageUrl;
                     }
                 }
@@ -2167,13 +2579,6 @@
                     Image_URL: finalImageUrl
                 };
                 
-                // Validate required fields
-                if (!formData.DSSN || !formData.First_Name || !formData.Last_Name || !formData.Date_of_Birth || !formData.Address || !formData.Phone_Number) {
-                    showStatus('landOwnerStatus', 'Please fill in all required fields', 'error');
-                    setLoadingState('landOwner', false);
-                    return;
-                }
-                
                 const response = await fetch('/api/land-owner', {
                     method: 'POST',
                     headers: {
@@ -2186,6 +2591,11 @@
                 
                 if (result.success) {
                     showStatus('landOwnerStatus', 'Land owner created successfully!', 'success');
+                    
+                    // Add to existing owners
+                    existingLandOwners.push({ DSSN: formData.DSSN });
+                    populateDatalist('owner-dssn-list', existingLandOwners.map(o => o.DSSN));
+                    
                     document.getElementById('landOwnerForm').reset();
                     document.getElementById('owner-image-name').textContent = 'No file chosen';
                 } else {
@@ -2201,6 +2611,12 @@
         
         // Submit Land Ownership Form
         async function submitLandOwnershipForm() {
+            // Validate form first
+            if (!validateForm('landOwnershipForm')) {
+                showStatus('landOwnershipStatus', 'Please fix the errors in the form before submitting', 'error');
+                return;
+            }
+            
             const ownershipEntries = document.querySelectorAll('.owner-entry');
             const ownershipData = [];
             
@@ -2262,11 +2678,18 @@
         
         // Submit Surveyor Form
         async function submitSurveyorForm() {
-            const imageFile = document.getElementById('surveyor-image').files[0];
+            // Validate form first
+            if (!validateForm('surveyorForm')) {
+                showStatus('surveyorStatus', 'Please fix the errors in the form before submitting', 'error');
+                return;
+            }
+            
+            const imageFile = document.getElementById极('surveyor-image').files[0];
             const imageUrlInput = document.getElementById('surveyor-image-url').value;
             
+            // Check if at least one image source is provided
             if (!imageFile && !imageUrlInput) {
-                showStatus('surveyorStatus', 'Please upload a surveyor image or provide an image URL first', 'error');
+                showStatus('surveyorStatus', 'Please upload a surveyor image or provide an image URL', 'error');
                 return;
             }
             
@@ -2277,17 +2700,17 @@
                 
                 // If a file is uploaded, use it instead of the URL input
                 if (imageFile) {
-                    showStatus('surveyorStatus', 'Uploading image...', 'info');
+                    showStatus('surveyorStatus', 'Uploading image...',极 'info');
                     finalImageUrl = await uploadImage(imageFile, 'surveyor');
                 } else {
                     // If only URL is provided, ensure it's a complete URL
-                    if (!finalImageUrl.startsWith('http')) {
+                    if (finalImageUrl && !finalImageUrl.startsWith('http')) {
                         finalImageUrl = GCP_BASE_URL + finalImageUrl;
                     }
                 }
                 
                 // Then submit the form data
-                const form极Data = {
+                const formData = {
                     DSSN: document.getElementById('surveyor-dssn').value,
                     License_ID: document.getElementById('license-id').value,
                     First_Name: document.getElementById('surveyor-first-name').value,
@@ -2298,13 +2721,6 @@
                     Phone_Number: document.getElementById('surveyor-phone').value,
                     Image_URL: finalImageUrl
                 };
-                
-                // Validate required fields
-                if (!formData.DSSN || !formData.License_ID || !formData.First_Name || !formData.Last_Name || !formData.Date_of_Birth || !formData.Place_of_Birth || !formData.Phone_Number) {
-                    showStatus('surveyorStatus', 'Please fill in all required fields', 'error');
-                    setLoadingState('surveyor', false);
-                    return;
-                }
                 
                 const response = await fetch('/api/surveyor', {
                     method: 'POST',
@@ -2318,6 +2734,14 @@
                 
                 if (result.success) {
                     showStatus('surveyorStatus', 'Surveyor created successfully!', 'success');
+                    
+                    // Add to existing surveyors
+                    existingSurveyors.push({ 
+                        DSSN: formData.DSSN, 
+                        License_ID: formData.License_ID 
+                    });
+                    populateDatalist('surveyor-dssn-list', existingSurveyors.map(s => s.DSSN));
+                    
                     document.getElementById('surveyorForm').reset();
                     document.getElementById('surveyor-image-name').textContent = 'No file chosen';
                 } else {
@@ -2333,6 +2757,12 @@
         
         // Submit Additional Documents Form
         async function submitAdditionalDocsForm() {
+            // Validate form first
+            if (!validateForm('additionalDocsForm')) {
+                showStatus('additionalDocsStatus', 'Please fix the errors in the form before submitting', 'error');
+                return;
+            }
+            
             const probateFile = document.getElementById('probate-court-documents').files[0];
             const probateUrlInput = document.getElementById('probate-document-url').value;
             
@@ -2342,6 +2772,7 @@
             const lraFile = document.getElementById('lra-tax-documents').files[0];
             const lraUrlInput = document.getElementById('lra-document-url').value;
             
+            // Check if at least one document source is provided for each section
             if ((!probateFile && !probateUrlInput) || (!llaFile && !llaUrlInput) || (!lraFile && !lraUrlInput)) {
                 showStatus('additionalDocsStatus', 'Please upload all required documents or provide document URLs', 'error');
                 return;
@@ -2355,7 +2786,7 @@
                 let probateUrl = probateUrlInput;
                 if (probateFile) {
                     probateUrl = await uploadImage(probateFile, 'probate');
-                } else if (!probateUrl.startsWith('http')) {
+                } else if (probateUrl && !probateUrl.startsWith('http')) {
                     probateUrl = GCP_BASE_URL + probateUrl;
                 }
                 
@@ -2363,7 +2794,7 @@
                 let llaUrl = llaUrlInput;
                 if (llaFile) {
                     llaUrl = await uploadImage(llaFile, 'lla');
-                } else if (!llaUrl.startsWith('http')) {
+                } else if (llaUrl && !llaUrl.startsWith('http')) {
                     llaUrl = GCP_BASE_URL + llaUrl;
                 }
                 
@@ -2371,21 +2802,14 @@
                 let lraUrl = lraUrlInput;
                 if (lraFile) {
                     lraUrl = await uploadImage(lraFile, 'lra');
-                } else if (!lraUrl.startsWith('http')) {
-                    lraUrl = GCP_BASE_URL + lraUrl;
+                } else if (lraUrl && !lraUrl.startsWith('http')) {
+                    lra极Url = GCP_BASE_URL + lraUrl;
                 }
                 
                 // Get owner DSSNs
                 const probateDSSN = document.getElementById('probate-owner-dssn').value;
                 const llaDSSN = document.getElementById('lla-owner-dssn').value;
                 const lraDSSN = document.getElementById('lra-owner-dssn').value;
-                
-                // Validate required fields
-                if (!probateDSSN || !llaDSSN || !lraDSSN) {
-                    showStatus('additionalDocsStatus', 'Please enter all required DSSN fields', 'error');
-                    setLoadingState('additionalDocs', false);
-                    return;
-                }
                 
                 // Submit all documents
                 const submissions = [
@@ -2460,7 +2884,7 @@
             document.getElementById('additionalDocsForm').reset();
             
             // Clear status messages
-            document.getElementById('landParcelStatus').innerHTML = '';
+            document.getElementById('land极ParcelStatus').innerHTML = '';
             document.getElementById('landOwnerStatus').innerHTML = '';
             document.getElementById('landOwnershipStatus').innerHTML = '';
             document.getElementById('surveyorStatus').innerHTML = '';
@@ -2478,6 +2902,15 @@
             while (ownershipContainer.children.length > 1) {
                 ownershipContainer.removeChild(ownershipContainer.lastChild);
             }
+            
+            // Clear error states
+            const errorElements = document.querySelectorAll('.validation-error, .input-error');
+            errorElements.forEach(element => {
+                element.classList.remove('input-error');
+                if (element.classList.contains('validation-error')) {
+                    element.style.display = 'none';
+                }
+            });
         }
     </script>
 </body>
