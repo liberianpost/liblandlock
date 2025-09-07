@@ -2052,20 +2052,18 @@
                 Surveyor_DSSN: document.getElementById('surveyor-dssn').value
             };
             
-            // Validate required fields
             if (!formData.County || !formData.Boundary || !formData.Surveyor_DSSN) {
                 showStatus('landParcelStatus', 'Please fill in all required fields', 'error');
                 return;
             }
-            
-            // Clean and validate Boundary format
+        
             try {
                 const cleanedBoundary = cleanWKT(formData.Boundary);
                 if (!isValidWKT(cleanedBoundary)) {
-                    showStatus('landParcelStatus', 'Invalid polygon format. Please use valid WKT format (e.g., POLYGON((x y, x y, x y, x y)))', 'error');
+                    showStatus('landParcelStatus', 'Invalid polygon format. Please use valid WKT format (e.g., POLYGON((x y, ...)))', 'error');
                     return;
                 }
-                formData.Boundary = cleanedBoundary; // Use cleaned version
+                formData.Boundary = cleanedBoundary;
             } catch (error) {
                 console.error('WKT validation error:', error);
                 showStatus('landParcelStatus', 'Invalid polygon format. Please check the coordinates.', 'error');
@@ -2077,9 +2075,7 @@
             try {
                 const response = await fetch('/api/land-parcel', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(formData)
                 });
                 
@@ -2088,8 +2084,6 @@
                 if (result.success) {
                     showStatus('landParcelStatus', `Land parcel created successfully! Parcel ID: ${result.parcelId}`, 'success');
                     currentParcelId = result.parcelId;
-                    
-                    // Clear form
                     document.getElementById('landParcelForm').reset();
                 } else {
                     showStatus('landParcelStatus', `Error: ${result.message}`, 'error');
@@ -2105,47 +2099,35 @@
         // Helper function to clean WKT format
         function cleanWKT(wkt) {
             if (!wkt || typeof wkt !== 'string') return wkt;
-            
-            let cleaned = wkt.trim();
-            
-            // Remove extra whitespace and newlines
-            cleaned = cleaned.replace(/\s+/g, ' ').replace(/\n/g, '');
-            
-            // Ensure proper POLYGON format
-            if (!cleaned.toUpperCase().startsWith('POLYGON')) {
-                cleaned = `POLYGON(${cleaned})`;
-            }
-            
-            // Fix double parentheses issue
-            if (cleaned.includes('((') && cleaned.includes('))')) {
-                // Already has proper POLYGON(()) format
+            let cleaned = wkt.trim().replace(/\s+/g, ' ').replace(/\n/g, '');
+        
+            // Already valid → leave it
+            if (/^POLYGON\s*\(\(.*\)\)$/i.test(cleaned)) return cleaned;
+        
+            // If POLYGON( but missing inner parens
+            if (/^POLYGON\s*\(.*\)$/i.test(cleaned)) {
+                cleaned = cleaned.replace(/^POLYGON\s*\(/i, 'POLYGON((');
+                if (!cleaned.endsWith('))')) {
+                    cleaned = cleaned.replace(/\)$/, '))');
+                }
                 return cleaned;
-            } else if (cleaned.includes('POLYGON(') && !cleaned.includes('((')) {
-                // Add inner parentheses
-                cleaned = cleaned.replace('POLYGON(', 'POLYGON((') + ')';
             }
-            
-            return cleaned;
+        
+            // Raw coords → wrap properly
+            return `POLYGON((${cleaned}))`;
         }
         
         // Helper function to validate WKT format
         function isValidWKT(wkt) {
             if (!wkt || typeof wkt !== 'string') return false;
-            
             const trimmedWkt = wkt.trim();
-            
-            // Check for POLYGON keyword
-            if (!trimmedWkt.toUpperCase().startsWith('POLYGON')) return false;
-            
-            // Check for proper parentheses structure
-            const openParens = (trimmedWkt.match(/\(/g) || []).length;
-            const closeParens = (trimmedWkt.match(/\)/g) || []).length;
-            if (openParens !== closeParens || openParens < 2) return false;
-            
-            // Check for coordinates
-            const coordinateRegex = /[-+]?\d*\.?\d+\s+[-+]?\d*\.?\d+/;
-            return coordinateRegex.test(trimmedWkt);
+        
+            if (!/^POLYGON\s*\(\(.*\)\)$/i.test(trimmedWkt)) return false;
+        
+            const coords = trimmedWkt.match(/[-+]?\d*\.?\d+\s+[-+]?\d*\.?\d+/g);
+            return coords && coords.length >= 4;
         }
+
         
         // Submit Land Owner Form
         async function submitLandOwnerForm() {
