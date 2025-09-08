@@ -109,7 +109,7 @@
             width: 350px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.18);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 极0.3s ease;
             cursor: pointer;
         }
         
@@ -132,7 +132,7 @@
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 极0, 0.2);
         }
         
         .user-info {
@@ -219,7 +219,7 @@
         
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, min极max(250px, 1fr));
             gap: 20px;
             width: 100%;
             margin-top: 20px;
@@ -282,13 +282,13 @@
             animation: modalFadeIn 0.3s;
         }
         
-        @keyframes modalFadeIn {
+        @keyframes modal极FadeIn {
             from { opacity: 0; transform: translateY(-50px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
         .modal-header {
-            padding: 20px 30px;
+            padding: 20极px 30px;
             background: rgba(0, 0, 0, 0.2);
             display: flex;
             justify-content: space-between;
@@ -340,7 +340,7 @@
             padding: 30px;
         }
         
-        .tab-content {
+极        .tab-content {
             display: none;
         }
         
@@ -401,7 +401,7 @@
         }
         
         .btn-cancel {
-            background: rgba(255, 255, 255, 极0.1);
+            background: rgba(255, 255, 255, 0.1);
             color: white;
         }
         
@@ -505,7 +505,7 @@
         
         .data-entry-guide h4 {
             margin-bottom: 10px;
-            color: #3498db;
+            color极: #3498db;
         }
         
         .data-entry-guide ol {
@@ -572,7 +572,7 @@
                 flex-wrap: wrap;
             }
             
-            .modal-tab {
+            .modal极-tab {
                 padding: 10px 15px;
                 font-size: 0.9rem;
             }
@@ -643,7 +643,7 @@
         
         .status-error {
             background-color: rgba(231, 76, 60, 0.2);
-            border: 1px solid rgba(231, 76, 60, 0.5);
+            border: 极1px solid rgba(231, 76, 60, 0.5);
             color: #e74c3c;
         }
         
@@ -704,10 +704,37 @@
             padding: 10px;
             background: rgba(0, 0, 0, 0.1);
             border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba极(255, 255, 255, 0.1);
         }
         
         .image-url-container input {
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Map container for boundary drawing */
+        .map-container {
+            height: 300px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .map-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .map-btn {
+            padding: 8px 15px;
+            background: rgba(0, 0, 0, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .map-btn:hover {
             background: rgba(0, 0, 0, 0.3);
         }
     </style>
@@ -728,7 +755,7 @@
         </div>
     </div>
     
-    <div class极="dashboard-content">
+    <div class="dashboard-content">
         <div class="welcome-section">
             <h2>Welcome to Your Dashboard</h2>
             <p>You have successfully logged in to the secure portal</p>
@@ -787,7 +814,7 @@
                     </div>
                     <div class="detail-item">
                         <span class="detail-label">Session Active:</span>
-                        <span class="detail-value" style="极color: #2ecc71;">Yes</span>
+                        <span class="detail-value" style="color: #2ecc71;">Yes</span>
                     </div>
                 </div>
             </div>
@@ -807,7 +834,7 @@
                     <i class="fas fa-file-contract"></i>
                 </div>
                 <h3>Documents</h3>
-                <p>View and download official land documents and certificates</p>
+                <极p>View and download official land documents and certificates</p>
             </div>
             
             <div class="feature-card">
@@ -820,7 +847,7 @@
             
             <div class="feature-card" id="landRegistrationCard">
                 <div class="feature-icon">
-                    <i class="fas fa-landmark"></i>
+                    <i class="fas fa-landmark"></极i>
                 </div>
                 <h3>Land Registration</h3>
                 <p>Register new land parcels, owners, and survey information</p>
@@ -857,11 +884,10 @@
             </div>
             
             <div class="modal-tabs">
-                <div class="modal-tab active" data-tab="land-parcel">Land Parcel</div>
-                <div class="modal-tab" data-tab="land-owner">Land Owner</div>
+                <div class="modal-tab active" data-tab="person">Person</div>
+                <div class="modal-tab" data-tab="land-parcel">Land Parcel</div>
                 <div class="modal-tab" data-tab="land-ownership">Land Ownership</div>
-                <div class="modal-tab" data-tab="surveyor">Surveyor</div>
-                <div class="modal-tab" data-tab="additional-docs">Additional Documents</div>
+                <div class="modal-tab" data-tab="document">Documents</div>
             </div>
             
             <div class="modal-body">
@@ -869,17 +895,116 @@
                 <div class="data-entry-guide">
                     <h4><i class="fas fa-info-circle"></i> Data Entry Order</h4>
                     <ol>
-                        <li><strong>Surveyors</strong> and <strong>Land Owners</strong> must be registered first</li>
+                        <li><strong>Persons</strong> must be registered first (as Landowner, Surveyor, or Both)</li>
                         <li>Then register <strong>Land Parcels</strong> (requires Surveyor DSSN)</li>
                         <li>Finally establish <strong>Land Ownership</strong> (requires Owner DSSN and Parcel ID)</li>
+                        <li>Upload supporting <strong>Documents</strong> for land ownership claims</li>
                     </ol>
                 </div>
                 
+                <!-- Person Form -->
+                <div id="person" class="tab-content active">
+                    <div class="instructions">
+                        <h4><i class="fas fa-info-circle"></i> Instructions</h4>
+                        <p>Register a person first. This person can be a Landowner, Surveyor, or Both. All fields marked with * are required.</p>
+                    </div>
+                    
+                    <form id="personForm">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="person-dssn" class="required-field">DSSN</label>
+                                <input type="text" id="person-dssn" required>
+                                <div class="validation-error" id="person-dssn-error">DSSN is required and must be unique</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="person-first-name" class="required-field">First Name</label>
+                                <input type="text" id="person-first-name" required>
+                                <div class="validation-error" id="person-first-name-error">First name is required</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="person-last-name" class="required-field">Last Name</label>
+                                <input type="text" id="person-last-name" required>
+                                <div class="validation-error" id="person-last-name-error">Last name is required</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="person-dob">Date of Birth</label>
+                                <input type="date" id="person-dob">
+                            </div>
+                            <div class="form-group">
+                                <label for="person-place-of-birth">Place of Birth</label>
+                                <input type="text" id="person-place-of-birth">
+                            </div>
+                            <div class="form-group">
+                                <label for="person-address">Address</label>
+                                <textarea id="person-address" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="person-phone">Phone Number</label>
+                                <input type="tel" id="person-phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="person-role" class="required-field">Role</label>
+                                <select id="person-role" required>
+                                    <option value="">Select Role</option>
+                                    <option value="Landowner">Landowner</option>
+                                    <option value="Surveyor">Surveyor</option>
+                                    <option value="Both">Both (Landowner and Surveyor)</option>
+                                </select>
+                                <div class="validation-error" id="person-role-error">Role is required</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="person-license">License ID (for Surveyors)</label>
+                                <input type="text" id="person-license">
+                            </div>
+                            <div class="form-group">
+                                <label for="person-image">Person Image</label>
+                                <div class="file-upload">
+                                    <div class="file-upload-btn">
+                                        <span>Choose File</span>
+                                        <i class="fas fa-upload"></i>
+                                        <input type="file" id="person-image" class="file-upload-input" accept="image/*">
+                                    </div>
+                                    <div class="file-name" id="person-image-name">No file chosen</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="person-image-url">Image URL</label>
+                                <div class="image-url-container">
+                                    <input type="text" id="person-image-url" placeholder="https://storage.googleapis.com/liblandlock/">
+                                    <small>Enter the full image URL from Google Cloud Storage</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="personStatus"></div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-cancel">Cancel</button>
+                            <button type="submit" class="btn btn-submit">
+                                <span id="personSubmitText">Register Person</span>
+                                <span id="personSpinner" class="spinner" style="display: none;"></span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
                 <!-- Land Parcel Form -->
-                <div id="land-parcel" class="tab-content active">
+                <div id="land-parcel" class="tab-content">
                     <div class="instructions">
                         <h4><i class="fas fa-info-circle"></i> Instructions</h4>
                         <p>Fill out all required fields to register a new land parcel. The parcel ID will be automatically generated by the system.</p>
+                        <p>For the boundary, either draw on the map or enter the polygon coordinates manually in WKT format: POLYGON((long lat, long lat, ...))</p>
+                    </div>
+                    
+                    <!-- Map container for boundary drawing -->
+                    <div class="map-container" id="map"></div>
+                    <div class="map-actions">
+                        <button type="button" class="map-btn" id="drawPolygonBtn">
+                            <i class="fas fa-draw-polygon"></i> Draw Boundary
+                        </button>
+                        <button type="button" class="map-btn" id="clearPolygonBtn">
+                            <i class="fas fa-trash"></i> Clear
+                        </button>
                     </div>
                     
                     <form id="landParcelForm">
@@ -914,13 +1039,19 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="polygon" class="required-field">Boundary Polygon</label>
-                                <textarea id="polygon" rows="3" placeholder="POLYGON((-10.617312 6.450804,-10.615312 6.450804,-10.615312 6.448804,-10.617312 6.448804,-10.617312 6.450804))" required></textarea>
-                                <div class="validation-error" id="polygon-error">Valid polygon is required</div>
+                                <label for="area-name" class="required-field">Area Name</label>
+                                <input type="text" id="area-name" required>
+                                <div class="validation-error" id="area-name-error">Area name is required</div>
                             </div>
                             <div class="form-group">
-                                <label for="date-surveyed">Date Surveyed</label>
-                                <input type="date" id="date-surveyed">
+                                <label for="plot-number" class="required-field">Plot Number</label>
+                                <input type="text" id="plot-number" required>
+                                <div class="validation-error" id="plot-number-error">Plot number is required</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="date-surveyed" class="required-field">Date Surveyed</label>
+                                <input type="date" id="date-surveyed" required>
+                                <div class="validation-error" id="date-surveyed-error">Date surveyed is required</极div>
                             </div>
                             <div class="form-group">
                                 <label for="surveyor-dssn" class="required-field">Surveyor DSSN</label>
@@ -930,6 +1061,11 @@
                                     <div class="validation-error" id="surveyor-dssn-error">Valid Surveyor DSSN is required</div>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label for="boundary" class="required-field">Boundary Polygon (WKT Format)</label>
+                                <textarea id="boundary" rows="4" placeholder="POLYGON((-10.617312 6.450804,-10.615312 6.450804,-10.615312 6.448804,-10.617312 6.448804,-10.617312 6.450804))" required></textarea>
+                                <div class="validation-error" id="boundary-error">Valid polygon is required</div>
+                            </div>
                         </div>
                         
                         <div id="landParcelStatus"></div>
@@ -937,88 +1073,8 @@
                         <div class="form-actions">
                             <button type="button" class="btn btn-cancel">Cancel</button>
                             <button type="submit" class="btn btn-submit">
-                                <span id="landParcelSubmitText">Send to Database</span>
+                                <span id="landParcelSubmitText">Register Land Parcel</span>
                                 <span id="landParcelSpinner" class="spinner" style="display: none;"></span>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-                
-                <!-- Land Owner Form -->
-                <div id="land-owner" class="tab-content">
-                    <div class="instructions">
-                        <h4><i class="fas fa-info-circle"></i> Instructions</h4>
-                        <ol>
-                            <li>Upload the owner's image first by clicking "Choose File"</li>
-                            <li>Wait for the image to upload and get a URL</li>
-                            <li>Fill out the remaining fields</li>
-                            <li>Click "Send to Database" to save the owner information</li>
-                        </ol>
-                    </div>
-                    
-                    <form id="landOwnerForm">
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label for="owner-dssn" class="required-field">DSSN</label>
-                                <input type="text" id="owner-dssn" required>
-                                <div class="validation-error" id="owner-dssn-error">DSSN is required and must be unique</div>
-                            </div>
-                            <div class="form-group">
-                                <label for="first-name" class="required-field">First Name</label>
-                                <input type="text" id="first-name" required>
-                                <div class="validation-error" id="first-name-error">First name is required</div>
-                            </div>
-                            <div class="form-group">
-                                <label for="last-name" class="required-field">Last Name</label>
-                                <input type="text" id="last-name" required>
-                                <div class="validation-error" id="last-name-error">Last name is required</div>
-                            </div>
-                            <div class="form-group">
-                                <label for="dob" class="required-field">Date of Birth</label>
-                                <input type="date" id="dob" required>
-                                <div class="validation-error" id="dob-error">Date of birth is required</div>
-                            </div>
-                            <div class="form-group">
-                                <label for="place-of-birth">Place of Birth</label>
-                                <input type="text" id="place-of-birth">
-                            </div>
-                            <div class="form-group">
-                                <label for="address" class="required-field">Address</label>
-                                <textarea id="address" rows="3" required></textarea>
-                                <div class="validation-error" id="address-error">Address is required</div>
-                            </div>
-                            <div class="form-group">
-                                <label for="phone" class="required-field">Phone Number</label>
-                                <input type="tel" id="phone" required>
-                                <div class="validation-error" id="phone-error">Phone number is required</div>
-                            </div>
-                            <div class="form-group">
-                                <label for="owner-image">Owner Image</label>
-                                <div class="file-upload">
-                                    <div class="file-upload-btn">
-                                        <span>Choose File</span>
-                                        <i class="fas fa-upload"></i>
-                                        <input type="file" id="owner-image" class="file-upload-input" accept="image/*">
-                                    </div>
-                                    <div class="file-name" id="owner-image-name">No file chosen</div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="owner-image-url">Image URL</label>
-                                <div class="image-url-container">
-                                    <input type="text" id="owner-image-url" placeholder="https://storage.googleapis.com/liblandlock/">
-                                    <small>Enter the full image URL from Google Cloud Storage</small>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div id="landOwnerStatus"></div>
-                        
-                        <div class="form-actions">
-                            <button type="button" class="btn btn-cancel">Cancel</button>
-                            <button type="submit" class="btn btn-submit">
-                                <span id="landOwnerSubmitText">Send to Database</span>
-                                <span id="landOwnerSpinner" class="spinner" style="display: none;"></span>
                             </button>
                         </div>
                     </form>
@@ -1027,31 +1083,33 @@
                 <!-- Land Ownership Form -->
                 <div id="land-ownership" class="tab-content">
                     <div class="instructions">
-                        <h4><极i class="fas fa-info-circle"></i> Instructions</h4>
-                        <p>Enter the DSSN of each owner associated with a land parcel. You can add multiple owners for the same parcel.</p>
+                        <h4><i class="fas fa-info-circle"></i> Instructions</h4>
+                        <p>Establish ownership relationships between land parcels and owners. You can add multiple owners for the same parcel.</p>
                     </div>
                     
                     <form id="landOwnershipForm">
+                        <div class="form-group">
+                            <label for="ownership-parcel-id" class="required-field">Parcel ID</label>
+                            <div class="dropdown-container">
+                                <input type="number" id="ownership-parcel-id" list="parcel-id-list" required>
+                                <datalist id="parcel-id-list"></datalist>
+                                <div class="validation-error" id="ownership-parcel-id-error">Valid Parcel ID is required</div>
+                            </div>
+                        </div>
+                        
                         <div id="ownership-entries">
                             <div class="owner-entry">
                                 <div class="form-grid">
                                     <div class="form-group">
-                                        <label for="parcel-id" class="required-field">Parcel ID</label>
+                                        <label for="ownership-owner-dssn-1" class="required-field">Owner DSSN</label>
                                         <div class="dropdown-container">
-                                            <input type="number" id="parcel-id" list="parcel-id-list" required>
-                                            <datalist id="parcel-id-list"></datalist>
-                                            <div class="validation-error" id="parcel-id-error">Valid Parcel ID is required</div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="owner-dssn-id" class="required-field">Owner DSSN</label>
-                                        <div class="dropdown-container">
-                                            <input type="text" id="owner-dssn-id" list="owner-dssn-list" required>
+                                            <input type="text" id="ownership-owner-dssn-1" list="owner-dssn-list" required>
                                             <datalist id="owner-dssn-list"></datalist>
-                                            <div class="validation-error" id="owner-dssn-id-error">Valid Owner DSSN is required</div>
+                                            <div class="validation-error" id="ownership-owner-dssn-1-error">Valid Owner DSSN is required</div>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="remove-owner">&times;</div>
                             </div>
                         </div>
                         
@@ -1064,214 +1122,67 @@
                         <div class="form-actions">
                             <button type="button" class="btn btn-cancel">Cancel</button>
                             <button type="submit" class="btn btn-submit">
-                                <span id="landOwnershipSubmitText">Send to Database</span>
+                                <span id="landOwnershipSubmitText">Register Ownership</span>
                                 <span id="landOwnershipSpinner" class="spinner" style="display: none;"></span>
                             </button>
                         </div>
                     </form>
                 </div>
                 
-                <!-- Surveyor Form -->
-                <div id="surveyor" class="tab-content">
+                <!-- Document Form -->
+                <div id="document" class="tab-content">
                     <div class="instructions">
                         <h4><i class="fas fa-info-circle"></i> Instructions</h4>
-                        <ol>
-                            <li>Upload the surveyor's image first by clicking "Choose File"</li>
-                            <li>Wait for the image to upload and get a URL</li>
-                            <li>Fill out the remaining fields</li>
-                            <li>Click "Send to Database" to save the surveyor information</li>
-                        </ol>
+                        <p>Upload supporting documents for land ownership claims. Each document must be associated with an owner's DSSN.</p>
                     </div>
                     
-                    <form id="surveyorForm">
+                    <form id="documentForm">
                         <div class="form-grid">
                             <div class="form-group">
-                                <label for="surveyor-dssn" class="required-field">DSSN</label>
-                                <input type="text" id="surveyor-dssn" required>
-                                <div class="validation-error" id="surveyor-dssn-error">DSSN is required and must be unique</div>
+                                <label for="document-owner-dssn" class="required-field">Owner DSSN</label>
+                                <div class="dropdown-container">
+                                    <input type="text" id="document-owner-dssn" list="owner-dssn-list" required>
+                                    <datalist id="owner-dssn-list"></datalist>
+                                    <div class="validation-error" id="document-owner-dssn-error">Valid Owner DSSN is required</div>
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="license-id" class="required-field">License ID</label>
-                                <input type="text" id="license-id" required>
-                                <div class="validation-error" id="license-id-error">License ID is required and must be unique</div>
+                                <label for="document-type" class="required-field">Document Type</label>
+                                <select id="document-type" required>
+                                    <option value="">Select Document Type</option>
+                                    <option value="Probate_Court">Probate Court</option>
+                                    <option value="LLA">Liberia Land Authority (LLA)</option>
+                                    <option value="LRA">Liberia Revenue Authority (LRA)</option>
+                                </select>
+                                <div class="validation-error" id="document-type-error">Document type is required</div>
                             </div>
                             <div class="form-group">
-                                <label for="surveyor-first-name" class="required-field">First Name</label>
-                                <input type="text" id="surveyor-first-name" required>
-                                <div class="validation-error" id="surveyor-first-name-error">First name is required</div>
-                            </div>
-                            <div class="form-group">
-                                <label for="surveyor-last-name" class="required-field">Last Name</label>
-                                <input type="text" id="surveyor-last-name" required>
-                                <div class="validation-error" id="surveyor-last-name-error">Last name is required</div>
-                            </div>
-                            <div class="form-group">
-                                <label for="surveyor-dob" class="required-field">Date of Birth</label>
-                                <input type="date" id="surveyor-dob" required>
-                                <div class="validation-error" id="surveyor-dob-error">Date of birth is required</div>
-                            </div>
-                            <div class="form-group">
-                                <label for="surveyor-place-of-birth" class="required-field">Place of Birth</label>
-                                <input type="text" id="surveyor-place-of-birth" required>
-                                <div class="validation-error" id="surveyor-place-of-birth-error">Place of birth is required</div>
-                            </div>
-                            <div class="form-group">
-                                <label for="surveyor-address">Address</label>
-                                <textarea id="surveyor-address" rows="3"></textarea>
-                            </div>
-                            <极div class="form-group">
-                                <label for="surveyor-phone" class="required-field">Phone Number</label>
-                                <input type="tel" id="surveyor-phone" required>
-                                <div class="validation-error" id="surveyor-phone-error">Phone number is required</div>
-                            </div>
-                            <div class="form-group">
-                                <label for="surveyor-image">Surveyor Image</label>
+                                <label for="document-file">Document File</label>
                                 <div class="file-upload">
                                     <div class="file-upload-btn">
                                         <span>Choose File</span>
                                         <i class="fas fa-upload"></i>
-                                        <input type="file" id="surveyor-image" class="file-upload-input" accept="image/*">
+                                        <input type="file" id="document-file" class="file-upload-input" accept="image/*,.pdf">
                                     </div>
-                                    <div class="file-name" id="surveyor-image-name">No file chosen</div>
+                                    <div class="file-name" id="document-file-name">No file chosen</div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="surveyor-image-url">Image URL</label>
+                                <label for="document-url">Document URL</label>
                                 <div class="image-url-container">
-                                    <input type="text" id="surveyor-image-url" placeholder="https://storage.googleapis.com/liblandlock/">
-                                    <small>Enter the full image URL from Google Cloud Storage</small>
+                                    <input type="text" id="document-url" placeholder="https://storage.googleapis.com/liblandlock/">
+                                    <small>Enter the full document URL from Google Cloud Storage</small>
                                 </div>
                             </div>
                         </div>
                         
-                        <div id="surveyorStatus"></div>
+                        <div id="documentStatus"></div>
                         
                         <div class="form-actions">
                             <button type="button" class="btn btn-cancel">Cancel</button>
                             <button type="submit" class="btn btn-submit">
-                                <span id="surveyorSubmitText">Send to Database</span>
-                                <span id="surveyorSpinner" class="spinner" style="display: none;"></span>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-                
-                <!-- Additional Documents Form -->
-                <div id="additional-docs" class="tab-content">
-                    <div class="instructions">
-                        <h4><i class="fas fa-info-circle"></i> Instructions</h4>
-                        <ol>
-                            <li>For each document type, first upload the file</li>
-                            <li>Wait for the file to upload and get a URL</li>
-                            <li>Enter the owner's DSSN</li>
-                            <li>Click "Send to Database" to save all documents</li>
-                        </ol>
-                    </div>
-                    
-                    <form id="additionalDocsForm">
-                        <div class="section-divider">
-                            <h3 class="section-title">Probate Court</h3>
-                            <div class="form-grid">
-                                <div class="form-group">
-                                    <label for="probate-court-documents">Probate Court Documents</label>
-                                    <div class="file-upload">
-                                        <div class="file-upload-btn">
-                                            <span>Choose File</span>
-                                            <i class="fas fa-upload"></i>
-                                            <input type="file" id="probate-court-documents" class="file-upload-input" accept="image/*">
-                                        </div>
-                                        <div class="file-name" id="probate-court-documents-name">No file chosen</div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="probate-document-url">Document URL</label>
-                                    <div class="image-url-container">
-                                        <input type="text" id="probate-document-url" placeholder="https://storage.googleapis.com/liblandlock/">
-                                        <small>Enter the full document URL from Google Cloud Storage</small>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="probate-owner-dssn" class="required-field">Owner DSSN</label>
-                                    <div class="dropdown-container">
-                                        <input type="text" id="probate-owner-dssn" list="owner-dssn-list" required>
-                                        <datalist id="owner-dssn-list"></datalist>
-                                        <div class="validation-error" id="probate-owner-dssn-error">Valid Owner DSSN is required</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="section-divider">
-                            <h3 class="section-title">Liberia Land Authority (LLA)</h3>
-                            <div class="form-grid">
-                                <div class="form-group">
-                                    <label for="lla-deed">Land DEED</label>
-                                    <div class="file-upload">
-                                        <div class="file-upload-btn">
-                                            <span>Choose File</span>
-                                            <i class="fas fa-upload"></i>
-                                            <input type="file" id="lla-deed" class="file-upload-input" accept="image/*">
-                                        </div>
-                                        <div class="file-name" id="lla-deed-name">No file chosen</div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="lla-document-url">Document URL</label>
-                                    <div class="image-url-container">
-                                        <input type="text" id="lla-document-url" placeholder="https://storage.googleapis.com/liblandlock/">
-                                        <small>Enter the full document URL from Google Cloud Storage</small>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="lla-owner-dssn" class="required-field">Owner DSSN</label>
-                                    <div class="dropdown-container">
-                                        <input type="text" id="lla-owner-dssn" list="owner-dssn-list" required>
-                                        <datalist id="owner-dssn-list"></datalist>
-                                        <div class="validation-error" id="lla-owner-dssn-error">Valid Owner DSSN is required</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="section-divider">
-                            <h3 class="section-title">Liberia Revenue Authority (LRA)</h3>
-                            <div class="form-grid">
-                                <div class="form-group">
-                                    <label for="lra-tax-documents">Tax Documents</label>
-                                    <div class="file-upload">
-                                        <div class="file-upload-btn">
-                                            <span>Choose File</span>
-                                            <i class="fas fa-upload"></极i>
-                                            <input type="file" id="lra-tax-documents" class="file-upload-input" accept="image/*">
-                                        </div>
-                                        <div class="file-name" id="lra-tax-documents-name">No file chosen</div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="lra-document-url">Document URL</label>
-                                    <div class="image-url-container">
-                                        <input type="text" id="lra-document-url" placeholder="https://storage.googleapis.com/liblandlock/">
-                                        <small>Enter the full document URL from Google Cloud Storage</small>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="lra-owner-dssn" class="required-field">Owner DSSN</label>
-                                    <div class="dropdown-container">
-                                        <input type="text" id="lra-owner-dssn" list="owner-dssn-list" required>
-                                        <datalist id="owner-dssn-list"></datalist>
-                                        <div class="validation-error" id="lra-owner-dssn-error">Valid Owner DSSN is required</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div id="additionalDocsStatus"></div>
-                        
-                        <div class="form-actions">
-                            <button type="button" class="btn btn-cancel">Cancel</button>
-                            <button type="submit" class="btn btn-submit">
-                                <span id="additionalDocsSubmitText">Send to Database</span>
-                                <span id="additionalDocsSpinner" class="spinner" style="display: none;"></span>
+                                <span id="documentSubmitText">Upload Document</span>
+                                <span id="documentSpinner" class="spinner" style="display: none;"></span>
                             </button>
                         </div>
                     </form>
@@ -1889,9 +1800,14 @@
         const GCP_BASE_URL = "https://storage.googleapis.com/liblandlock/";
         
         // Store existing data to prevent duplicates
-        let existingSurveyors = [];
-        let existingLandOwners = [];
+        let existingPersons = [];
         let existingParcels = [];
+        let existingOwnerships = [];
+        
+        // Map variables
+        let map;
+        let drawnPolygon = null;
+        let drawingManager = null;
 
         // Get user data from localStorage
         document.addEventListener('DOMContentLoaded', function() {
@@ -1923,6 +1839,9 @@
             // Initialize modal functionality
             initModal();
             
+            // Initialize map
+            initMap();
+            
             // Populate county dropdown
             const countySelect = document.getElementById('county');
             counties.forEach(county => {
@@ -1947,21 +1866,99 @@
             loadExistingData();
         });
         
+        // Initialize map
+        function initMap() {
+            // Default center on Liberia
+            const liberiaCenter = { lat: 6.428055, lng: -9.429499 };
+            
+            // Create map
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: liberiaCenter,
+                zoom: 8,
+                mapTypeId: google.maps.MapTypeId.HYBRID
+            });
+            
+            // Initialize drawing manager
+            drawingManager = new google.maps.drawing.DrawingManager({
+                drawingMode: null,
+                drawingControl: false,
+                polygonOptions: {
+                    fillColor: '#1E90FF',
+                    fillOpacity: 0.3,
+                    strokeWeight: 2,
+                    strokeColor: '#1E90FF',
+                    editable: true,
+                    draggable: false
+                }
+            });
+            
+            drawingManager.setMap(map);
+            
+            // Add event listeners for drawing events
+            google.maps.event.addListener(drawingManager, 'polygoncomplete', function(polygon) {
+                // Clear any existing polygon
+                if (drawnPolygon) {
+                    drawnPolygon.setMap(null);
+                }
+                
+                drawnPolygon = polygon;
+                updateBoundaryField(polygon);
+                
+                // Listen for edits to the polygon
+                google.maps.event.addListener(polygon.getPath(), 'set_at', function() {
+                    updateBoundaryField(polygon);
+                });
+                
+                google.maps.event.addListener(polygon.getPath(), 'insert_at', function() {
+                    updateBoundaryField(polygon);
+                });
+            });
+            
+            // Add event listeners for drawing buttons
+            document.getElementById('drawPolygonBtn').addEventListener('click', function() {
+                drawingManager.setDrawingMode(google.maps.drawing.OverlayType.POLYGON);
+            });
+            
+            document.getElementById('clearPolygonBtn').addEventListener('click', function() {
+                if (drawnPolygon) {
+                    drawnPolygon.setMap(null);
+                    drawnPolygon = null;
+                }
+                document.getElementById('boundary').value = '';
+                drawingManager.setDrawingMode(null);
+            });
+        }
+        
+        // Update boundary field based on drawn polygon
+        function updateBoundaryField(polygon) {
+            const path = polygon.getPath();
+            const coordinates = [];
+            
+            for (let i = 0; i < path.getLength(); i++) {
+                const point = path.getAt(i);
+                coordinates.push(`${point.lng()} ${point.lat()}`);
+            }
+            
+            // Close the polygon if not already closed
+            if (coordinates.length > 0) {
+                const firstPoint = coordinates[0];
+                coordinates.push(firstPoint);
+            }
+            
+            document.getElementById('boundary').value = `POLYGON((${coordinates.join(',')}))`;
+        }
+        
         // Load existing data to prevent duplicates
         async function loadExistingData() {
             try {
-                // Load existing surveyors
-                const surveyorsResponse = await fetch('/api/surveyors');
-                if (surveyorsResponse.ok) {
-                    existingSurveyors = await surveyorsResponse.json();
-                    populateDatalist('surveyor-dssn-list', existingSurveyors.map(s => s.DSSN));
-                }
-                
-                // Load existing land owners
-                const ownersResponse = await fetch('/api/land-owners');
-                if (ownersResponse.ok) {
-                    existingLandOwners = await ownersResponse.json();
-                    populateDatalist('owner-dssn-list', existingLandOwners.map(o => o.DSSN));
+                // Load existing persons
+                const personsResponse = await fetch('/api/persons');
+                if (personsResponse.ok) {
+                    existingPersons = await personsResponse.json();
+                    populateDatalist('owner-dssn-list', existingPersons.map(p => p.DSSN));
+                    populateDatalist('surveyor-dssn-list', existingPersons
+                        .filter(p => p.Role === 'Surveyor' || p.Role === 'Both')
+                        .map(p => p.DSSN));
                 }
                 
                 // Load existing parcels
@@ -1969,6 +1966,12 @@
                 if (parcelsResponse.ok) {
                     existingParcels = await parcelsResponse.json();
                     populateDatalist('parcel-id-list', existingParcels.map(p => p.Parcel_ID));
+                }
+                
+                // Load existing ownerships
+                const ownershipsResponse = await fetch('/api/land-ownerships');
+                if (ownershipsResponse.ok) {
+                    existingOwnerships = await ownershipsResponse.json();
                 }
             } catch (error) {
                 console.error('Error loading existing data:', error);
@@ -1998,7 +2001,7 @@
             if (postalCodes[countyName]) {
                 postalCodes[countyName].forEach(item => {
                     const option = document.createElement('option');
-                    option.value = `${item.code} - ${item.area}`;
+                    option.value = item.code;
                     option.textContent = `${item.code} - ${item.area}`;
                     postalCodeSelect.appendChild(option);
                 });
@@ -2061,7 +2064,7 @@
                 if (event.target === modal) {
                     modal.style.display = 'none';
                     document.body.style.overflow = 'auto';
-                    reset极AllForms();
+                    resetAllForms();
                 }
             });
             
@@ -2085,16 +2088,17 @@
             // Add owner functionality
             document.getElementById('add-owner').addEventListener('click', function() {
                 const ownershipEntries = document.getElementById('ownership-entries');
+                const newIndex = ownershipEntries.children.length + 1;
                 const newEntry = document.createElement('div');
                 newEntry.className = 'owner-entry';
                 newEntry.innerHTML = `
                     <div class="form-grid">
                         <div class="form-group">
-                            <label for="owner-dssn-id-${ownershipEntries.children.length + 1}" class="required-field">Owner DSSN</label>
+                            <label for="ownership-owner-dssn-${newIndex}" class="required-field">Owner DSSN</label>
                             <div class="dropdown-container">
-                                <input type="text" id="owner-dssn-id-${ownershipEntries.children.length + 1}" list="owner-dssn-list" required>
+                                <input type="text" id="ownership-owner-dssn-${newIndex}" list="owner-dssn-list" required>
                                 <datalist id="owner-dssn-list"></datalist>
-                                <div class="validation-error" id="owner-dssn-id-${ownershipEntries.children.length + 1}-error">Valid Owner DSSN is required</div>
+                                <div class="validation-error" id="ownership-owner-dssn-${newIndex}-error">Valid Owner DSSN is required</div>
                             </div>
                         </div>
                     </div>
@@ -2113,16 +2117,16 @@
         
         // Initialize form submissions
         function initFormSubmissions() {
+            // Person Form Submission
+            document.getElementById('personForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                await submitPersonForm();
+            });
+            
             // Land Parcel Form Submission
             document.getElementById('landParcelForm').addEventListener('submit', async function(e) {
                 e.preventDefault();
                 await submitLandParcelForm();
-            });
-            
-            // Land Owner Form Submission
-            document.getElementById('landOwnerForm').addEventListener('submit', async function(e) {
-                e.preventDefault();
-                await submitLandOwnerForm();
             });
             
             // Land Ownership Form Submission
@@ -2131,16 +2135,10 @@
                 await submitLandOwnershipForm();
             });
             
-            // Surveyor Form Submission
-            document.getElementById('surveyorForm').addEventListener('submit', async function(e) {
+            // Document Form Submission
+            document.getElementById('documentForm').addEventListener极('submit', async function(e) {
                 e.preventDefault();
-                await submitSurveyorForm();
-            });
-            
-            // Additional Documents Form Submission
-            document.getElementById('additionalDocsForm').addEventListener('submit', async function(e) {
-                e.preventDefault();
-                await submitAdditionalDocsForm();
+                await submitDocumentForm();
             });
             
             // Add validation to required fields
@@ -2171,20 +2169,12 @@
             });
             
             // Special validation for unique fields
-            document.getElementById('owner-dssn').addEventListener('blur', function() {
-                validateUniqueField(this, existingLandOwners.map(o => o.DSSN), 'DSSN already exists');
-            });
-            
-            document.getElementById('surveyor-dssn').addEventListener('blur', function() {
-                validateUniqueField(this, existingSurveyors.map(s => s.DSSN), 'DSSN already exists');
-            });
-            
-            document.getElementById('license-id').addEventListener('blur', function() {
-                validateUniqueField(this, existingSurveyors.map(s => s.License_ID), 'License ID already exists');
+            document.getElementById('person-dssn').addEventListener('blur', function() {
+                validateUniqueField(this, existingPersons.map(p => p.DSSN), 'DSSN already exists');
             });
             
             // Special validation for polygon field
-            document.getElementById('polygon').addEventListener('blur', function() {
+            document.getElementById('boundary').addEventListener('blur', function() {
                 validatePolygonField(this);
             });
         }
@@ -2201,7 +2191,7 @@
                 return false;
             } else {
                 field.classList.remove('input-error');
-                if (errorElement) {
+                if (error极Element) {
                     errorElement.style.display = 'none';
                 }
                 return true;
@@ -2288,90 +2278,71 @@
             
             // Additional validation for specific forms
             if (formId === 'landParcelForm') {
-                if (!validatePolygonField(document.getElementById('polygon'))) {
+                if (!validatePolygonField(document.getElementById('boundary'))) {
                     isValid = false;
                 }
                 
-                // Validate surveyor exists
+                // Validate surveyor exists and has surveyor role
                 const surveyorDSSN = document.getElementById('surveyor-dssn').value;
-                if (surveyorDSSN && !existingSurveyors.map(s => s.DSSN).includes(surveyorDSSN)) {
-                    document.getElementById('surveyor-dssn').classList.add('input-error');
-                    document.getElementById('surveyor-dssn-error').textContent = 'Surveyor DSSN does not exist. Please register the surveyor first.';
-                    document.getElementById('surveyor-dssn-error').style.display = 'block';
-                    isValid = false;
+                if (surveyorDSSN) {
+                    const surveyor = existingPersons.find(p => p.DSSN === surveyorDSSN);
+                    if (!surveyor || (surveyor.Role !== 'Surveyor' && surveyor.Role !== 'Both')) {
+                        document.getElementById('surveyor-dssn').classList.add('input-error');
+                        document.getElementById('surveyor-dssn-error').textContent = 'Surveyor DSSN must belong to a registered surveyor';
+                        document.getElementById('surveyor-dssn-error').style.display = 'block';
+                        isValid = false;
+                    }
                 }
             }
             
-            if (formId === 'landOwnerForm') {
-                const ownerDSSN = document.getElementById('owner-dssn').value;
-                if (ownerDSSN && existingLandOwners.map(o => o.DSSN).includes(ownerDSSN)) {
-                    document.getElementById('owner-dssn').classList.add('input-error');
-                    document.getElementById('owner-dssn-error').textContent = 'DSSN already exists';
-                    document.getElementById('owner-dssn-error').style.display = 'block';
-                    isValid = false;
-                }
-            }
-            
-            if (formId === 'surveyorForm') {
-                const surveyorDSSN = document.getElementById('surveyor-dssn').value;
-                if (surveyorDSSN && existingSurveyors.map(s => s.DSSN).includes(surveyorDSSN)) {
-                    document.getElementById('surveyor-dssn').classList.add('input-error');
-                    document.getElementById('surveyor-dssn-error').textContent = 'DSSN already exists';
-                    document.getElementById('surveyor-dssn-error').style.display = 'block';
-                    isValid = false;
-                }
-                
-                const licenseId = document.getElementById('license-id').value;
-                if (licenseId && existingSurveyors.map(s => s.License_ID).includes(licenseId)) {
-                    document.getElementById('license-id').classList.add('input-error');
-                    document.getElementById('license-id-error').textContent = 'License ID already exists';
-                    document.getElementById('license-id-error').style.display = 'block';
+            if (formId === 'personForm') {
+                const personDSSN = document.getElementById('person-dssn').value;
+                if (personDSSN && existingPersons.map(p => p.DSSN).includes(personDSSN)) {
+                    document.getElementById('person-dssn').classList.add('input-error');
+                    document.getElementById('person-dssn-error').textContent = 'DSSN already exists';
+                    document.getElementById('person-dssn-error').style.display = 'block';
                     isValid = false;
                 }
             }
             
             if (formId === 'landOwnershipForm') {
-                const parcelId = document.getElementById('parcel-id').value;
+                const parcelId = document.getElementById('ownership-parcel-id').value;
                 if (parcelId && !existingParcels.map(p => p.Parcel_ID).includes(parseInt(parcelId))) {
-                    document.getElementById('parcel-id').classList.add('input-error');
-                    document.getElementById('parcel-id-error').textContent = 'Parcel ID does not exist. Please register the land parcel first.';
-                    document.getElementById('parcel-id-error').style.display = 'block';
+                    document.getElementById('ownership-parcel-id').classList.add('input-error');
+                    document.getElementById('ownership-parcel-id-error').textContent = 'Parcel ID does not exist. Please register the land parcel first.';
+                    document.getElementById('ownership-parcel-id-error').style.display = 'block';
                     isValid = false;
                 }
                 
                 const ownerDSSNs = document.querySelectorAll('#ownership-entries input[type="text"]');
                 ownerDSSNs.forEach(input => {
                     const ownerDSSN = input.value;
-                    if (ownerDSSN && !existingLandOwners.map(o => o.DSSN).includes(ownerDSSN)) {
-                        input.classList.add('input-error');
-                        const errorElement = document.getElementById(`${input.id}-error`);
-                        if (errorElement) {
-                            errorElement.textContent = 'Owner DSSN does not exist. Please register the land owner first.';
-                            errorElement.style.display = 'block';
+                    if (ownerDSSN) {
+                        const owner = existingPersons.find(p => p.DSSN === ownerDSSN);
+                        if (!owner || (owner.Role !== 'Landowner' && owner.Role !== 'Both')) {
+                            input.classList.add('input-error');
+                            const errorElement = document.getElementById(`${input.id}-error`);
+                            if (errorElement) {
+                                errorElement.textContent = 'Owner DSSN must belong to a registered landowner';
+                                errorElement.style.display = 'block';
+                            }
+                            isValid = false;
                         }
-                        isValid = false;
                     }
                 });
             }
             
-            if (formId === 'additionalDocsForm') {
-                const ownerDSSNs = [
-                    document.getElementById('probate-owner-dssn'),
-                    document.getElementById('lla-owner-dssn'),
-                    document.getElementById('lra-owner-dssn')
-                ];
-                
-                ownerDSSNs.forEach(input => {
-                    if (input.value && !existingLandOwners.map(o => o.DSSN).includes(input.value)) {
-                        input.classList.add('input-error');
-                        const errorElement = document.getElementById(`${input.id}-error`);
-                        if (errorElement) {
-                            errorElement.textContent = 'Owner DSSN does not exist. Please register the land owner first.';
-                            errorElement.style.display = 'block';
-                        }
+            if (formId === 'documentForm') {
+                const ownerDSSN = document.getElementById('document-owner-dssn').value;
+                if (ownerDSSN) {
+                    const owner = existingPersons.find(p => p.DSSN === ownerDSSN);
+                    if (!owner || (owner.Role !== 'Landowner' && owner.Role !== 'Both')) {
+                        document.getElementById('document-owner-dssn').classList.add('input-error');
+                        document.getElementById('document-owner-dssn-error').textContent = 'Owner DSSN must belong to a registered landowner';
+                        document.getElementById('document-owner-dssn-error').style.display = 'block';
                         isValid = false;
                     }
-                });
+                }
             }
             
             return isValid;
@@ -2399,20 +2370,17 @@
                 
                 // Reset button text based on form type
                 switch(formType) {
-                    case 'landParcel':
-                        submitText.textContent = 'Send to Database';
+                    case 'person':
+                        submitText.textContent = 'Register Person';
                         break;
-                    case 'landOwner':
-                        submitText.textContent = 'Send to Database';
+                    case 'landParcel':
+                        submitText.textContent = 'Register Land Parcel';
                         break;
                     case 'landOwnership':
-                        submitText.textContent = 'Send to Database';
+                        submitText.textContent = 'Register Ownership';
                         break;
-                    case 'surveyor':
-                        submitText.textContent = 'Send to Database';
-                        break;
-                    case 'additionalDocs':
-                        submitText.textContent = 'Send to Database';
+                    case 'document':
+                        submitText.textContent = 'Upload Document';
                         break;
                 }
             }
@@ -2442,6 +2410,92 @@
             }
         }
         
+        // Submit Person Form
+        async function submitPersonForm() {
+            // Validate form first
+            if (!validateForm('personForm')) {
+                showStatus('personStatus', 'Please fix the errors in the form before submitting', 'error');
+                return;
+            }
+            
+            const imageFile = document.getElementById('person-image').files[0];
+            const imageUrlInput = document.getElementById('person-image-url').value;
+            
+            setLoadingState('person', true);
+            
+            try {
+                let finalImageUrl = imageUrlInput;
+                
+                // If a file is uploaded, use it instead of the URL input
+                if (imageFile) {
+                    showStatus('personStatus', 'Uploading image...', 'info');
+                    finalImageUrl = await uploadImage(imageFile, 'person');
+                } else {
+                    // If only URL is provided, ensure it's a complete URL
+                    if (finalImageUrl && !finalImageUrl.startsWith('http')) {
+                        finalImageUrl = GCP_BASE_URL + finalImageUrl;
+                    }
+                }
+                
+                // Then submit the form data
+                const formData = {
+                    DSSN: document.getElementById('person-dssn').value,
+                    First_Name: document.getElementById('person-first-name').value,
+                    Last_Name: document.getElementById('person-last-name').value,
+                    Date_of_Birth: document.getElementById('person-dob').value,
+                    Place_of_Birth: document.getElementById('person-place-of-birth').value,
+                    Address: document.getElementById('person-address').value,
+                    Phone_Number: document.getElementById('person-phone').value,
+                    Image_URL: finalImageUrl,
+                    License_ID: document.getElementById('person-license').value,
+                    Role: document.getElementById('person-role').value
+                };
+                
+                const response = await fetch('/api/person', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showStatus('personStatus', 'Person registered successfully!', 'success');
+                    
+                    // Add to existing persons
+                    existingPersons.push({ 
+                        DSSN: formData.DSSN,
+                        Role: formData.Role
+                    });
+                    
+                    // Update datalists based on role
+                    if (formData.Role === 'Landowner' || formData.Role === 'Both') {
+                        populateDatalist('owner-dssn-list', existingPersons
+                            .filter(p => p.Role === 'Landowner' || p.Role === 'Both')
+                            .map(p => p.DSSN));
+                    }
+                    
+                    if (formData.Role === 'Surveyor' || formData.Role === 'Both') {
+                        populateDatalist('surveyor-dssn-list', existingPersons
+                            .filter(p => p.Role === 'Surveyor' || p.Role === 'Both')
+                            .map(p => p.DSSN));
+                    }
+                    
+                    document.getElementById('personForm').reset();
+                    document.getElementById('person-image-name').textContent = 'No file chosen';
+                } else {
+                    showStatus('personStatus', `Error: ${result.message}`, 'error');
+                }
+            } catch (error) {
+                console.error('Error submitting person:', error);
+                showStatus('personStatus', 'Error processing request. Please try again.', 'error');
+            } finally {
+                setLoadingState('person', false);
+            }
+        }
+        
         // Submit Land Parcel Form
         async function submitLandParcelForm() {
             // Validate form first
@@ -2453,7 +2507,9 @@
             const formData = {
                 County: document.getElementById('county').value,
                 Postal_Code: document.getElementById('postal-code').value,
-                Boundary: document.getElementById('polygon').value,
+                Area_Name: document.getElementById('area-name').value,
+                Plot_Number: document.getElementById('plot-number').value,
+                Boundary: document.getElementById('boundary').value,
                 Date_Surveyed: document.getElementById('date-surveyed').value,
                 Surveyor_DSSN: document.getElementById('surveyor-dssn').value
             };
@@ -2490,6 +2546,12 @@
                     populateDatalist('parcel-id-list', existingParcels.map(p => p.Parcel_ID));
                     
                     document.getElementById('landParcelForm').reset();
+                    
+                    // Clear map
+                    if (drawnPolygon) {
+                        drawnPolygon.setMap(null);
+                        drawnPolygon = null;
+                    }
                 } else {
                     showStatus('landParcelStatus', `Error: ${result.message}`, 'error');
                 }
@@ -2497,7 +2559,7 @@
                 console.error('Error submitting land parcel:', error);
                 showStatus('landParcelStatus', 'Network error. Please try again.', 'error');
             } finally {
-                setLoadingState('landParcel', false);
+                setLoadingState('land极Parcel', false);
             }
         }
         
@@ -2532,82 +2594,6 @@
             const coords = trimmedWkt.match(/[-+]?\d*\.?\d+\s+[-+]?\d*\.?\d+/g);
             return coords && coords.length >= 4;
         }
-
-        
-        // Submit Land Owner Form
-        async function submitLandOwnerForm() {
-            // Validate form first
-            if (!validateForm('landOwnerForm')) {
-                showStatus('landOwnerStatus', 'Please fix the errors in the form before submitting', 'error');
-                return;
-            }
-            
-            const imageFile = document.getElementById('owner-image').files[0];
-            const imageUrlInput = document.getElementById('owner-image-url').value;
-            
-            // Check if at least one image source is provided
-            if (!imageFile && !imageUrlInput) {
-                showStatus('landOwnerStatus', 'Please upload an owner image or provide an image URL', 'error');
-                return;
-            }
-            
-            setLoadingState('landOwner', true);
-            
-            try {
-                let finalImageUrl = imageUrlInput;
-                
-                // If a file is uploaded, use it instead of the URL input
-                if (imageFile) {
-                    showStatus('landOwnerStatus', 'Uploading image...', 'info');
-                    finalImageUrl = await uploadImage(imageFile, 'owner');
-                } else {
-                    // If only URL is provided, ensure it's a complete URL
-                    if (finalImageUrl && !finalImageUrl.startsWith('http')) {
-                        finalImageUrl = GCP_BASE_URL + finalImageUrl;
-                    }
-                }
-                
-                // Then submit the form data
-                const formData = {
-                    DSSN: document.getElementById('owner-dssn').value,
-                    First_Name: document.getElementById('first-name').value,
-                    Last_Name: document.getElementById('last-name').value,
-                    Date_of_Birth: document.getElementById('dob').value,
-                    Place_of_Birth: document.getElementById('place-of-birth').value,
-                    Address: document.getElementById('address').value,
-                    Phone_Number: document.getElementById('phone').value,
-                    Image_URL: finalImageUrl
-                };
-                
-                const response = await fetch('/api/land-owner', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(formData)
-                });
-                
-                const result = await response.json();
-                
-                if (result.success) {
-                    showStatus('landOwnerStatus', 'Land owner created successfully!', 'success');
-                    
-                    // Add to existing owners
-                    existingLandOwners.push({ DSSN: formData.DSSN });
-                    populateDatalist('owner-dssn-list', existingLandOwners.map(o => o.DSSN));
-                    
-                    document.getElementById('landOwnerForm').reset();
-                    document.getElementById('owner-image-name').textContent = 'No file chosen';
-                } else {
-                    showStatus('landOwnerStatus', `Error: ${result.message}`, 'error');
-                }
-            } catch (error) {
-                console.error('Error submitting land owner:', error);
-                showStatus('landOwnerStatus', 'Error processing request. Please try again.', 'error');
-            } finally {
-                setLoadingState('landOwner', false);
-            }
-        }
         
         // Submit Land Ownership Form
         async function submitLandOwnershipForm() {
@@ -2617,15 +2603,15 @@
                 return;
             }
             
-            const ownershipEntries = document.querySelectorAll('.owner-entry');
+            const parcelId = document.getElementById('ownership-parcel-id').value;
+            const ownershipEntries = document.querySelectorAll('#ownership-entries input[type="text"]');
             const ownershipData = [];
             
             // Collect all ownership entries
             ownershipEntries.forEach(entry => {
-                const parcelId = document.getElementById('parcel-id').value;
-                const ownerDSSN = entry.querySelector('input[type="text"]').value;
+                const ownerDSSN = entry.value;
                 
-                if (parcelId && ownerDSSN) {
+                if (ownerDSSN) {
                     ownershipData.push({
                         Parcel_ID: parcelId,
                         Owner_DSSN: ownerDSSN
@@ -2676,53 +2662,47 @@
             }
         }
         
-        // Submit Surveyor Form
-        async function submitSurveyorForm() {
+        // Submit Document Form
+        async function submitDocumentForm() {
             // Validate form first
-            if (!validateForm('surveyorForm')) {
-                showStatus('surveyorStatus', 'Please fix the errors in the form before submitting', 'error');
+            if (!validateForm('documentForm')) {
+                showStatus('documentStatus', 'Please fix the errors in the form before submitting', 'error');
                 return;
             }
             
-            const imageFile = document.getElementById极('surveyor-image').files[0];
-            const imageUrlInput = document.getElementById('surveyor-image-url').value;
+            const file = document.getElementById('document-file').files[0];
+            const urlInput = document.getElementById('document-url').value;
             
-            // Check if at least one image source is provided
-            if (!imageFile && !imageUrlInput) {
-                showStatus('surveyorStatus', 'Please upload a surveyor image or provide an image URL', 'error');
+            // Check if at least one document source is provided
+            if (!file && !urlInput) {
+                showStatus('documentStatus', 'Please upload a document or provide a document URL', 'error');
                 return;
             }
             
-            setLoadingState('surveyor', true);
+            setLoadingState('document', true);
             
             try {
-                let finalImageUrl = imageUrlInput;
+                let finalUrl = urlInput;
                 
                 // If a file is uploaded, use it instead of the URL input
-                if (imageFile) {
-                    showStatus('surveyorStatus', 'Uploading image...', 'info');
-                    finalImageUrl = await uploadImage(imageFile, 'surveyor');
+                if (file) {
+                    showStatus('documentStatus', 'Uploading document...', 'info');
+                    finalUrl = await uploadImage(file, 'document');
                 } else {
                     // If only URL is provided, ensure it's a complete URL
-                    if (finalImageUrl && !finalImageUrl.startsWith('http')) {
-                        finalImageUrl = GCP_BASE_URL + finalImageUrl;
+                    if (finalUrl && !finalUrl.startsWith('http')) {
+                        finalUrl = GCP_BASE_URL + finalUrl;
                     }
                 }
                 
                 // Then submit the form data
                 const formData = {
-                    DSSN: document.getElementById('surveyor-dssn').value,
-                    License_ID: document.getElementById('license-id').value,
-                    First_Name: document.getElementById('surveyor-first-name').value,
-                    Last_Name: document.getElementById('surveyor-last-name').value,
-                    Date_of_Birth: document.getElementById('surveyor-dob').value,
-                    Place_of_Birth: document.getElementById('surveyor-place-of-birth').value,
-                    Address: document.getElementById('surveyor-address').value,
-                    Phone_Number: document.getElementById('surveyor-phone').value,
-                    Image_URL: finalImageUrl
+                    Image_URL: finalUrl,
+                    Owner_DSSN: document.getElementById('document-owner-dssn').value,
+                    Document_Type: document.getElementById('document-type').value
                 };
                 
-                const response = await fetch('/api/surveyor', {
+                const response = await fetch('/api/document', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -2733,169 +2713,36 @@
                 const result = await response.json();
                 
                 if (result.success) {
-                    showStatus('surveyorStatus', 'Surveyor created successfully!', 'success');
-                    
-                    // Add to existing surveyors
-                    existingSurveyors.push({ 
-                        DSSN: formData.DSSN, 
-                        License_ID: formData.License_ID 
-                    });
-                    populateDatalist('surveyor-dssn-list', existingSurveyors.map(s => s.DSSN));
-                    
-                    document.getElementById('surveyorForm').reset();
-                    document.getElementById('surveyor-image-name').textContent = 'No file chosen';
+                    showStatus('documentStatus', 'Document uploaded successfully!', 'success');
+                    document.getElementById('documentForm').reset();
+                    document.getElementById('document-file-name').textContent = 'No file chosen';
                 } else {
-                    showStatus('surveyorStatus', `Error: ${result.message}`, 'error');
+                    showStatus('documentStatus', `Error: ${result.message}`, 'error');
                 }
             } catch (error) {
-                console.error('Error submitting surveyor:', error);
-                showStatus('surveyorStatus', 'Error processing request. Please try again.', 'error');
+                console.error('Error submitting document:', error);
+                showStatus('documentStatus', 'Error processing request. Please try again.', 'error');
             } finally {
-                setLoadingState('surveyor', false);
-            }
-        }
-        
-        // Submit Additional Documents Form
-        async function submitAdditionalDocsForm() {
-            // Validate form first
-            if (!validateForm('additionalDocsForm')) {
-                showStatus('additionalDocsStatus', 'Please fix the errors in the form before submitting', 'error');
-                return;
-            }
-            
-            const probateFile = document.getElementById('probate-court-documents').files[0];
-            const probateUrlInput = document.getElementById('probate-document-url').value;
-            
-            const llaFile = document.getElementById('lla-deed').files[0];
-            const llaUrlInput = document.getElementById('lla-document-url').value;
-            
-            const lraFile = document.getElementById('lra-tax-documents').files[0];
-            const lraUrlInput = document.getElementById('lra-document-url').value;
-            
-            // Check if at least one document source is provided for each section
-            if ((!probateFile && !probateUrlInput) || (!llaFile && !llaUrlInput) || (!lraFile && !lraUrlInput)) {
-                showStatus('additionalDocsStatus', 'Please upload all required documents or provide document URLs', 'error');
-                return;
-            }
-            
-            setLoadingState('additionalDocs', true);
-            showStatus('additionalDocsStatus', 'Processing documents...', 'info');
-            
-            try {
-                // Process probate court document
-                let probateUrl = probateUrlInput;
-                if (probateFile) {
-                    probateUrl = await uploadImage(probateFile, 'probate');
-                } else if (probateUrl && !probateUrl.startsWith('http')) {
-                    probateUrl = GCP_BASE_URL + probateUrl;
-                }
-                
-                // Process LLA deed
-                let llaUrl = llaUrlInput;
-                if (llaFile) {
-                    llaUrl = await uploadImage(llaFile, 'lla');
-                } else if (llaUrl && !llaUrl.startsWith('http')) {
-                    llaUrl = GCP_BASE_URL + llaUrl;
-                }
-                
-                // Process LRA tax documents
-                let lraUrl = lraUrlInput;
-                if (lraFile) {
-                    lraUrl = await uploadImage(lraFile, 'lra');
-                } else if (lraUrl && !lraUrl.startsWith('http')) {
-                    lraUrl = GCP_BASE_URL + lraUrl;
-                }
-                
-                // Get owner DSSNs
-                const probateDSSN = document.getElementById('probate-owner-dssn').value;
-                const llaDSSN = document.getElementById('lla-owner-dssn').value;
-                const lraDSSN = document.getElementById('lra-owner-dssn').value;
-                
-                // Submit all documents
-                const submissions = [
-                    // Probate Court
-                    fetch('/api/probate-court', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            Image_URL: probateUrl,
-                            Owner_DSSN: probateDSSN
-                        })
-                    }),
-                    
-                    // LLA
-                    fetch('/api/lla', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            Image_URL: llaUrl,
-                            Owner_DSSN: llaDSSN
-                        })
-                    }),
-                    
-                    // LRA
-                    fetch('/api/lra', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            Image_URL: lraUrl,
-                            Owner_DSSN: lraDSSN
-                        })
-                    })
-                ];
-                
-                const results = await Promise.all(submissions.map(p => p.then(res => res.json())));
-                
-                // Check if all submissions were successful
-                const allSuccess = results.every(result => result.success);
-                
-                if (allSuccess) {
-                    showStatus('additionalDocsStatus', 'All documents saved successfully!', 'success');
-                    document.getElementById('additionalDocsForm').reset();
-                    
-                    // Reset file names
-                    document.getElementById('probate-court-documents-name').textContent = 'No file chosen';
-                    document.getElementById('lla-deed-name').textContent = 'No file chosen';
-                    document.getElementById('lra-tax-documents-name').textContent = 'No file chosen';
-                } else {
-                    const errorMessages = results.filter(r => !r.success).map(r => r.message).join(', ');
-                    showStatus('additionalDocsStatus', `Some documents failed to save: ${errorMessages}`, 'error');
-                }
-            } catch (error) {
-                console.error('Error submitting additional documents:', error);
-                showStatus('additionalDocsStatus', 'Error processing request. Please try again.', 'error');
-            } finally {
-                setLoadingState('additionalDocs', false);
+                setLoadingState('document', false);
             }
         }
         
         // Reset all forms
         function resetAllForms() {
+            document.getElementById('personForm').reset();
             document.getElementById('landParcelForm').reset();
-            document.getElementById('landOwnerForm').reset();
             document.getElementById('landOwnershipForm').reset();
-            document.getElementById('surveyorForm').reset();
-            document.getElementById('additionalDocsForm').reset();
+            document.getElementById('documentForm').reset();
             
             // Clear status messages
+            document.getElementById('personStatus').innerHTML = '';
             document.getElementById('landParcelStatus').innerHTML = '';
-            document.getElementById('landOwnerStatus').innerHTML = '';
             document.getElementById('landOwnershipStatus').innerHTML = '';
-            document.getElementById('surveyorStatus').innerHTML = '';
-            document.getElementById('additionalDocsStatus').innerHTML = '';
+            document.getElementById('documentStatus').innerHTML = '';
             
             // Reset file names
-            document.getElementById('owner-image-name').textContent = 'No file chosen';
-            document.getElementById('surveyor-image-name').textContent = 'No file chosen';
-            document.getElementById('probate-court-documents-name').textContent = 'No file chosen';
-            document.getElementById('lla-deed-name').textContent = 'No file chosen';
-            document.getElementById('lra-tax-documents-name').textContent = 'No file chosen';
+            document.getElementById('person-image-name').textContent = 'No file chosen';
+            document.getElementById('document-file-name').textContent = 'No file chosen';
             
             // Remove additional owner entries
             const ownershipContainer = document.getElementById('ownership-entries');
@@ -2911,7 +2758,16 @@
                     element.style.display = 'none';
                 }
             });
+            
+            // Clear map
+            if (drawnPolygon) {
+                drawnPolygon.setMap(null);
+                drawnPolygon = null;
+            }
+            document.getElementById('boundary').value = '';
         }
     </script>
+    <!-- Google Maps API -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=drawing&callback=initMap"></script>
 </body>
 </html>
