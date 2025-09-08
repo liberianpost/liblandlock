@@ -414,7 +414,7 @@
             color: white;
         }
         
-极        .btn-submit:hover {
+        .btn-submit:hover {
             background: linear-gradient(135deg, #27ae60, #219653);
         }
         
@@ -446,7 +446,7 @@
             margin-bottom: 15px;
         }
         
-        .add极-owner-btn:hover {
+        .add-owner-btn:hover {
             background: rgba(255, 255, 255, 0.2);
         }
         
@@ -2700,7 +2700,7 @@
                 
                 // If a file is uploaded, use it instead of the URL input
                 if (imageFile) {
-                    showStatus('surveyorStatus', 'Uploading image...',极 'info');
+                    showStatus('surveyorStatus', 'Uploading image...', 'info');
                     finalImageUrl = await uploadImage(imageFile, 'surveyor');
                 } else {
                     // If only URL is provided, ensure it's a complete URL
@@ -2803,7 +2803,7 @@
                 if (lraFile) {
                     lraUrl = await uploadImage(lraFile, 'lra');
                 } else if (lraUrl && !lraUrl.startsWith('http')) {
-                    lra极Url = GCP_BASE_URL + lraUrl;
+                    lraUrl = GCP_BASE_URL + lraUrl;
                 }
                 
                 // Get owner DSSNs
@@ -2884,7 +2884,7 @@
             document.getElementById('additionalDocsForm').reset();
             
             // Clear status messages
-            document.getElementById('land极ParcelStatus').innerHTML = '';
+            document.getElementById('landParcelStatus').innerHTML = '';
             document.getElementById('landOwnerStatus').innerHTML = '';
             document.getElementById('landOwnershipStatus').innerHTML = '';
             document.getElementById('surveyorStatus').innerHTML = '';
