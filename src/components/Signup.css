@@ -1,0 +1,125 @@
+.signup-container {
+  background-color: #f5f7fa;
+  color: #333;
+  line-height: 1.6;
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signup-container .container {
+  max-width: 500px;
+  width: 100%;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.signup-container .auth-form h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #2c3e50;
+}
+
+.signup-container .form-group {
+  margin-bottom: 20px;
+}
+
+.signup-container label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.signup-container input[type="text"],
+.signup-container input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+  margin-bottom: 10px;
+}
+
+.signup-container input[type="text"]:focus,
+.signup-container input[type="password"]:focus {
+  border-color: #4a6491;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(74, 100, 145, 0.2);
+}
+
+.signup-container button {
+  background: #4a6491;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background 0.3s;
+  width: 100%;
+}
+
+.signup-container button:hover {
+  background: #3a547e;
+}
+
+.signup-container button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.signup-container .employee-details {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  border-left: 4px solid #4a6491;
+}
+
+.signup-container .employee-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-top: 10px;
+  border: 3px solid #4a6491;
+}
+
+.signup-container .error {
+  color: #e74c3c;
+  background: #fde8e8;
+  padding: 10px;
+  border-radius: 4px;
+  margin-top: 10px;
+  border-left: 4px solid #e74c3c;
+}
+
+.signup-container .success {
+  color: #27ae60;
+  background: #e7f4e4;
+  padding: 10px;
+  border-radius: 4px;
+  margin-top: 10px;
+  border-left: 4px solid #27ae60;
+}
+
+.signup-container p {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.signup-container a {
+  color: #4a6491;
+  text-decoration: none;
+}
+
+.signup-container a:hover {
+  text-decoration: underline;
+}
