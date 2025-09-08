@@ -109,7 +109,7 @@
             width: 350px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.18);
-            transition: transform 0.3s ease, box-shadow 极0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
         }
         
@@ -132,7 +132,7 @@
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 4px 15px rgba(0, 0, 极0, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
         
         .user-info {
@@ -219,7 +219,7 @@
         
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, min极max(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
             width: 100%;
             margin-top: 20px;
@@ -282,13 +282,13 @@
             animation: modalFadeIn 0.3s;
         }
         
-        @keyframes modal极FadeIn {
+        @keyframes modalFadeIn {
             from { opacity: 0; transform: translateY(-50px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
         .modal-header {
-            padding: 20极px 30px;
+            padding: 20px 30px;
             background: rgba(0, 0, 0, 0.2);
             display: flex;
             justify-content: space-between;
@@ -340,7 +340,7 @@
             padding: 30px;
         }
         
-极        .tab-content {
+        .tab-content {
             display: none;
         }
         
@@ -505,7 +505,7 @@
         
         .data-entry-guide h4 {
             margin-bottom: 10px;
-            color极: #3498db;
+            color: #3498db;
         }
         
         .data-entry-guide ol {
@@ -572,7 +572,7 @@
                 flex-wrap: wrap;
             }
             
-            .modal极-tab {
+            .modal-tab {
                 padding: 10px 15px;
                 font-size: 0.9rem;
             }
@@ -643,7 +643,7 @@
         
         .status-error {
             background-color: rgba(231, 76, 60, 0.2);
-            border: 极1px solid rgba(231, 76, 60, 0.5);
+            border: 1px solid rgba(231, 76, 60, 0.5);
             color: #e74c3c;
         }
         
@@ -704,7 +704,7 @@
             padding: 10px;
             background: rgba(0, 0, 0, 0.1);
             border-radius: 8px;
-            border: 1px solid rgba极(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .image-url-container input {
@@ -834,7 +834,7 @@
                     <i class="fas fa-file-contract"></i>
                 </div>
                 <h3>Documents</h3>
-                <极p>View and download official land documents and certificates</p>
+                <p>View and download official land documents and certificates</p>
             </div>
             
             <div class="feature-card">
@@ -847,7 +847,7 @@
             
             <div class="feature-card" id="landRegistrationCard">
                 <div class="feature-icon">
-                    <i class="fas fa-landmark"></极i>
+                    <i class="fas fa-landmark"></i>
                 </div>
                 <h3>Land Registration</h3>
                 <p>Register new land parcels, owners, and survey information</p>
@@ -868,7 +868,7 @@
             </button>
             <button class="btn btn-primary">
                 <i class="fas fa-question-circle"></i> Help
-           </button>
+            </button>
             <button id="logoutBtn" class="btn btn-logout">
                 <i class="fas fa-sign-out-alt"></i> Logout
             </button>
@@ -1035,7 +1035,6 @@
                                 <label for="postal-code">Postal Code</label>
                                 <select id="postal-code">
                                     <option value="">Select Postal Code</option>
-                                    <!-- Will be populated by JavaScript -->
                                 </select>
                             </div>
                             <div class="form-group">
@@ -1051,7 +1050,7 @@
                             <div class="form-group">
                                 <label for="date-surveyed" class="required-field">Date Surveyed</label>
                                 <input type="date" id="date-surveyed" required>
-                                <div class="validation-error" id="date-surveyed-error">Date surveyed is required</极div>
+                                <div class="validation-error" id="date-surveyed-error">Date surveyed is required</div>
                             </div>
                             <div class="form-group">
                                 <label for="surveyor-dssn" class="required-field">Surveyor DSSN</label>
@@ -1619,12 +1618,12 @@
                 { code: "50810", area: "TUNUKPUYEE - TUNUKPUYEE - MEINPEA-MAHN" },
                 { code: "50811", area: "WHENTEN - WHENTEN - LEEWEHPEA-MAHN" },
                 { code: "50812", area: "GIPO - GIPO - LEEWEHPEA-MAHN" },
-                { code: "50813", area: "FLUMPA - FLUMPA - LEEWEHPEA-MAHN" },
+                { code: "50813", area: "FLUMPA - FLEMPA - LEEWEHPEA-MAHN" },
                 { code: "50814", area: "BLOHN - BLOHN - LEEWEHPEA-MAHN" },
                 { code: "50815", area: "BINDIN - BINDIN - LEEWEHPEA-MAHN" },
                 { code: "50816", area: "DOHN - DOHN - LEEWEHPEA-MAHN" },
                 { code: "50817", area: "KPALLAH - KPALLAH - LEEWEHPEA-MAHN" },
-                { code: "50901", area: "ZAROGBO - ZAROGBO - GBI & DORU" },
+                { code: "50901", area: "GAMOGBO - GAMOGBO - GBI & DORU" },
                 { code: "50902", area: "ZEEWROH - ZEEWROH - GBI & DORU" },
                 { code: "50903", area: "WONTOE - WONTOE - GBI & DORU" },
                 { code: "50904", area: "ZAHN ZAYEE - ZAHN ZAYEE - YARWEIN-MEHNSONOH" },
@@ -1798,6 +1797,7 @@
         let currentParcelId = null;
         let uploadedImageUrls = {};
         const GCP_BASE_URL = "https://storage.googleapis.com/liblandlock/";
+        const API_BASE = "https://libpayapp.liberianpost.com:8081";
         
         // Store existing data to prevent duplicates
         let existingPersons = [];
@@ -1952,7 +1952,7 @@
         async function loadExistingData() {
             try {
                 // Load existing persons
-                const personsResponse = await fetch('/api/persons');
+                const personsResponse = await fetch(`${API_BASE}/api/persons`);
                 if (personsResponse.ok) {
                     existingPersons = await personsResponse.json();
                     populateDatalist('owner-dssn-list', existingPersons.map(p => p.DSSN));
@@ -1962,14 +1962,14 @@
                 }
                 
                 // Load existing parcels
-                const parcelsResponse = await fetch('/api/land-parcels');
+                const parcelsResponse = await fetch(`${API_BASE}/api/land-parcels`);
                 if (parcelsResponse.ok) {
                     existingParcels = await parcelsResponse.json();
                     populateDatalist('parcel-id-list', existingParcels.map(p => p.Parcel_ID));
                 }
                 
                 // Load existing ownerships
-                const ownershipsResponse = await fetch('/api/land-ownerships');
+                const ownershipsResponse = await fetch(`${API_BASE}/api/land-ownerships`);
                 if (ownershipsResponse.ok) {
                     existingOwnerships = await ownershipsResponse.json();
                 }
@@ -2136,7 +2136,7 @@
             });
             
             // Document Form Submission
-            document.getElementById('documentForm').addEventListener极('submit', async function(e) {
+            document.getElementById('documentForm').addEventListener('submit', async function(e) {
                 e.preventDefault();
                 await submitDocumentForm();
             });
@@ -2191,7 +2191,7 @@
                 return false;
             } else {
                 field.classList.remove('input-error');
-                if (error极Element) {
+                if (errorElement) {
                     errorElement.style.display = 'none';
                 }
                 return true;
@@ -2392,7 +2392,7 @@
             formData.append('image', file);
             
             try {
-                const response = await fetch('/api/upload-image', {
+                const response = await fetch(`${API_BASE}/api/upload-image`, {
                     method: 'POST',
                     body: formData
                 });
@@ -2451,7 +2451,7 @@
                     Role: document.getElementById('person-role').value
                 };
                 
-                const response = await fetch('/api/person', {
+                const response = await fetch(`${API_BASE}/api/person`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -2529,7 +2529,7 @@
             setLoadingState('landParcel', true);
             
             try {
-                const response = await fetch('/api/land-parcel', {
+                const response = await fetch(`${API_BASE}/api/land-parcel`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(formData)
@@ -2559,7 +2559,7 @@
                 console.error('Error submitting land parcel:', error);
                 showStatus('landParcelStatus', 'Network error. Please try again.', 'error');
             } finally {
-                setLoadingState('land极Parcel', false);
+                setLoadingState('landParcel', false);
             }
         }
         
@@ -2629,7 +2629,7 @@
             try {
                 // Submit each ownership record
                 for (const data of ownershipData) {
-                    const response = await fetch('/api/land-ownership', {
+                    const response = await fetch(`${API_BASE}/api/land-ownership`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -2702,7 +2702,7 @@
                     Document_Type: document.getElementById('document-type').value
                 };
                 
-                const response = await fetch('/api/document', {
+                const response = await fetch(`${API_BASE}/api/document`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -2768,6 +2768,6 @@
         }
     </script>
     <!-- Google Maps API -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=drawing&callback=initMap"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATNMTYKT2bvDzWMBSKGl-HvYqNz1BzYfs&libraries=drawing&callback=initMap"></script>
 </body>
 </html>
