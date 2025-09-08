@@ -1056,7 +1056,6 @@
                                 <label for="surveyor-dssn" class="required-field">Surveyor DSSN</label>
                                 <div class="dropdown-container">
                                     <input type="text" id="surveyor-dssn" list="surveyor-dssn-list" required>
-                                    <datalist id="surveyor-dssn-list"></datalist>
                                     <div class="validation-error" id="surveyor-dssn-error">Valid Surveyor DSSN is required</div>
                                 </div>
                             </div>
@@ -1064,6 +1063,9 @@
                                 <label for="boundary" class="required-field">Boundary Polygon (WKT Format)</label>
                                 <textarea id="boundary" rows="4" placeholder="POLYGON((-10.617312 6.450804,-10.615312 6.450804,-10.615312 6.448804,-10.617312 6.448804,-10.617312 6.450804))" required></textarea>
                                 <div class="validation-error" id="boundary-error">Valid polygon is required</div>
+                                <button type="button" class="map-btn" id="verifyBoundaryBtn" style="margin-top: 10px;">
+                                    <i class="fas fa-map"></i> Show on Map
+                                </button>
                             </div>
                         </div>
                         
@@ -1091,7 +1093,6 @@
                             <label for="ownership-parcel-id" class="required-field">Parcel ID</label>
                             <div class="dropdown-container">
                                 <input type="number" id="ownership-parcel-id" list="parcel-id-list" required>
-                                <datalist id="parcel-id-list"></datalist>
                                 <div class="validation-error" id="ownership-parcel-id-error">Valid Parcel ID is required</div>
                             </div>
                         </div>
@@ -1103,7 +1104,6 @@
                                         <label for="ownership-owner-dssn-1" class="required-field">Owner DSSN</label>
                                         <div class="dropdown-container">
                                             <input type="text" id="ownership-owner-dssn-1" list="owner-dssn-list" required>
-                                            <datalist id="owner-dssn-list"></datalist>
                                             <div class="validation-error" id="ownership-owner-dssn-1-error">Valid Owner DSSN is required</div>
                                         </div>
                                     </div>
@@ -1141,7 +1141,6 @@
                                 <label for="document-owner-dssn" class="required-field">Owner DSSN</label>
                                 <div class="dropdown-container">
                                     <input type="text" id="document-owner-dssn" list="owner-dssn-list" required>
-                                    <datalist id="owner-dssn-list"></datalist>
                                     <div class="validation-error" id="document-owner-dssn-error">Valid Owner DSSN is required</div>
                                 </div>
                             </div>
@@ -1191,6 +1190,11 @@
     </div>
     
     <div class="watermark">LLS</div>
+
+    <!-- Global Datalists -->
+    <datalist id="surveyor-dssn-list"></datalist>
+    <datalist id="owner-dssn-list"></datalist>
+    <datalist id="parcel-id-list"></datalist>
 
     <script>
         // County and postal code data
@@ -1927,6 +1931,15 @@
                 document.getElementById('boundary').value = '';
                 drawingManager.setDrawingMode(null);
             });
+
+            // Add event listener for verify button
+            document.getElementById('verifyBoundaryBtn').addEventListener('click', function() {
+                const boundaryField = document.getElementById('boundary');
+                if (validatePolygonField(boundaryField)) {
+                    const wkt = cleanWKT(boundaryField.value);
+                    displayPolygonFromWKT(wkt);
+                }
+            });
         }
         
         // Update boundary field based on drawn polygon
@@ -1947,6 +1960,50 @@
             
             document.getElementById('boundary').value = `POLYGON((${coordinates.join(',')}))`;
         }
+
+        // Display polygon from WKT on map
+        function displayPolygonFromWKT(wkt) {
+            if (drawnPolygon) {
+                drawnPolygon.setMap(null);
+            }
+
+            if (!isValidWKT(wkt)) {
+                showStatus('landParcelStatus', 'Invalid WKT format', 'error');
+                return;
+            }
+
+            const coords = wkt.match(/[-+]?\d*\.?\d+\s+[-+]?\d*\.?\d+/g);
+            const path = coords.map(coord => {
+                const [lngStr, latStr] = coord.split(/\s+/);
+                const lng = parseFloat(lngStr);
+                const lat = parseFloat(latStr);
+                return { lat, lng };
+            });
+
+            drawnPolygon = new google.maps.Polygon({
+                paths: path,
+                fillColor: '#1E90FF',
+                fillOpacity: 0.3,
+                strokeWeight: 2,
+                strokeColor: '#1E90FF',
+                editable: true,
+                map: map
+            });
+
+            // Fit bounds
+            const bounds = new google.maps.LatLngBounds();
+            path.forEach(p => bounds.extend(p));
+            map.fitBounds(bounds);
+
+            // Listen for edits
+            google.maps.event.addListener(drawnPolygon.getPath(), 'set_at', function() {
+                updateBoundaryField(drawnPolygon);
+            });
+
+            google.maps.event.addListener(drawnPolygon.getPath(), 'insert_at', function() {
+                updateBoundaryField(drawnPolygon);
+            });
+        }
         
         // Load existing data to prevent duplicates
         async function loadExistingData() {
@@ -1955,7 +2012,9 @@
                 const personsResponse = await fetch(`${API_BASE}/api/persons`);
                 if (personsResponse.ok) {
                     existingPersons = await personsResponse.json();
-                    populateDatalist('owner-dssn-list', existingPersons.map(p => p.DSSN));
+                    populateDatalist('owner-dssn-list', existingPersons
+                        .filter(p => p.Role === 'Landowner' || p.Role === 'Both')
+                        .map(p => p.DSSN));
                     populateDatalist('surveyor-dssn-list', existingPersons
                         .filter(p => p.Role === 'Surveyor' || p.Role === 'Both')
                         .map(p => p.DSSN));
@@ -2097,7 +2156,6 @@
                             <label for="ownership-owner-dssn-${newIndex}" class="required-field">Owner DSSN</label>
                             <div class="dropdown-container">
                                 <input type="text" id="ownership-owner-dssn-${newIndex}" list="owner-dssn-list" required>
-                                <datalist id="owner-dssn-list"></datalist>
                                 <div class="validation-error" id="ownership-owner-dssn-${newIndex}-error">Valid Owner DSSN is required</div>
                             </div>
                         </div>
@@ -2471,17 +2529,12 @@
                     });
                     
                     // Update datalists based on role
-                    if (formData.Role === 'Landowner' || formData.Role === 'Both') {
-                        populateDatalist('owner-dssn-list', existingPersons
-                            .filter(p => p.Role === 'Landowner' || p.Role === 'Both')
-                            .map(p => p.DSSN));
-                    }
-                    
-                    if (formData.Role === 'Surveyor' || formData.Role === 'Both') {
-                        populateDatalist('surveyor-dssn-list', existingPersons
-                            .filter(p => p.Role === 'Surveyor' || p.Role === 'Both')
-                            .map(p => p.DSSN));
-                    }
+                    populateDatalist('owner-dssn-list', existingPersons
+                        .filter(p => p.Role === 'Landowner' || p.Role === 'Both')
+                        .map(p => p.DSSN));
+                    populateDatalist('surveyor-dssn-list', existingPersons
+                        .filter(p => p.Role === 'Surveyor' || p.Role === 'Both')
+                        .map(p => p.DSSN));
                     
                     document.getElementById('personForm').reset();
                     document.getElementById('person-image-name').textContent = 'No file chosen';
