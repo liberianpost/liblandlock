@@ -627,7 +627,6 @@
             opacity: 0.8;
         }
         
-        /* Status messages */
         .status-message {
             padding: 10px 15px;
             border-radius: 8px;
@@ -1051,17 +1050,6 @@
                         <p>For the boundary, either draw on the map or enter the polygon coordinates manually in WKT format: POLYGON((long lat, long lat, ...))</p>
                     </div>
                     
-                    <!-- Map container for boundary drawing -->
-                    <div class="map-container" id="map"></div>
-                    <div class="map-actions">
-                        <button type="button" class="map-btn" id="drawPolygonBtn">
-                            <i class="fas fa-draw-polygon"></i> Draw Boundary
-                        </button>
-                        <button type="button" class="map-btn" id="clearPolygonBtn">
-                            <i class="fas fa-trash"></i> Clear
-                        </button>
-                    </div>
-                    
                     <form id="landParcelForm">
                         <div class="form-grid">
                             <div class="form-group">
@@ -1114,6 +1102,11 @@
                                     <div class="validation-error" id="surveyor-dssn-error">Valid Surveyor DSSN is required</div>
                                 </div>
                             </div>
+                        </div>
+
+                        <!-- Boundary section -->
+                        <div class="section-divider">
+                            <div class="section-title">Boundary Information</div>
                             <div class="form-group">
                                 <label for="boundary" class="required-field">Boundary Polygon (WKT Format)</label>
                                 <textarea id="boundary" rows="4" placeholder="POLYGON((-10.617312 6.450804,-10.615312 6.450804,-10.615312 6.448804,-10.617312 6.448804,-10.617312 6.450804))" required></textarea>
@@ -1125,6 +1118,15 @@
                                     <i class="fas fa-map"></i> Show on Map
                                 </button>
                             </div>
+                            <div class="map-actions">
+                                <button type="button" class="map-btn" id="drawPolygonBtn">
+                                    <i class="fas fa-draw-polygon"></i> Draw Boundary
+                                </button>
+                                <button type="button" class="map-btn" id="clearPolygonBtn">
+                                    <i class="fas fa-trash"></i> Clear
+                                </button>
+                            </div>
+                            <div class="map-container" id="map"></div>
                         </div>
                         
                         <div id="landParcelStatus"></div>
@@ -1719,7 +1721,7 @@
             { code: "60205", area: "POPALAHUN - POPALAHUN - WANHASSA" },
             { code: "60206", area: "LEHUMA - LEHUMA - WANHASSA" },
             { code: "60208", area: "KIMBALOE - KIMBALOE - FOYA" },
-            { code: "60301", area: "YASELAHUN - YASELAHUN - KOLAHUN" },
+            { code: "60301", area: "YASELAHUN - YASELAHUN - KOLAHun" },
             { code: "60302", area: "BOWAHUN - BOWAHUN - KOLAHUN" },
             { code: "60303", area: "PASOLAHUN - PASOLAHUN - KOLAHUN" },
             { code: "60304", area: "KAMBOLAHUN - KAMBOLAHUN - KOLAHUN" },
@@ -1942,7 +1944,6 @@
             // Default center on Liberia
             const liberiaCenter = { lat: 6.428055, lng: -9.429499 };
             
-            // Create map
             map = new google.maps.Map(document.getElementById('map'), {
                 center: liberiaCenter,
                 zoom: 8,
@@ -2954,7 +2955,7 @@
             document.getElementById('landOwnershipStatus').innerHTML = '';
             document.getElementById('documentStatus').innerHTML = '';
             
-            // Reset file names
+            // Clear file names
             document.getElementById('person-image-name').textContent = 'No file chosen';
             document.getElementById('document-file-name').textContent = 'No file chosen';
             
