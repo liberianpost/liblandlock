@@ -120,6 +120,28 @@ function PersonTab() {
       });
   };
 
+  const copyFileName = () => {
+    if (!uploadedImageUrl && !formData.Image_URL) return;
+    
+    const urlToExtract = uploadedImageUrl || formData.Image_URL;
+    const fileName = urlToExtract.split('/').pop();
+    
+    navigator.clipboard.writeText(fileName)
+      .then(() => {
+        setStatus({ 
+          message: 'File name copied to clipboard!', 
+          type: 'success' 
+        });
+      })
+      .catch(err => {
+        console.error('Failed to copy:', err);
+        setStatus({ 
+          message: 'Failed to copy file name. Please copy manually.', 
+          type: 'error' 
+        });
+      });
+  };
+
   const validateForm = () => {
     if (!formData.DSSN.trim()) {
       setStatus({ message: 'DSSN is required', type: 'error' });
@@ -388,6 +410,15 @@ function PersonTab() {
                   onChange={handleFileChange}
                 />
               </div>
+              <button 
+                type="button" 
+                className="copy-filename-btn"
+                onClick={copyFileName}
+                disabled={!uploadedImageUrl && !formData.Image_URL}
+                title="Copy file name to clipboard"
+              >
+                <i className="fas fa-copy"></i> Copy File Name
+              </button>
             </div>
 
             <div id="image-preview-container" className="image-preview-container">
@@ -406,15 +437,6 @@ function PersonTab() {
                 onChange={handleInputChange}
                 placeholder="https://storage.googleapis.com/liblandlock/filename.jpg"
               />
-              <button 
-                type="button" 
-                className="copy-url-btn"
-                onClick={copyImageUrl}
-                disabled={!formData.Image_URL}
-                title="Copy Image URL to clipboard"
-              >
-                <i className="fas fa-copy"></i> Copy
-              </button>
             </div>
             <div className="field-note">
               {uploadedImageUrl 
