@@ -92,7 +92,9 @@
 .file-upload {
   position: relative;
   overflow: hidden;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   width: 100%;
 }
 
@@ -118,6 +120,30 @@
   width: 100%;
   height: 100%;
   cursor: pointer;
+}
+
+.copy-filename-btn {
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.copy-filename-btn:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.copy-filename-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .image-preview-container {
@@ -250,5 +276,13 @@
   
   .copy-url-btn {
     justify-content: center;
+  }
+  
+  .file-upload {
+    flex-direction: column;
+  }
+  
+  .copy-filename-btn {
+    width: 100%;
   }
 }
