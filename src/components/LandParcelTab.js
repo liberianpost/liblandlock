@@ -710,3 +710,4 @@ function LandParcelTab() {
       setStatus({ message: 'Area Name is required', type: 'error' });
       return false;
     }
+    }
