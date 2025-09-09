@@ -1,51 +1,84 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { initializeApp } from 'firebase/app';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 function Index() {
   const navigate = useNavigate();
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
 
   useEffect(() => {
-    // Firebase configuration
-    const firebaseConfig = {
-      apiKey: "AIzaSyCAXigi0D23EjboMxulyXNb0ii-tpw0Fk0",
-      authDomain: "liblandlock.firebaseapp.com",
-      projectId: "liblandlock",
-      storageBucket: "liblandlock.firebasestorage.app",
-      messagingSenderId: "1019606713296",
-      appId: "1:1019606713296:web:4990faf32bcaf0a21dafd5"
-    };
-
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
+    console.log('Index component mounted - checking authentication');
     
-    // Check if user is already logged in
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // User is signed in, redirect to dashboard
-        navigate('/dashboard');
+    try {
+      // Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyCAXigi0D23EjboMxulyXNb0ii-tpw0Fk0",
+        authDomain: "liblandlock.firebaseapp.com",
+        projectId: "liblandlock",
+        storageBucket: "liblandlock.firebasestorage.app",
+        messagingSenderId: "1019606713296",
+        appId: "1:1019606713296:web:4990faf32bcaf0a21dafd5"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      
+      console.log('Firebase initialized successfully');
+      
+      // Check if user is already logged in
+      const unsubscribe = onAuthStateChanged(auth, (user) => {
+        console.log('Firebase auth state changed:', user ? 'User found' : 'No user');
+        if (user) {
+          console.log('User authenticated, redirecting to dashboard');
+          // Small delay to ensure UI renders before redirect
+          setTimeout(() => navigate('/dashboard'), 100);
+        }
+        setIsCheckingAuth(false);
+      });
+      
+      // Also check for localStorage user data (for your custom auth)
+      const userData = localStorage.getItem('user');
+      if (userData) {
+        console.log('Local storage user found, redirecting to dashboard');
+        // Small delay to ensure UI renders before redirect
+        setTimeout(() => navigate('/dashboard'), 100);
+        setIsCheckingAuth(false);
       }
-    });
-    
-    // Also check for localStorage user data (for your custom auth)
-    const userData = localStorage.getItem('user');
-    if (userData) {
-      navigate('/dashboard');
-    }
 
-    // Cleanup subscription
-    return () => unsubscribe();
+      // Cleanup subscription
+      return () => {
+        console.log('Cleaning up auth subscription');
+        unsubscribe();
+      };
+    } catch (error) {
+      console.error('Firebase initialization error:', error);
+      setIsCheckingAuth(false);
+    }
   }, [navigate]);
 
   const handleLogin = () => {
+    console.log('Login button clicked');
     navigate('/login');
   };
 
   const handleSignup = () => {
+    console.log('Signup button clicked');
     navigate('/signup');
   };
+
+  // Show loading state while checking authentication
+  if (isCheckingAuth) {
+    return (
+      <div style={styles.body}>
+        <div style={styles.container}>
+          <h1 style={styles.title}>Liberia Land Lock Secure Portal</h1>
+          <p style={styles.description}>Checking authentication status...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div style={styles.body}>
@@ -108,7 +141,10 @@ const styles = {
     transition: 'all 0.3s ease',
     background: 'rgba(255, 255, 255, 0.2)',
     color: 'white',
-    border: '1px solid rgba(255, 255, 255, 0.3)'
+    border: '1px solid rgba(255, 255, 255, 0.3)',
+    ':hover': {
+      background: 'rgba(255, 255, 255, 0.3)'
+    }
   }
 };
 
