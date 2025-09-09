@@ -1,125 +1,235 @@
-.signup-container {
-  background-color: #f5f7fa;
-  color: #333;
-  line-height: 1.6;
-  padding: 20px;
-  min-height: 100vh;
+.person-tab {
+  padding: 20px 0;
+}
+
+.instructions {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border-left: 4px solid #fdbb2d;
+}
+
+.instructions h4 {
+  margin-bottom: 10px;
+  color: #fdbb2d;
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 8px;
 }
 
-.signup-container .container {
-  max-width: 500px;
+.instructions ol {
+  padding-left: 20px;
+  margin: 0;
+}
+
+.instructions li {
+  margin-bottom: 8px;
+  line-height: 1.4;
+  color: white;
+}
+
+.person-form {
   width: 100%;
-  background: white;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.signup-container .auth-form h1 {
-  text-align: center;
-  margin-bottom: 30px;
-  color: #2c3e50;
-}
-
-.signup-container .form-group {
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
   margin-bottom: 20px;
 }
 
-.signup-container label {
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
   display: block;
   margin-bottom: 8px;
   font-weight: 600;
-  color: #2c3e50;
+  color: white;
 }
 
-.signup-container input[type="text"],
-.signup-container input[type="password"] {
+.form-group label.required-field::after {
+  content: " *";
+  color: #ff6b6b;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
   width: 100%;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 16px;
-  transition: border-color 0.3s;
-  margin-bottom: 10px;
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.2);
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s;
 }
 
-.signup-container input[type="text"]:focus,
-.signup-container input[type="password"]:focus {
-  border-color: #4a6491;
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
   outline: none;
-  box-shadow: 0 0 0 2px rgba(74, 100, 145, 0.2);
+  border-color: #fdbb2d;
+  box-shadow: 0 0 0 2px rgba(253, 187, 45, 0.3);
 }
 
-.signup-container button {
-  background: #4a6491;
+.form-group input:disabled {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.field-note {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 5px;
+  font-style: italic;
+}
+
+.file-upload-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.file-upload {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+.file-upload-btn {
+  background: rgba(0, 0, 0, 0.2);
+  color: white;
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.file-upload-input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.file-url-display {
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  word-break: break-all;
+  display: none;
+}
+
+.image-preview-container {
+  margin-top: 15px;
+  text-align: center;
+  display: none;
+}
+
+.image-preview {
+  max-width: 100%;
+  max-height: 200px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.status-message {
+  padding: 10px 15px;
+  border-radius: 8px;
+  margin: 10px 0;
+  font-weight: 500;
+}
+
+.status-success {
+  background-color: rgba(46, 204, 113, 0.2);
+  border: 1px solid rgba(46, 204, 113, 0.5);
+  color: #2ecc71;
+}
+
+.status-error {
+  background-color: rgba(231, 76, 60, 0.2);
+  border: 1px solid rgba(231, 76, 60, 0.5);
+  color: #e74c3c;
+}
+
+.status-info {
+  background-color: rgba(52, 152, 219, 0.2);
+  border: 1px solid rgba(52, 152, 219, 0.5);
+  color: #3498db;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-submit {
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
   color: white;
   border: none;
-  padding: 12px 20px;
-  border-radius: 4px;
-  cursor: pointer;
+  padding: 12px 25px;
+  border-radius: 8px;
   font-size: 16px;
   font-weight: 600;
-  transition: background 0.3s;
-  width: 100%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s;
 }
 
-.signup-container button:hover {
-  background: #3a547e;
+.btn-submit:hover:not(:disabled) {
+  background: linear-gradient(135deg, #27ae60, #219653);
+  transform: translateY(-2px);
 }
 
-.signup-container button:disabled {
-  background: #ccc;
+.btn-submit:disabled {
+  opacity: 0.7;
   cursor: not-allowed;
 }
 
-.signup-container .employee-details {
-  background: #f8f9fa;
-  padding: 15px;
-  border-radius: 4px;
-  margin-bottom: 20px;
-  border-left: 4px solid #4a6491;
-}
-
-.signup-container .employee-image {
-  width: 100px;
-  height: 100px;
+.spinner {
+  border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 50%;
-  object-fit: cover;
-  margin-top: 10px;
-  border: 3px solid #4a6491;
+  border-top: 2px solid white;
+  width: 16px;
+  height: 16px;
+  animation: spin 1s linear infinite;
 }
 
-.signup-container .error {
-  color: #e74c3c;
-  background: #fde8e8;
-  padding: 10px;
-  border-radius: 4px;
-  margin-top: 10px;
-  border-left: 4px solid #e74c3c;
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
-.signup-container .success {
-  color: #27ae60;
-  background: #e7f4e4;
-  padding: 10px;
-  border-radius: 4px;
-  margin-top: 10px;
-  border-left: 4px solid #27ae60;
-}
-
-.signup-container p {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.signup-container a {
-  color: #4a6491;
-  text-decoration: none;
-}
-
-.signup-container a:hover {
-  text-decoration: underline;
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .file-upload-container {
+    flex-direction: column;
+  }
 }
