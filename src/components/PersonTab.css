@@ -151,38 +151,6 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.url-input-group {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-.url-input-group input {
-  flex: 1;
-}
-
-.copy-url-btn {
-  background: rgba(0, 0, 0, 0.3);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 10px 15px;
-  border-radius: 8px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  white-space: nowrap;
-}
-
-.copy-url-btn:hover:not(:disabled) {
-  background: rgba(0, 0, 0, 0.4);
-}
-
-.copy-url-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
 .status-message {
   padding: 10px 15px;
   border-radius: 8px;
@@ -259,15 +227,6 @@
 @media (max-width: 768px) {
   .form-grid {
     grid-template-columns: 1fr;
-  }
-  
-  .url-input-group {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  
-  .copy-url-btn {
-    justify-content: center;
   }
   
   .file-upload-container {
