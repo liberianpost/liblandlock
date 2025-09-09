@@ -8,6 +8,65 @@
   overflow-x: hidden;
 }
 
+/* Shiny Text Effects */
+.shiny-text {
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-shadow: 
+    0 0 10px rgba(0, 140, 255, 0.8),
+    0 0 20px rgba(0, 140, 255, 0.6),
+    0 0 30px rgba(0, 140, 255, 0.4),
+    2px 2px 4px rgba(0, 0, 0, 0.5);
+  letter-spacing: 1px;
+  background: linear-gradient(45deg, #00ccff, #0066ff, #00ccff);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s linear infinite;
+}
+
+.shiny-subtext {
+  font-size: 1.2rem;
+  text-shadow: 
+    0 0 8px rgba(0, 140, 255, 0.6),
+    0 0 16px rgba(0, 140, 255, 0.4);
+  opacity: 0.9;
+  margin-top: 5px;
+}
+
+.shiny-welcome {
+  font-size: 2rem;
+  text-shadow: 
+    0 0 10px rgba(0, 140, 255, 0.7),
+    0 0 20px rgba(0, 140, 255, 0.5),
+    2px 2px 4px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(45deg, #00ccff, #0066ff, #00ccff);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s linear infinite;
+}
+
+.shiny-blue {
+  color: #00ccff;
+  text-shadow: 
+    0 0 8px rgba(0, 140, 255, 0.7),
+    0 0 16px rgba(0, 140, 255, 0.4),
+    0 0 24px rgba(0, 140, 255, 0.2);
+  font-weight: 600;
+}
+
+@keyframes shine {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
 .dashboard-container .header {
   display: flex;
   justify-content: space-between;
@@ -39,19 +98,6 @@
   flex-grow: 1;
 }
 
-.dashboard-container .system-title h1 {
-  font-size: 2.5rem;
-  font-weight: 800;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  letter-spacing: 1px;
-}
-
-.dashboard-container .system-title p {
-  font-size: 1.2rem;
-  opacity: 0.9;
-  margin-top: 5px;
-}
-
 .dashboard-container .dashboard-content {
   display: flex;
   flex-direction: column;
@@ -74,7 +120,6 @@
 }
 
 .dashboard-container .welcome-section h2 {
-  font-size: 2rem;
   margin-bottom: 10px;
 }
 
@@ -229,7 +274,8 @@
 .dashboard-container .feature-icon {
   font-size: 2.5rem;
   margin-bottom: 15px;
-  color: #4a6491;
+  color: #00ccff;
+  text-shadow: 0 0 10px rgba(0, 140, 255, 0.5);
 }
 
 .dashboard-container .feature-card h3 {
@@ -260,7 +306,7 @@
     gap: 15px;
   }
   
-  .dashboard-container .system-title h1 {
+  .dashboard-container .shiny-text {
     font-size: 2rem;
   }
   
