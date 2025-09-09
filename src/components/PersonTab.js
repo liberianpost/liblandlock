@@ -109,23 +109,6 @@ function PersonTab() {
     }
   };
 
-  const copyImageUrl = () => {
-    const urlToCopy = uploadedImageUrl || formData.Image_URL;
-    navigator.clipboard.writeText(urlToCopy)
-      .then(() => {
-        setStatus({ 
-          message: 'Image URL copied to clipboard!', 
-          type: 'success' 
-        });
-      })
-      .catch(err => {
-        console.error('Failed to copy:', err);
-        setStatus({ 
-          message: 'Failed to copy URL. Please copy manually.', 
-        });
-      });
-  };
-
   const validateForm = () => {
     if (!formData.DSSN.trim()) {
       setStatus({ message: 'DSSN is required', type: 'error' });
@@ -262,7 +245,7 @@ function PersonTab() {
           <li><strong>License ID</strong> is required only for Surveyors</li>
           <li>Upload a clear photo of the person OR manually enter the image URL</li>
           <li><strong>Image URL Format:</strong> https://storage.googleapis.com/liblandlock/filename.jpg</li>
-          <li>After uploading, the image URL will be generated automatically and can be copied</li>
+          <li>After uploading, the image URL will be generated automatically</li>
           <li>Click "Register Person" when all information is complete</li>
         </ol>
       </div>
@@ -417,25 +400,14 @@ function PersonTab() {
 
           <div className="form-group">
             <label htmlFor="Image_URL">Image URL</label>
-            <div className="url-input-group">
-              <input
-                type="text"
-                id="Image_URL"
-                name="Image_URL"
-                value={formData.Image_URL}
-                onChange={handleInputChange}
-                placeholder="https://storage.googleapis.com/liblandlock/filename.jpg"
-              />
-              <button 
-                type="button" 
-                className="copy-url-btn"
-                onClick={copyImageUrl}
-                disabled={!uploadedImageUrl && !formData.Image_URL}
-                title="Copy URL to clipboard"
-              >
-                <i className="fas fa-copy"></i> Copy URL
-              </button>
-            </div>
+            <input
+              type="text"
+              id="Image_URL"
+              name="Image_URL"
+              value={formData.Image_URL}
+              onChange={handleInputChange}
+              placeholder="https://storage.googleapis.com/liblandlock/filename.jpg"
+            />
             <div className="field-note">
               {uploadedImageUrl 
                 ? 'URL generated from uploaded image - you can modify if needed' 
