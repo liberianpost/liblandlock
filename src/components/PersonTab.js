@@ -77,13 +77,13 @@ function PersonTab() {
   const uploadImage = async () => {
     if (!imageFile) return null;
 
-    const formData = new FormData();
-    formData.append('image', imageFile);
+    const uploadFormData = new FormData();
+    uploadFormData.append('image', imageFile);
 
     try {
       const response = await fetch(`${API_BASE}/api/upload-gcp-image`, {
         method: 'POST',
-        body: formData
+        body: uploadFormData
       });
 
       const result = await response.json();
@@ -122,7 +122,6 @@ function PersonTab() {
         console.error('Failed to copy:', err);
         setStatus({ 
           message: 'Failed to copy URL. Please copy manually.', 
-          type: 'error' 
         });
       });
   };
@@ -153,15 +152,17 @@ function PersonTab() {
       return false;
     }
 
-    // Validate License ID for Surveyors
-    if ((formData.Role === 'Surveyor' || formData.Role === 'Both') && !formData.License_ID.trim()) {
-      setStatus({ message: 'License ID is required for Surveyors', type: 'error' });
-      return false;
-    }
-
-    if (formData.License_ID && existingLicenseIDs.includes(formData.License_ID)) {
-      setStatus({ message: 'This License ID already exists', type: 'error' });
-      return false;
+    // Validate License ID only for Surveyors
+    if (formData.Role === 'Surveyor' || formData.Role === 'Both') {
+      if (!formData.License_ID.trim()) {
+        setStatus({ message: 'License ID is required for Surveyors', type: 'error' });
+        return false;
+      }
+      
+      if (existingLicenseIDs.includes(formData.License_ID)) {
+        setStatus({ message: 'This License ID already exists', type: 'error' });
+        return false;
+      }
     }
 
     return true;
@@ -186,11 +187,16 @@ function PersonTab() {
         }
       }
 
-      // Prepare data for submission
+      // Prepare data for submission - clear License_ID if not needed
       const submissionData = {
         ...formData,
         Image_URL: finalImageUrl
       };
+
+      // If role is Landowner, clear the License_ID
+      if (formData.Role === 'Landowner') {
+        submissionData.License_ID = '';
+      }
 
       const response = await fetch(`${API_BASE}/api/person`, {
         method: 'POST',
