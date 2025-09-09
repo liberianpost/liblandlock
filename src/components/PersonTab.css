@@ -89,12 +89,17 @@
   font-style: italic;
 }
 
-.file-upload {
-  position: relative;
-  overflow: hidden;
+.file-upload-container {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 100%;
+}
+
+.file-upload {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
   width: 100%;
 }
 
@@ -278,7 +283,7 @@
     justify-content: center;
   }
   
-  .file-upload {
+  .file-upload-container {
     flex-direction: column;
   }
   
