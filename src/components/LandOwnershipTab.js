@@ -14,7 +14,7 @@ function LandOwnershipTab() {
   const [existingOwners, setExistingOwners] = useState([]);
   const [existingOwnerships, setExistingOwnerships] = useState([]);
   
-  const API_BASE = 'https://libpayapp.liberianpost.com:8081';
+  const API_BASE = 'https://api.liblandlock.com';
 
   useEffect(() => {
     fetchExistingData();
