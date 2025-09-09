@@ -34,8 +34,8 @@ function Dashboard() {
         </div>
         
         <div className="system-title">
-          <h1>LIBERIA LAND LOCK SYSTEM</h1>
-          <p>Secure Land Management Portal</p>
+          <h1 className="shiny-text">LIBERIA LAND LOCK SYSTEM</h1>
+          <p className="shiny-subtext">Secure Land Management Portal</p>
         </div>
         
         <div className="header-images">
@@ -45,7 +45,7 @@ function Dashboard() {
       
       <div className="dashboard-content">
         <div className="welcome-section">
-          <h2>Welcome to Your Dashboard</h2>
+          <h2 className="shiny-welcome">Welcome to Your Dashboard</h2>
           <p>You have successfully logged in to the secure portal</p>
         </div>
         
@@ -59,7 +59,7 @@ function Dashboard() {
                 className="user-image" 
               />
               <div className="user-info">
-                <h3>{userData.first_name} {userData.last_name}</h3>
+                <h3 className="shiny-blue">{userData.first_name} {userData.last_name}</h3>
                 <p>Registered User</p>
               </div>
             </div>
@@ -87,7 +87,7 @@ function Dashboard() {
           <div className="user-card">
             <div className="card-header">
               <div className="user-info">
-                <h3>System Information</h3>
+                <h3 className="shiny-blue">System Information</h3>
                 <p>Land Lock Portal</p>
               </div>
             </div>
@@ -118,7 +118,7 @@ function Dashboard() {
             <div className="feature-icon">
               <i className="fas fa-map-marked-alt"></i>
             </div>
-            <h3>Land Records</h3>
+            <h3 className="shiny-blue">Land Records</h3>
             <p>Access and manage land ownership records and documents</p>
           </div>
           
@@ -126,7 +126,7 @@ function Dashboard() {
             <div className="feature-icon">
               <i className="fas fa-file-contract"></i>
             </div>
-            <h3>Documents</h3>
+            <h3 className="shiny-blue">Documents</h3>
             <p>View and download official land documents and certificates</p>
           </div>
           
@@ -134,7 +134,7 @@ function Dashboard() {
             <div className="feature-icon">
               <i className="fas fa-search"></i>
             </div>
-            <h3>Search Portal</h3>
+            <h3 className="shiny-blue">Search Portal</h3>
             <p>Search through land records and ownership information</p>
           </div>
           
@@ -142,7 +142,7 @@ function Dashboard() {
             <div className="feature-icon">
               <i className="fas fa-landmark"></i>
             </div>
-            <h3>Land Registration</h3>
+            <h3 className="shiny-blue">Land Registration</h3>
             <p>Register new land parcels, owners, and survey information</p>
           </div>
           
@@ -150,8 +150,16 @@ function Dashboard() {
             <div className="feature-icon">
               <i className="fas fa-shield-alt"></i>
             </div>
-            <h3>Security</h3>
+            <h3 className="shiny-blue">Security</h3>
             <p>Advanced security measures to protect land data</p>
+          </div>
+          
+          <div className="feature-card">
+            <div className="feature-icon">
+              <i className="fas fa-id-card"></i>
+            </div>
+            <h3 className="shiny-blue">DSSN Registration</h3>
+            <p>Register and manage Digital Security Service Numbers</p>
           </div>
         </div>
         
