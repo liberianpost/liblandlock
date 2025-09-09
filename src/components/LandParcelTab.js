@@ -57,7 +57,7 @@ const postalCodes = {
     { code: "10801", area: "CROWN HILL - MONROVIA - DISTRICT 8" },
     { code: "10802", area: "SLIP WAY - MONROVIA - DISTRICT 8" },
     { code: "10803", area: "SONIWEIN - MONROVIA - DISTRICT 8" },
-    { code: "10804", area: "BUZZI QUARTERS - MONROVIA - DISTRICT 8" },
+    { code: "10804", area: "BUZZI QUARRS - MONROVIA - DISTRICT 8" },
     { code: "10805", area: "JALLAH TOWN - MONROVIA - DISTRICT 8" },
     { code: "10806", area: "CAPITAL HILL - MONROVIA - DISTRICT 8" },
     { code: "10807", area: "SINKOR (1ST - 12) STREET - MONROVIA - DISTRICT 8" },
@@ -98,7 +98,7 @@ const postalCodes = {
     { code: "11205", area: "STEPHEN TOLBERT ESTATE - GARDNERSVILLE TOWNSHIP - DISTRICT 12" },
     { code: "11206", area: "RIVER VIEW - GARDNERSVILLE TOWNSHIP - DISTRICT 12" },
     { code: "11207", area: "KESSELLY BOULEVARD - GARDNERSVILLE TOWNSHIP - DISTRICT 12" },
-    { code: "11208", area: "MANGROVE ISLAND - GARDNERSVILLE TOWnship - DISTRICT 12" },
+    { code: "11208", area: "MANGROVE ISLAND - GARDNERSVILLE TOWNSHIP - DISTRICT 12" },
     { code: "11209", area: "J.J.Y. SNOW HILL - GARDNERSVILLE TOWNSHIP - DISTRICT 12" },
     { code: "11301", area: "NEW GEORGIA - NEW GEORGIA TOWNSHIP - DISTRICT 13" },
     { code: "11302", area: "ST. MICHEAL - NEW GEORGIA TOWNSHIP - DISTRICT 13" },
@@ -239,7 +239,7 @@ const postalCodes = {
     { code: "40313", area: "EEKREEN - KEEKREEN - DISTRICT 3" },
     { code: "40314", area: "OWN YOUR OWN - KEEKREEN - DISTRICT 3" },
     { code: "40315", area: "CORN FAM - BUCHANAN - DISTRICT 3" },
-    { code: "40316", area: "SUGAR CANE FARM - BUCHANAN - DISTRICT 3" },
+    { code: "40316", area: "SUGAR CANE FAM - BUCHANAN - DISTRICT 3" },
     { code: "40317", area: "BIAFRA - BUCHANAN - DISTRICT 3" },
     { code: "40318", area: "FANTI TOWN - BUCHANAN - DISTRICT 3" },
     { code: "40319", area: "DIRT HOLE - BUCHANAN - DISTRICT 3" },
@@ -279,10 +279,10 @@ const postalCodes = {
     { code: "20206", area: "GARZON WEST - FARMINTON - MAMBAH KABA" },
     { code: "20301", area: "DIVISION 25 - DIVISION 25 - FIRESTONE" },
     { code: "20302", area: "DIVISION 29 - CAMP 2 - FIRESTONE" },
-    { code: "20303", area: "DIVISION 36 - CAMp 3 - FIRESTONE" },
+    { code: "20303", area: "DIVISION 36 - CAMP 3 - FIRESTONE" },
     { code: "20304", area: "DIVISION 14 - CAMP 3 - FIRESTONE" },
     { code: "20305", area: "DIVISION 38 - OLD CAMP - FIRESTONE" },
-    { code: "20306", area: "DIVISION 43 - CAMp - FIRESTONE" },
+    { code: "20306", area: "DIVISION 43 - CAMP - FIRESTONE" },
     { code: "20307", area: "DIVISION 24 - CAMP - FIRESTONE" },
     { code: "20308", area: "DIVISION 27 - FIRESTONE - FIRESTONE" },
     { code: "20309", area: "DU SIDE VILLAGE - DU SIDE - FIRESTONE" },
@@ -389,7 +389,7 @@ const postalCodes = {
     { code: "50602", area: "SARLAY - SARLAY - BOE & QUILLA" },
     { code: "50603", area: "MARLAY - MARLAY - BOE & QUILLA" },
     { code: "50604", area: "GAYEA - GAYEA - KPARBLEE" },
-    { code: "50605", area: "DUBUZON - DUBUZON - KPARBLEe" },
+    { code: "50605", area: "DUBUZON - DUBUZON - KPARBLEE" },
     { code: "50606", area: "TAPPITA - TAPPITA - DOE" },
     { code: "50607", area: "VAHN - VAHN - DOE" },
     { code: "50608", area: "KWIPEA - KWIPEA - DOE" },
@@ -420,7 +420,7 @@ const postalCodes = {
     { code: "50804", area: "BUNADIN - BUNADIN - MEINPEA-MAHN" },
     { code: "50805", area: "GARNWIN - GARNWIN - MEINPEA-MAHN" },
     { code: "50806", area: "TINYEE - TINYEE - MEINPEA-MAHN" },
-    { code: "50807", area: "SOKOPA - SOKOPA - MEINPEa-MAHN" },
+    { code: "50807", area: "SOKOPA - SOKOPA - MEINPEA-MAHN" },
     { code: "50808", area: "GBLEHYEE - GBLEHYEE - MEINPEA-MAHN" },
     { code: "50809", area: "KPEIN - KPEIN - MEINPEA-MAHN" },
     { code: "50810", area: "TUNUKPUYEE - TUNUKPUYEE - MEINPEA-MAHN" },
@@ -443,7 +443,7 @@ const postalCodes = {
     { code: "60103", area: "FOYA - FOYA CITY - FOYA" },
     { code: "60104", area: "FASSAPOE - FASSAPOE - FOYA" },
     { code: "60105", area: "SINAGOLE - SINAGOLE - FOYA" },
-    { code: "60106", area: "NDEHUMA - NDEHUMA - FOYA" },
+    { code: "60106", area: "NDEHUMA - NDEHUUM - FOYA" },
     { code: "60107", area: "YELAYALOE - YELAYALOE - FOYA" },
     { code: "60108", area: "BORLILOE - BORLILOE - FOYA" },
     { code: "60109", area: "BANDENIN - BANDENIN - FOYA" },
@@ -465,7 +465,7 @@ const postalCodes = {
     { code: "60402", area: "BARZIWEN - BARZIWEN - ZORZOR" },
     { code: "60403", area: "KARZAH - KARZAH - VOINJAMA" },
     { code: "60404", area: "ZOGOLEMAI - ZOGOLEMAI - VOINJAMA" },
-    { code: "60405", area: "DAYZABAH - DAYZabah - VOINJAMA" },
+    { code: "60405", area: "DAYZABAH - DAYZABAH - VOINJAMA" },
     { code: "60406", area: "KESSELEMAI - KESSELEMAI - VOINJAMA" },
     { code: "60407", area: "WARBALAMAI - WARBALAMAI - VOINJAMA" },
     { code: "60408", area: "VOINJAMA - VOINJAMA - VOINJAMA" },
@@ -526,7 +526,7 @@ const postalCodes = {
     { code: "71305", area: "BEYAN - BEYAN - SUEHN MECCA" },
     { code: "71306", area: "VINCENT - VINCENT - DOWEIN" },
     { code: "71307", area: "JENNEH - JENNEH - DOWEIN" },
-    { code: "71308", area: "BONOR - BONOR - DOWEIN" }
+    { code: "71308", area: "BONOR - BONOR - DOWeIN" }
   ],
   "Gbarpolu": [
     { code: "72101", area: "BOMBOMAH - BOMBOMAH - BOPOLU" },
@@ -547,7 +547,7 @@ const postalCodes = {
     { code: "72205", area: "GATIMA - GATIMA - BELLEH" },
     { code: "72206", area: "TIGGELEE - TIGGELEE - BELLEH" },
     { code: "72207", area: "GOMU - GOMU - GOUNWOLAILA" },
-    { code: "72208", area: "KELLEH - KELLEH - GOUNWOLAILa" },
+    { code: "72208", area: "KELLEH - KELLEH - GOUNWOLAILA" },
     { code: "72209", area: "GOU - GOU - GOUNWOLAILA" },
     { code: "72210", area: "ZEAYEA - ZEAYEA - GOUNWOLAILA" },
     { code: "72211", area: "ZALAKAI - ZALAKAI - BOKOMU" },
@@ -619,6 +619,7 @@ function LandParcelTab() {
   const [existingSurveyors, setExistingSurveyors] = useState([]);
   const [map, setMap] = useState(null);
   const [polygon, setPolygon] = useState(null);
+  const [mapsLoaded, setMapsLoaded] = useState(false);
   
   const mapRef = useRef(null);
   const API_BASE = 'https://libpayapp.liberianpost.com:8081';
@@ -627,11 +628,6 @@ function LandParcelTab() {
   useEffect(() => {
     fetchExistingData();
     loadGoogleMaps();
-    return () => {
-      // Cleanup script to prevent memory leaks
-      const scripts = document.querySelectorAll(`script[src*="maps.googleapis.com"]`);
-      scripts.forEach(script => script.remove());
-    };
   }, []);
 
   const fetchExistingData = async () => {
@@ -656,32 +652,57 @@ function LandParcelTab() {
   };
 
   const loadGoogleMaps = () => {
-    if (!window.google) {
-      window.initMap = initMap; // Set the global callback
-      const script = document.createElement('script');
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=drawing&loading=async&callback=initMap`;
-      script.async = true;
-      script.defer = true;
-      script.onerror = () => {
-        setStatus({ message: 'Failed to load Google Maps API', type: 'error' });
-      };
-      document.head.appendChild(script);
-    } else {
+    if (window.google && window.google.maps) {
+      setMapsLoaded(true);
       initMap();
+      return;
     }
+
+    // Check if script is already loading
+    if (document.querySelector('script[src*="maps.googleapis.com"]')) {
+      const checkMapsLoaded = setInterval(() => {
+        if (window.google && window.google.maps) {
+          clearInterval(checkMapsLoaded);
+          setMapsLoaded(true);
+          initMap();
+        }
+      }, 100);
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=drawing&loading=async&callback=initMapCallback`;
+    script.async = true;
+    script.defer = true;
+    
+    // Set up global callback
+    window.initMapCallback = () => {
+      setMapsLoaded(true);
+      initMap();
+    };
+    
+    document.head.appendChild(script);
   };
 
   const initMap = () => {
-    if (!mapRef.current || !window.google) return;
+    if (!mapRef.current || !window.google || !window.google.maps) return;
 
-    const liberiaCenter = { lat: 6.428055, lng: -9.429499 };
-    const googleMap = new window.google.maps.Map(mapRef.current, {
-      center: liberiaCenter,
-      zoom: 8,
-      mapTypeId: window.google.maps.MapTypeId.HYBRID
-    });
+    try {
+      const liberiaCenter = { lat: 6.428055, lng: -9.429499 };
+      const googleMap = new window.google.maps.Map(mapRef.current, {
+        center: liberiaCenter,
+        zoom: 8,
+        mapTypeId: window.google.maps.MapTypeId.HYBRID
+      });
 
-    setMap(googleMap);
+      setMap(googleMap);
+    } catch (error) {
+      console.error('Error initializing map:', error);
+      setStatus({ 
+        message: 'Failed to initialize map. Please refresh the page.', 
+        type: 'error' 
+      });
+    }
   };
 
   const handleInputChange = (e) => {
@@ -710,4 +731,400 @@ function LandParcelTab() {
       setStatus({ message: 'Area Name is required', type: 'error' });
       return false;
     }
+
+    if (!formData.Plot_Number.trim()) {
+      setStatus({ message: 'Plot Number is required', type: 'error' });
+      return false;
     }
+
+    if (!formData.Date_Surveyed) {
+      setStatus({ message: 'Date Surveyed is required', type: 'error' });
+      return false;
+    }
+
+    if (!formData.Surveyor_DSSN.trim()) {
+      setStatus({ message: 'Surveyor DSSN is required', type: 'error' });
+      return false;
+    }
+
+    if (!existingSurveyors.includes(formData.Surveyor_DSSN)) {
+      setStatus({ message: 'Surveyor DSSN must belong to a registered surveyor', type: 'error' });
+      return false;
+    }
+
+    if (!formData.Boundary.trim()) {
+      setStatus({ message: 'Boundary Polygon is required', type: 'error' });
+      return false;
+    }
+
+    if (!isValidWKT(formData.Boundary)) {
+      setStatus({ message: 'Invalid polygon format. Please use valid WKT format', type: 'error' });
+      return false;
+    }
+
+    return true;
+  };
+
+  const isValidWKT = (wkt) => {
+    const cleaned = cleanWKT(wkt);
+    const coordinateRegex = /[-+]?\d*\.?\d+\s+[-+]?\d*\.?\d+/g;
+    const coords = cleaned.match(coordinateRegex);
+    return coords && coords.length >= 4;
+  };
+
+  const cleanWKT = (wkt) => {
+    if (!wkt) return '';
+    let cleaned = wkt.trim().replace(/\s+/g, ' ').replace(/\n/g, '');
+    
+    if (!/^POLYGON\s*\(\(.*\)\)$/i.test(cleaned)) {
+      if (/^POLYGON\s*\(.*\)$/i.test(cleaned)) {
+        cleaned = cleaned.replace(/^POLYGON\s*\(/i, 'POLYGON((');
+        if (!cleaned.endsWith('))')) {
+          cleaned = cleaned.replace(/\)$/, '))');
+        }
+      } else {
+        cleaned = `POLYGON((${cleaned}))`;
+      }
+    }
+    
+    return cleaned;
+  };
+
+  const verifyBoundary = () => {
+    if (!formData.Boundary.trim()) {
+      setStatus({ message: 'Please enter boundary coordinates first', type: 'error' });
+      return;
+    }
+
+    if (!isValidWKT(formData.Boundary)) {
+      setStatus({ message: 'Invalid polygon format. Please use valid WKT format', type: 'error' });
+      return;
+    }
+
+    if (!mapsLoaded) {
+      setStatus({ message: 'Maps are still loading. Please wait...', type: 'error' });
+      return;
+    }
+
+    setVerifying(true);
+    setStatus({ message: 'Verifying boundary...', type: 'info' });
+
+    try {
+      const cleanedBoundary = cleanWKT(formData.Boundary);
+      displayPolygonOnMap(cleanedBoundary);
+      setStatus({ message: 'Boundary verified successfully!', type: 'success' });
+    } catch (error) {
+      setStatus({ message: 'Error displaying boundary on map', type: 'error' });
+    } finally {
+      setVerifying(false);
+    }
+  };
+
+  const displayPolygonOnMap = (wkt) => {
+    if (!map || !wkt || !window.google || !window.google.maps) return;
+
+    // Clear existing polygon
+    if (polygon) {
+      polygon.setMap(null);
+    }
+
+    const coords = wkt.match(/[-+]?\d*\.?\d+\s+[-+]?\d*\.?\d+/g);
+    const path = coords.map(coord => {
+      const [lngStr, latStr] = coord.split(/\s+/);
+      const lng = parseFloat(lngStr);
+      const lat = parseFloat(latStr);
+      return { lat, lng };
+    });
+
+    const newPolygon = new window.google.maps.Polygon({
+      paths: path,
+      strokeColor: '#FF0000',
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: '#FF0000',
+      fillOpacity: 0.35,
+      map: map
+    });
+
+    setPolygon(newPolygon);
+
+    // Fit map to polygon bounds
+    const bounds = new window.google.maps.LatLngBounds();
+    path.forEach(point => bounds.extend(point));
+    map.fitBounds(bounds);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (!validateForm()) return;
+
+    setLoading(true);
+    setStatus({ message: '', type: '' });
+
+    try {
+      const submissionData = {
+        ...formData,
+        Boundary: cleanWKT(formData.Boundary)
+      };
+
+      const response = await fetch(`${API_BASE}/api/land-parcel`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(submissionData)
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setStatus({ 
+          message: `Land parcel created successfully! Parcel ID: ${result.parcelId}`, 
+          type: 'success' 
+        });
+        
+        // Reset form
+        setFormData({
+          County: '',
+          Postal_Code: '',
+          Area_Name: '',
+          Plot_Number: '',
+          Date_Surveyed: '',
+          Surveyor_DSSN: '',
+          Boundary: ''
+        });
+        
+        // Clear map
+        if (polygon) {
+          polygon.setMap(null);
+          setPolygon(null);
+        }
+        
+        // Refresh existing data
+        fetchExistingData();
+      } else {
+        setStatus({ 
+          message: result.message || 'Error creating land parcel', 
+          type: 'error' 
+        });
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setStatus({ 
+        message: 'Network error. Please try again.', 
+        type: 'error' 
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const getPostalCodeOptions = () => {
+    if (!formData.County || !postalCodes[formData.County]) {
+      return [];
+    }
+    return postalCodes[formData.County];
+  };
+
+  return (
+    <div className="land-parcel-tab">
+      <div className="instructions">
+        <h4><i className="fas fa-info-circle"></i> Instructions for Land Parcel Registration</h4>
+        <ol>
+          <li>Fill in all <strong>required fields</strong> marked with *</li>
+          <li>Select the <strong>County</strong> from the dropdown list</li>
+          <li>Choose the appropriate <strong>Postal Code</strong> based on the selected county</li>
+          <li>Enter the <strong>Boundary Polygon</strong> in WKT format</li>
+          <li>Click <strong>Verify on Map</strong> to check the boundary before submission</li>
+          <li>Ensure the <strong>Surveyor DSSN</strong> belongs to a registered surveyor</li>
+          <li>Click "Register Land Parcel" when all information is complete</li>
+        </ol>
+        
+        <div className="wkt-example">
+          <h5>WKT Format Example:</h5>
+          <code>
+            POLYGON((-10.617312 6.450804,-10.615312 6.450804,-10.615312 6.448804,-10.617312 6.448804,-10.617312 6.450804))
+          </code>
+        </div>
+      </div>
+
+      <form onSubmit={handleSubmit} className="land-parcel-form">
+        <div className="form-grid">
+          <div className="form-group">
+            <label htmlFor="County" className="required-field">County</label>
+            <select
+              id="County"
+              name="County"
+              value={formData.County}
+              onChange={handleInputChange}
+              required
+            >
+              <option value="">Select County</option>
+              {counties.map(county => (
+                <option key={county} value={county}>{county}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="Postal_Code">Postal Code</label>
+            <select
+              id="Postal_Code"
+              name="Postal_Code"
+              value={formData.Postal_Code}
+              onChange={handleInputChange}
+              disabled={!formData.County}
+            >
+              <option value="">Select Postal Code</option>
+              {getPostalCodeOptions().map(item => (
+                <option key={item.code} value={item.code}>
+                  {item.code} - {item.area}
+                </option>
+              ))}
+            </select>
+            <div className="field-note">
+              {!formData.County ? 'Select a county first' : 'Select appropriate postal code'}
+            </div>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="Area_Name" className="required-field">Area Name</label>
+            <input
+              type="text"
+              id="Area_Name"
+              name="Area_Name"
+              value={formData.Area_Name}
+              onChange={handleInputChange}
+              placeholder="Enter area name"
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="Plot_Number" className="required-field">Plot Number</label>
+            <input
+              type="text"
+              id="Plot_Number"
+              name="Plot_Number"
+              value={formData.Plot_Number}
+              onChange={handleInputChange}
+              placeholder="Enter plot number"
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="Date_Surveyed" className="required-field">Date Surveyed</label>
+            <input
+              type="date"
+              id="Date_Surveyed"
+              name="Date_Surveyed"
+              value={formData.Date_Surveyed}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="Surveyor_DSSN" className="required-field">Surveyor DSSN</label>
+            <input
+              type="text"
+              id="Surveyor_DSSN"
+              name="Surveyor_DSSN"
+              value={formData.Surveyor_DSSN}
+              onChange={handleInputChange}
+              placeholder="Enter surveyor DSSN"
+              required
+              list="surveyor-dssn-list"
+            />
+            <datalist id="surveyor-dssn-list">
+              {existingSurveyors.map(dssn => (
+                <option key={dssn} value={dssn} />
+              ))}
+            </datalist>
+            <div className="field-note">
+              Must be a registered surveyor's DSSN
+            </div>
+          </div>
+
+          <div className="form-group full-width">
+            <label htmlFor="Boundary" className="required-field">Boundary Polygon (WKT Format)</label>
+            <textarea
+              id="Boundary"
+              name="Boundary"
+              value={formData.Boundary}
+              onChange={handleInputChange}
+              placeholder="POLYGON((-10.617312 6.450804,-10.615312 6.450804,-10.615312 6.448804,-10.617312 6.448804,-10.617312 6.450804))"
+              rows="4"
+              required
+            />
+            <div className="field-note">
+              Enter coordinates in WKT format. Click "Verify on Map" to check the boundary.
+            </div>
+            <button 
+              type="button" 
+              className="verify-btn"
+              onClick={verifyBoundary}
+              disabled={verifying || !formData.Boundary.trim() || !mapsLoaded}
+            >
+              {verifying ? (
+                <>
+                  <span className="spinner"></span>
+                  Verifying...
+                </>
+              ) : (
+                <>
+                  <i className="fas fa-map"></i> Verify on Map
+                </>
+              )}
+            </button>
+          </div>
+        </div>
+
+        {/* Map Container */}
+        <div className="map-section">
+          <h4>Boundary Verification Map</h4>
+          {!mapsLoaded && (
+            <div className="map-loading">
+              <div className="spinner"></div>
+              <p>Loading map...</p>
+            </div>
+          )}
+          <div ref={mapRef} className="map-container" style={{ display: mapsLoaded ? 'block' : 'none' }}></div>
+          <div className="map-note">
+            {mapsLoaded 
+              ? 'The map will display your boundary polygon after verification. Please verify before submission.'
+              : 'Google Maps is loading. Please wait...'
+            }
+          </div>
+        </div>
+
+        {status.message && (
+          <div className={`status-message status-${status.type}`}>
+            {status.message}
+          </div>
+        )}
+
+        <div className="form-actions">
+          <button 
+            type="submit" 
+            className="btn btn-submit"
+            disabled={loading}
+          >
+            {loading ? (
+              <>
+                <span className="spinner"></span>
+                Processing...
+              </>
+            ) : (
+              'Register Land Parcel'
+            )}
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+}
+
+export default LandParcelTab;
