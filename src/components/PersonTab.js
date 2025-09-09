@@ -398,18 +398,21 @@ function PersonTab() {
 
           <div className="form-group">
             <label htmlFor="image-upload">Person Photo</label>
-            <div className="file-upload">
-              <div className="file-upload-btn">
-                <span>{imageFile ? imageFile.name : 'Choose Photo'}</span>
-                <i className="fas fa-upload"></i>
-                <input
-                  type="file"
-                  id="image-upload"
-                  className="file-upload-input"
-                  accept="image/*"
-                  onChange={handleFileChange}
-                />
+            <div className="file-upload-container">
+              <div className="file-upload">
+                <div className="file-upload-btn">
+                  <span>{imageFile ? imageFile.name : 'Choose Photo'}</span>
+                  <i className="fas fa-upload"></i>
+                  <input
+                    type="file"
+                    id="image-upload"
+                    className="file-upload-input"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                  />
+                </div>
               </div>
+              
               <button 
                 type="button" 
                 className="copy-filename-btn"
