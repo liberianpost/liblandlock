@@ -91,6 +91,13 @@
   transition: all 0.3s;
 }
 
+/* Fix for input visibility - ensure text is visible */
+.form-group input,
+.form-group select,
+.form-group textarea {
+  color: #ffffff !important;
+}
+
 .form-group input::placeholder,
 .form-group textarea::placeholder {
   color: rgba(255, 255, 255, 0.6);
