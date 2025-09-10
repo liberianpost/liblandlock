@@ -52,28 +52,7 @@ function PersonTab() {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      // Check file size (max 10MB)
-      if (file.size > 10 * 1024 * 1024) {
-        setStatus({ 
-          message: 'File size too large. Maximum size is 10MB.', 
-          type: 'error' 
-        });
-        e.target.value = ''; // Reset the file input
-        return;
-      }
-      
-      // Check if file is an image
-      if (!file.type.startsWith('image/')) {
-        setStatus({ 
-          message: 'Please select an image file.', 
-          type: 'error' 
-        });
-        e.target.value = ''; // Reset the file input
-        return;
-      }
-      
       setImageFile(file);
-      setStatus({ message: '', type: '' });
       
       // Show image preview
       const reader = new FileReader();
@@ -102,7 +81,6 @@ function PersonTab() {
     uploadFormData.append('image', imageFile);
 
     try {
-      setLoading(true);
       const response = await fetch(`${API_BASE}/api/upload-gcp-image`, {
         method: 'POST',
         body: uploadFormData
@@ -117,10 +95,6 @@ function PersonTab() {
           ...prev,
           Image_URL: result.imageUrl
         }));
-        setStatus({ 
-          message: 'Image uploaded successfully!', 
-          type: 'success' 
-        });
         return result.imageUrl;
       } else {
         throw new Error(result.message || 'Image upload failed');
@@ -132,8 +106,6 @@ function PersonTab() {
         type: 'error' 
       });
       return null;
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -193,11 +165,9 @@ function PersonTab() {
       // Upload image if file was selected
       if (imageFile) {
         const uploadedUrl = await uploadImage();
-        if (!uploadedUrl) {
-          // If image upload failed, stop the submission
-          return;
+        if (uploadedUrl) {
+          finalImageUrl = uploadedUrl;
         }
-        finalImageUrl = uploadedUrl;
       }
 
       // Prepare data for submission
