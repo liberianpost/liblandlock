@@ -170,7 +170,7 @@ function PersonTab() {
         }
       }
 
-      // Prepare data for submission - exclude License_ID entirely for Landowners
+      // Prepare data for submission
       const submissionData = {
         DSSN: formData.DSSN,
         First_Name: formData.First_Name,
@@ -180,13 +180,10 @@ function PersonTab() {
         Address: formData.Address || null,
         Phone_Number: formData.Phone_Number || null,
         Image_URL: finalImageUrl,
-        Role: formData.Role
+        Role: formData.Role,
+        // Explicitly set License_ID to null for Landowners
+        License_ID: (formData.Role === 'Surveyor' || formData.Role === 'Both') ? formData.License_ID : null
       };
-
-      // Only include License_ID for Surveyors and Both roles
-      if (formData.Role === 'Surveyor' || formData.Role === 'Both') {
-        submissionData.License_ID = formData.License_ID;
-      }
 
       console.log('Submitting data:', submissionData);
 
@@ -197,6 +194,11 @@ function PersonTab() {
         },
         body: JSON.stringify(submissionData)
       });
+
+      // Check if response is OK before trying to parse JSON
+      if (!response.ok) {
+        throw new Error(`Server returned ${response.status}: ${response.statusText}`);
+      }
 
       const result = await response.json();
 
@@ -236,7 +238,7 @@ function PersonTab() {
     } catch (error) {
       console.error('Error submitting form:', error);
       setStatus({ 
-        message: 'Network error. Please try again.', 
+        message: error.message || 'Network error. Please try again.', 
         type: 'error' 
       });
     } finally {
