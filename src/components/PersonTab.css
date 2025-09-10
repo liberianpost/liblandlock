@@ -2,10 +2,11 @@
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
+  color: inherit; /* Inherit text color from parent */
 }
 
 .instructions {
-  background-color: #f8f9fa;
+  background-color: rgba(248, 249, 250, 0.8); /* Slightly transparent */
   border-left: 4px solid #007bff;
   padding: 15px;
   margin-bottom: 20px;
@@ -27,10 +28,9 @@
 }
 
 .person-form {
-  background-color: white;
+  background-color: transparent; /* Changed from white to transparent */
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .form-grid {
@@ -47,6 +47,7 @@
   display: block;
   margin-bottom: 5px;
   font-weight: 600;
+  color: inherit; /* Inherit text color from parent */
 }
 
 .required-field::after {
@@ -59,10 +60,12 @@
 .form-group textarea {
   width: 100%;
   padding: 10px;
+  background-color: transparent;
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 14px;
   box-sizing: border-box;
+  color: inherit; /* Inherit text color from parent */
 }
 
 .form-group textarea {
@@ -84,7 +87,7 @@
   position: relative;
   display: inline-block;
   padding: 10px 15px;
-  background-color: #f8f9fa;
+  background-color: rgba(248, 249, 250, 0.8); /* Slightly transparent */
   border: 1px dashed #ddd;
   border-radius: 4px;
   cursor: pointer;
@@ -92,7 +95,7 @@
 }
 
 .file-upload-btn:hover {
-  background-color: #e9ecef;
+  background-color: rgba(233, 236, 239, 0.8); /* Slightly transparent */
   border-color: #007bff;
 }
 
@@ -112,7 +115,7 @@
   color: #6c757d;
   margin-top: 5px;
   padding: 5px;
-  background-color: #f8f9fa;
+  background-color: rgba(248, 249, 250, 0.8); /* Slightly transparent */
   border-radius: 4px;
 }
 
@@ -135,13 +138,13 @@
 }
 
 .status-success {
-  background-color: #d4edda;
+  background-color: rgba(212, 237, 218, 0.8); /* Slightly transparent */
   color: #155724;
   border: 1px solid #c3e6cb;
 }
 
 .status-error {
-  background-color: #f8d7da;
+  background-color: rgba(248, 215, 218, 0.8); /* Slightly transparent */
   color: #721c24;
   border: 1px solid #f5c6cb;
 }
