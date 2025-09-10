@@ -170,16 +170,25 @@ function PersonTab() {
         }
       }
 
-      // Prepare data for submission - clear License_ID if not needed
+      // Prepare data for submission - exclude License_ID entirely for Landowners
       const submissionData = {
-        ...formData,
-        Image_URL: finalImageUrl
+        DSSN: formData.DSSN,
+        First_Name: formData.First_Name,
+        Last_Name: formData.Last_Name,
+        Date_of_Birth: formData.Date_of_Birth || null,
+        Place_of_Birth: formData.Place_of_Birth || null,
+        Address: formData.Address || null,
+        Phone_Number: formData.Phone_Number || null,
+        Image_URL: finalImageUrl,
+        Role: formData.Role
       };
 
-      // If role is Landowner, clear the License_ID
-      if (formData.Role === 'Landowner') {
-        submissionData.License_ID = '';
+      // Only include License_ID for Surveyors and Both roles
+      if (formData.Role === 'Surveyor' || formData.Role === 'Both') {
+        submissionData.License_ID = formData.License_ID;
       }
+
+      console.log('Submitting data:', submissionData);
 
       const response = await fetch(`${API_BASE}/api/person`, {
         method: 'POST',
