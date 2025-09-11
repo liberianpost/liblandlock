@@ -1,10 +1,9 @@
-
 import React, { useState, useEffect } from 'react';
 import './LandOwnershipTab.css';
 
 function LandOwnershipTab() {
   const [formData, setFormData] = useState({
-    Parcel_ID: '',
+    Plot_Number: '',
     owners: ['']
   });
   
@@ -84,15 +83,15 @@ function LandOwnershipTab() {
   };
 
   const validateForm = () => {
-    if (!formData.Parcel_ID) {
-      setStatus({ message: 'Parcel ID is required', type: 'error' });
+    if (!formData.Plot_Number) {
+      setStatus({ message: 'Plot Number is required', type: 'error' });
       return false;
     }
 
     // Check if parcel exists
-    const parcelExists = existingParcels.some(p => p.Parcel_ID === parseInt(formData.Parcel_ID));
+    const parcelExists = existingParcels.some(p => p.Plot_Number === formData.Plot_Number);
     if (!parcelExists) {
-      setStatus({ message: 'Parcel ID does not exist. Please register the land parcel first.', type: 'error' });
+      setStatus({ message: 'Plot Number does not exist. Please register the land parcel first.', type: 'error' });
       return false;
     }
 
@@ -114,11 +113,11 @@ function LandOwnershipTab() {
 
       // Check if ownership already exists
       const ownershipExists = existingOwnerships.some(
-        ownership => ownership.Parcel_ID === parseInt(formData.Parcel_ID) && ownership.Owner_DSSN === ownerDSSN
+        ownership => ownership.Plot_Number === formData.Plot_Number && ownership.Owner_DSSN === ownerDSSN
       );
 
       if (ownershipExists) {
-        setStatus({ message: `Ownership relationship already exists for Parcel ID ${formData.Parcel_ID} and Owner DSSN ${ownerDSSN}`, type: 'error' });
+        setStatus({ message: `Ownership relationship already exists for Plot Number ${formData.Plot_Number} and Owner DSSN ${ownerDSSN}`, type: 'error' });
         return false;
       }
     }
@@ -146,7 +145,7 @@ function LandOwnershipTab() {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            Parcel_ID: formData.Parcel_ID,
+            Plot_Number: formData.Plot_Number,
             Owner_DSSN: ownerDSSN
           })
         });
@@ -172,7 +171,7 @@ function LandOwnershipTab() {
       
       // Reset form
       setFormData({
-        Parcel_ID: '',
+        Plot_Number: '',
         owners: ['']
       });
       
@@ -189,8 +188,8 @@ function LandOwnershipTab() {
     }
   };
 
-  const getParcelDescription = (parcelId) => {
-    const parcel = existingParcels.find(p => p.Parcel_ID === parseInt(parcelId));
+  const getParcelDescription = (plotNumber) => {
+    const parcel = existingParcels.find(p => p.Plot_Number === plotNumber);
     if (!parcel) return '';
     return `${parcel.Area_Name} - Plot ${parcel.Plot_Number} (${parcel.County})`;
   };
@@ -200,7 +199,7 @@ function LandOwnershipTab() {
       <div className="instructions">
         <h4><i className="fas fa-info-circle"></i> Instructions for Land Ownership Registration</h4>
         <ol>
-          <li>Select the <strong>Parcel ID</strong> from the dropdown list</li>
+          <li>Enter the <strong>Plot Number</strong> in the text field</li>
           <li>Add one or more <strong>Owner DSSNs</strong> using the + button</li>
           <li>Each owner must be registered as a Landowner in the system</li>
           <li>The same land parcel can have multiple owners</li>
@@ -211,24 +210,27 @@ function LandOwnershipTab() {
       <form onSubmit={handleSubmit} className="land-ownership-form">
         <div className="form-grid">
           <div className="form-group">
-            <label htmlFor="Parcel_ID" className="required-field">Parcel ID</label>
-            <select
-              id="Parcel_ID"
-              name="Parcel_ID"
-              value={formData.Parcel_ID}
+            <label htmlFor="Plot_Number" className="required-field">Plot Number</label>
+            <input
+              type="text"
+              id="Plot_Number"
+              name="Plot_Number"
+              value={formData.Plot_Number}
               onChange={handleInputChange}
+              placeholder="Enter Plot Number"
+              list="plot-number-list"
               required
-            >
-              <option value="">Select Parcel ID</option>
+            />
+            <datalist id="plot-number-list">
               {existingParcels.map(parcel => (
-                <option key={parcel.Parcel_ID} value={parcel.Parcel_ID}>
-                  {parcel.Parcel_ID} - {parcel.Area_Name} (Plot {parcel.Plot_Number})
+                <option key={parcel.Plot_Number} value={parcel.Plot_Number}>
+                  {parcel.Area_Name} ({parcel.County})
                 </option>
               ))}
-            </select>
-            {formData.Parcel_ID && (
+            </datalist>
+            {formData.Plot_Number && (
               <div className="parcel-info">
-                <strong>Parcel Details:</strong> {getParcelDescription(formData.Parcel_ID)}
+                <strong>Parcel Details:</strong> {getParcelDescription(formData.Plot_Number)}
               </div>
             )}
           </div>
