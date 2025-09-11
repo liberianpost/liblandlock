@@ -57,7 +57,7 @@ const postalCodes = {
     { code: "10801", area: "CROWN HILL - MONROVIA - DISTRICT 8" },
     { code: "10802", area: "SLIP WAY - MONROVIA - DISTRICT 8" },
     { code: "10803", area: "SONIWEIN - MONROVIA - DISTRICT 8" },
-    { code: "10804", area: "BUZZI QUARRS - MONROVIA - DISTRICT 8" },
+    { code: "10804", area: "BUZZI QUARTERS - MONROVIA - DISTRICT 8" },
     { code: "10805", area: "JALLAH TOWN - MONROVIA - DISTRICT 8" },
     { code: "10806", area: "CAPITAL HILL - MONROVIA - DISTRICT 8" },
     { code: "10807", area: "SINKOR (1ST - 12) STREET - MONROVIA - DISTRICT 8" },
@@ -98,7 +98,7 @@ const postalCodes = {
     { code: "11205", area: "STEPHEN TOLBERT ESTATE - GARDNERSVILLE TOWNSHIP - DISTRICT 12" },
     { code: "11206", area: "RIVER VIEW - GARDNERSVILLE TOWNSHIP - DISTRICT 12" },
     { code: "11207", area: "KESSELLY BOULEVARD - GARDNERSVILLE TOWNSHIP - DISTRICT 12" },
-    { code: "11208", area: "MANGROVE ISLAND - GARDNERSVILLE TOWNSHIP - DISTRICT 12" },
+    { code: "11208", area: "MANGROVE ISLAND - GARDNERSVILLE TOWnship - DISTRICT 12" },
     { code: "11209", area: "J.J.Y. SNOW HILL - GARDNERSVILLE TOWNSHIP - DISTRICT 12" },
     { code: "11301", area: "NEW GEORGIA - NEW GEORGIA TOWNSHIP - DISTRICT 13" },
     { code: "11302", area: "ST. MICHEAL - NEW GEORGIA TOWNSHIP - DISTRICT 13" },
@@ -239,7 +239,7 @@ const postalCodes = {
     { code: "40313", area: "EEKREEN - KEEKREEN - DISTRICT 3" },
     { code: "40314", area: "OWN YOUR OWN - KEEKREEN - DISTRICT 3" },
     { code: "40315", area: "CORN FAM - BUCHANAN - DISTRICT 3" },
-    { code: "40316", area: "SUGAR CANE FAM - BUCHANAN - DISTRICT 3" },
+    { code: "40316", area: "SUGAR CANE FARM - BUCHANAN - DISTRICT 3" },
     { code: "40317", area: "BIAFRA - BUCHANAN - DISTRICT 3" },
     { code: "40318", area: "FANTI TOWN - BUCHANAN - DISTRICT 3" },
     { code: "40319", area: "DIRT HOLE - BUCHANAN - DISTRICT 3" },
@@ -279,10 +279,10 @@ const postalCodes = {
     { code: "20206", area: "GARZON WEST - FARMINTON - MAMBAH KABA" },
     { code: "20301", area: "DIVISION 25 - DIVISION 25 - FIRESTONE" },
     { code: "20302", area: "DIVISION 29 - CAMP 2 - FIRESTONE" },
-    { code: "20303", area: "DIVISION 36 - CAMP 3 - FIRESTONE" },
+    { code: "20303", area: "DIVISION 36 - CAMp 3 - FIRESTONE" },
     { code: "20304", area: "DIVISION 14 - CAMP 3 - FIRESTONE" },
     { code: "20305", area: "DIVISION 38 - OLD CAMP - FIRESTONE" },
-    { code: "20306", area: "DIVISION 43 - CAMP - FIRESTONE" },
+    { code: "20306", area: "DIVISION 43 - CAMp - FIRESTONE" },
     { code: "20307", area: "DIVISION 24 - CAMP - FIRESTONE" },
     { code: "20308", area: "DIVISION 27 - FIRESTONE - FIRESTONE" },
     { code: "20309", area: "DU SIDE VILLAGE - DU SIDE - FIRESTONE" },
@@ -336,7 +336,7 @@ const postalCodes = {
     { code: "50209", area: "ARS COMPOUND - SANNIQUELLIE - SANNIQUELLIE-MAHN" },
     { code: "50210", area: "ST. MARRY HOSPITAL - SANNIQUELLIE - SANNIQUELLIE-MAHN" },
     { code: "50211", area: "JOY FM - SANNIQUELLIE - SANNIQUELLIE-MAHN" },
-    { code: "50212", area: "NIMBA UNIVERSITY - SANNIQUEELLIE - SANNIQUELLIE-MAHN" },
+    { code: "50212", area: "NIMBA UNIVERSITY - SANNIQUELLIE - SANNIQUELLIE-MAHN" },
     { code: "50213", area: "GBAYEE - GBAYEE - YARPEA-MAHN" },
     { code: "50214", area: "GOTONWIN - GOTONWIN - YARPEA-MAHN" },
     { code: "50215", area: "BOAPLAY - BOAPLAY - YARPEA-MAHN" },
@@ -420,7 +420,7 @@ const postalCodes = {
     { code: "50804", area: "BUNADIN - BUNADIN - MEINPEA-MAHN" },
     { code: "50805", area: "GARNWIN - GARNWIN - MEINPEA-MAHN" },
     { code: "50806", area: "TINYEE - TINYEE - MEINPEA-MAHN" },
-    { code: "50807", area: "SOKOPA - SOKOPA - MEINPEA-MAHN" },
+    { code: "50807", area: "SOKOPA - SOKOPA - MEINPEa-MAHN" },
     { code: "50808", area: "GBLEHYEE - GBLEHYEE - MEINPEA-MAHN" },
     { code: "50809", area: "KPEIN - KPEIN - MEINPEA-MAHN" },
     { code: "50810", area: "TUNUKPUYEE - TUNUKPUYEE - MEINPEA-MAHN" },
@@ -443,7 +443,7 @@ const postalCodes = {
     { code: "60103", area: "FOYA - FOYA CITY - FOYA" },
     { code: "60104", area: "FASSAPOE - FASSAPOE - FOYA" },
     { code: "60105", area: "SINAGOLE - SINAGOLE - FOYA" },
-    { code: "60106", area: "NDEHUMA - NDEHUUM - FOYA" },
+    { code: "60106", area: "NDEHUMA - NDEHUMA - FOYA" },
     { code: "60107", area: "YELAYALOE - YELAYALOE - FOYA" },
     { code: "60108", area: "BORLILOE - BORLILOE - FOYA" },
     { code: "60109", area: "BANDENIN - BANDENIN - FOYA" },
@@ -454,7 +454,7 @@ const postalCodes = {
     { code: "60203", area: "UPPER GUMA - UPPER GUMA - VAHUN" },
     { code: "60204", area: "KAMATAHUN - KAMATAHUN - WANHASSA" },
     { code: "60205", area: "POPALAHUN - POPALAHUN - WANHASSA" },
-    { code: "60206", area: "LEHUMA - LEHUUM - WANHASSA" },
+    { code: "60206", area: "LEHUMA - LEHUMA - WANHASSA" },
     { code: "60208", area: "KIMBALOE - KIMBALOE - FOYA" },
     { code: "60301", area: "YASELAHUN - YASELAHUN - KOLAHUN" },
     { code: "60302", area: "BOWAHUN - BOWAHUN - KOLAHUN" },
@@ -463,8 +463,9 @@ const postalCodes = {
     { code: "60305", area: "SOMALAHUN - SOMALAHUN - KOLAHUN" },
     { code: "60401", area: "KONIA - KONIA - ZORZOR" },
     { code: "60402", area: "BARZIWEN - BARZIWEN - ZORZOR" },
+    { code: "60403", area: "KARZAH - KARZAH - VOINJAMA" },
     { code: "60404", area: "ZOGOLEMAI - ZOGOLEMAI - VOINJAMA" },
-    { code: "60405", area: "DAYZABAH - DAYZABAH - VOINJAMA" },
+    { code: "60405", area: "DAYZABAH - DAYZabah - VOINJAMA" },
     { code: "60406", area: "KESSELEMAI - KESSELEMAI - VOINJAMA" },
     { code: "60407", area: "WARBALAMAI - WARBALAMAI - VOINJAMA" },
     { code: "60408", area: "VOINJAMA - VOINJAMA - VOINJAMA" },
@@ -525,7 +526,7 @@ const postalCodes = {
     { code: "71305", area: "BEYAN - BEYAN - SUEHN MECCA" },
     { code: "71306", area: "VINCENT - VINCENT - DOWEIN" },
     { code: "71307", area: "JENNEH - JENNEH - DOWEIN" },
-    { code: "71308", area: "BONOR - BONOR - DOWeIN" }
+    { code: "71308", area: "BONOR - BONOR - DOWEIN" }
   ],
   "Gbarpolu": [
     { code: "72101", area: "BOMBOMAH - BOMBOMAH - BOPOLU" },
@@ -546,7 +547,7 @@ const postalCodes = {
     { code: "72205", area: "GATIMA - GATIMA - BELLEH" },
     { code: "72206", area: "TIGGELEE - TIGGELEE - BELLEH" },
     { code: "72207", area: "GOMU - GOMU - GOUNWOLAILA" },
-    { code: "72208", area: "KELLEH - KELLEH - GOUNWOLAILA" },
+    { code: "72208", area: "KELLEH - KELLEH - GOUNWOLAILa" },
     { code: "72209", area: "GOU - GOU - GOUNWOLAILA" },
     { code: "72210", area: "ZEAYEA - ZEAYEA - GOUNWOLAILA" },
     { code: "72211", area: "ZALAKAI - ZALAKAI - BOKOMU" },
@@ -635,7 +636,7 @@ function LandParcelTab() {
       const parcelsResponse = await fetch(`${API_BASE}/api/land-parcels`);
       if (parcelsResponse.ok) {
         const parcels = await parcelsResponse.json();
-        setExistingParcels(parcels.map(p => p.Parcel_ID));
+        setExistingParcels(parcels.map(p => p.Plot_Number));
       }
 
       // Fetch existing surveyors
@@ -970,7 +971,7 @@ function LandParcelTab() {
             <label htmlFor="Postal_Code">Postal Code</label>
             <select
               id="Postal_Code"
-              name="Postal_Code"
+              name极="Postal_Code"
               value={formData.Postal_Code}
               onChange={handleInputChange}
               disabled={!formData.County}
