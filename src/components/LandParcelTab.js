@@ -971,7 +971,7 @@ function LandParcelTab() {
             <label htmlFor="Postal_Code">Postal Code</label>
             <select
               id="Postal_Code"
-              name极="Postal_Code"
+              name="Postal_Code"  // Fixed the typo here (was "name极")
               value={formData.Postal_Code}
               onChange={handleInputChange}
               disabled={!formData.County}
