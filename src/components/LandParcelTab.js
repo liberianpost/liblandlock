@@ -622,7 +622,7 @@ function LandParcelTab() {
   const [mapsLoaded, setMapsLoaded] = useState(false);
   
   const mapRef = useRef(null);
-  const API_BASE = 'https://api.liblandlock.com';
+  const API_BASE = 'https://libpayapp.liberianpost.com:8081';
   const GOOGLE_MAPS_API_KEY = 'AIzaSyATNMTYKT2bvDzWMBSKGl-HvYqNz1BzYfs';
 
   useEffect(() => {
