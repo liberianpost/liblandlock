@@ -16,7 +16,7 @@ function Signup() {
   const navigate = useNavigate();
 
   // API Base URL - Updated to use NGINX proxy
-  const API_BASE_URL = 'https://api.liblandlock.com';
+  const API_BASE_URL = 'https://libpayapp.liberianpost.com:8081';
 
   const showError = (msg) => {
     setError(msg);
