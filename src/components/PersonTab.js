@@ -22,7 +22,7 @@ function PersonTab() {
   const [existingDSSNs, setExistingDSSNs] = useState([]);
   const [existingLicenseIDs, setExistingLicenseIDs] = useState([]);
 
-  const API_BASE = 'https://api.liblandlock.com';
+  const API_BASE = 'https://libpayapp.liberianpost.com:8081';
 
   useEffect(() => {
     fetchExistingPersons();
