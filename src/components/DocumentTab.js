@@ -14,7 +14,7 @@ function DocumentTab() {
   const [status, setStatus] = useState({ message: '', type: '' });
   const [existingOwners, setExistingOwners] = useState([]);
 
-  const API_BASE = 'https://api.liblandlock.com';
+  const API_BASE = 'https://libpayapp.liberianpost.com:8081';
   const GCP_BASE_URL = 'https://storage.googleapis.com/liblandlock/';
 
   useEffect(() => {
