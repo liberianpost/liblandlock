@@ -623,7 +623,7 @@ function LandParcelTab() {
   
   const mapRef = useRef(null);
   const API_BASE = 'https://libpayapp.liberianpost.com:8081';
-  const GOOGLE_MAPS_API_KEY = 'AIzaSyATNMTYKT2bvDzWMBSKGl-HvYqNz1BzYfs';
+  const GOOGLE_MAPS_API_KEY = 'AIzaSyBWQfXN5HQKA83S8L0r0TKksYzDLJgwEpQ';
 
   useEffect(() => {
     fetchExistingData();
