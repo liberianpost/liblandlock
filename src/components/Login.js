@@ -12,7 +12,7 @@ function Login() {
   const navigate = useNavigate();
 
   // API Base URL - Updated to use NGINX proxy
-  const API_BASE_URL = 'https://libpayapp.liberianpost.com:8081';
+  const API_BASE_URL = 'https://api.liblandlock.com';
 
   useEffect(() => {
     // Optional: Check if user is already logged in
